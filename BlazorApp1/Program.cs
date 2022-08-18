@@ -1,11 +1,26 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Pomelo.EntityFrameworkCore.MySql;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+void ConfigureServices(IServiceCollection servicios)
+{
+    var conexionString = "server=localhost;user=root;password=1234;database=ef";
+    var serverVersion = ServerVersion.AutoDetect(conexionString);
+
+    servicios.AddDbContext<>(
+        dbContextOptions => dbContextOptions
+        .UseMySql(conexionString, serverVersion)
+        .LogTo(Console.WriteLine, LogLevel.Information)
+        .EnableSensitiveDataLogging()
+        .EnableDetailedErrors()
+        );
+}
 
 var app = builder.Build();
 
