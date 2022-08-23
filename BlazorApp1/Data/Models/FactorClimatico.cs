@@ -1,6 +1,6 @@
 ﻿namespace BlazorApp1.Data.Models
 {
-    public class FactoresClimaticos : Salida
+    public class FactorClimatico : Salida
     {
         public int FactoresClimaticosId { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace BlazorApp1.Data.Models
 {
-    public class ServiciosEspeciales : Salida
+    public class ServicioEspecial : Salida
     {
         public int ServiciosEspecilesId { get; set; }
 
