@@ -1,6 +1,6 @@
 ﻿namespace BlazorApp1.Data.Models
 {
-    public class Salida
+    public abstract class Salida
     {
         public int SalidaId { get; set; }
 

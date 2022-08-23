@@ -1,6 +1,6 @@
 ﻿namespace BlazorApp1.Data.Models
 {
-    public class MaterialesPeligrosos
+    public class MaterialesPeligrosos : Salida
     {
         public int MaterialesPeligrososId { get; set; }
 
@@ -20,9 +20,5 @@
 
 
         public string? Situacion { get; set; }
-
-
-        public int SalidaId { get; set; }
-        public Salida Salida { get; set; }
     }
 }
