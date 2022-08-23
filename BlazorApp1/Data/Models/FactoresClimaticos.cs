@@ -2,6 +2,8 @@
 {
     public class FactoresClimaticos
     {
+        public int FactoresClimaticosId { get; set; }
+
         public string DatosDaños { get; set; }
 
 
