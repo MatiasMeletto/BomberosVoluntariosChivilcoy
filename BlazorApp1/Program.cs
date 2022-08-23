@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+builder.Services.AddAntDesign();
 void ConfigureServices(IServiceCollection servicios)
 {
     var conexionString = "server=localhost;user=root;password=1234;database=ef";
