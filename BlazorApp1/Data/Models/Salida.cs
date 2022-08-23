@@ -23,9 +23,6 @@
         public int SolicitanteId { get; set; }
         public Solicitante Solicitante{get;set;}
 
-        public enum TipoId { get; set; }
-        public string Subtipo { get; set; }
-
         public int DamnificadoId { get; set; }
         public Damnificado Damnificado { get; set; }
 
