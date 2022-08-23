@@ -1,6 +1,6 @@
 ﻿namespace BlazorApp1.Data.Models
 {
-    public class Incendios
+    public class Incendios : Salida
     {
         public int SuperficieAccidenteId { get; set; }
 
@@ -17,9 +17,6 @@
         public string? LugarDeSiniestro { get; set; }
 
 
-        public int SalidaId { get; set; }
-
-        public Salida Salida { get; set; }
 
 
     }
