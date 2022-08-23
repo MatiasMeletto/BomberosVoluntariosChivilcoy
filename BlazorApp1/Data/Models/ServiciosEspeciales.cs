@@ -16,5 +16,9 @@
 
         public int DatosCapacitacionId { get; set; }
         public DatosCapacitacion DatosCapacitacion { get; set; }
+
+
+        public int SalidaId { get; set; }
+        public Salida Salida { get; set; }
     }
 }
