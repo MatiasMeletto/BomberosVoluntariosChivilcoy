@@ -1,3 +1,38 @@
 ﻿@page "/"
 
-Esta es la pagina de los bomberos voluntarios jejex
+<PageHeader>
+    <PageHeaderTitle>Pagina para que me devuelvan la plata</PageHeaderTitle>
+    <PageHeaderSubtitle>Porfavor la necesito</PageHeaderSubtitle>
+    <PageHeaderTags>
+        <Tag PresetColor="@PresetColor.Blue">Running</Tag>
+    </PageHeaderTags>
+    <PageHeaderExtra>
+        <Button>Operation</Button>
+        <Button>Operation</Button>
+        <Button Type="@ButtonType.Primary">Primary</Button>
+    </PageHeaderExtra>
+    <PageHeaderContent>
+        <Row Type="flex">
+            <Statistic Title="Otra cosa " Value=@("Pending")></Statistic>
+            <Statistic Title="La plata que me debe lautaro" Value="5686444.08" Prefix="$" Style="margin: 0 32px"></Statistic>
+            <Statistic Title="La plata que me debe mayi" Value="334545.08" Prefix="$"></Statistic>
+        </Row>
+    </PageHeaderContent>
+</PageHeader>
+
+
+
+
+
+
+
+
+
+
+
+@code {
+    private string _title = "Pagina Bomberos Voluntarios de Chivilcoy";
+
+    RenderFragment icon =@<Icon Type="backward" />;
+    
+}

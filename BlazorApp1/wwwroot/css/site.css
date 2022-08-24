@@ -62,3 +62,12 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+#BarraMain {
+   background-color: rgb(62, 24, 24);
+   
+}
+    #BarraMain a {
+        font-size: 1.3em;
+        font-weight:inherit;
+    }
