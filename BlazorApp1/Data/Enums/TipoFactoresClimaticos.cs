@@ -1,6 +1,6 @@
 ﻿namespace BlazorApp1.Data.Enums
 {
-    public enum FactoresClimaticos
+    public enum TipoFactoresClimaticos
     {
         Tornados,
         Granizo,

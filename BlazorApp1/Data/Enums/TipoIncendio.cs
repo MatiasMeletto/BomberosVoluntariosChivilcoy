@@ -4,6 +4,15 @@
     {
         Aeronaves,
         Comercios,
-        Embarcaiones
+        Embarcaiones,
+        EstablecimientoEducativo,
+        EstablecimientoPublico,
+        Forestal,
+        Hospital,
+        Clinica,
+        Industria,
+        Vehicular,
+        Vivienda,
+        Otro
     }
 }
