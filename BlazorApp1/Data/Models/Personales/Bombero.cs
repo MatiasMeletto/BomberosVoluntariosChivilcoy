@@ -1,4 +1,4 @@
-﻿namespace BlazorApp1.Data.Models
+﻿namespace BlazorApp1.Data.Models.Personales
 {
     public class Bombero : Persona
     {
@@ -19,7 +19,7 @@
         public DateTime? VencimientoRegistro { get; set; }
 
         public List<Vehiculo>? Vehiculos { get; set; } = new();
-       
+
         public int? MovilId { get; set; }
         public Movil? Movil { get; set; }
     }

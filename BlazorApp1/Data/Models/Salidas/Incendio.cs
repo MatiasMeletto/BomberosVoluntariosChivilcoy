@@ -1,6 +1,6 @@
 ﻿using BlazorApp1.Data.Enums;
 
-namespace BlazorApp1.Data.Models
+namespace BlazorApp1.Data.Models.Salidas
 {
     public class Incendio : Salida
     {

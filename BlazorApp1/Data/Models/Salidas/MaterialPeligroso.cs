@@ -1,4 +1,4 @@
-﻿namespace BlazorApp1.Data.Models
+﻿namespace BlazorApp1.Data.Models.Salidas
 {
     public class MaterialesPeligrosos : Salida
     {

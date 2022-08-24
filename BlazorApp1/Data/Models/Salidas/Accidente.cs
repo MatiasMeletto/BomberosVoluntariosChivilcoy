@@ -1,4 +1,6 @@
-﻿namespace BlazorApp1.Data.Models
+﻿using BlazorApp1.Data.Models.Personales;
+
+namespace BlazorApp1.Data.Models.Salidas
 {
     public class Accidente : Salida
     {

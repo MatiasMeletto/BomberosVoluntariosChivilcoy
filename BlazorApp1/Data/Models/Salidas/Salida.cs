@@ -1,4 +1,4 @@
-﻿namespace BlazorApp1.Data.Models
+﻿namespace BlazorApp1.Data.Models.Salidas
 {
     public abstract class Salida
     {
@@ -21,7 +21,7 @@
         public Localizacion Localizacion { get; set; }
 
         public int SolicitanteId { get; set; }
-        public Solicitante Solicitante{get;set;}
+        public Solicitante Solicitante { get; set; }
 
         public int DamnificadoId { get; set; }
         public Damnificado Damnificado { get; set; }
