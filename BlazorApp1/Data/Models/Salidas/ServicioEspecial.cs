@@ -2,9 +2,6 @@
 {
     public class ServicioEspecial : Salida
     {
-        public int ServiciosEspecilesId { get; set; }
-
-
         public string InformacionServicio { get; set; }
 
 

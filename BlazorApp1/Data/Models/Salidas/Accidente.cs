@@ -4,8 +4,6 @@ namespace BlazorApp1.Data.Models.Salidas
 {
     public class Accidente : Salida
     {
-        public int AccidenteId { get; set; }
-
         public int CantidadVehiculos { get; set; }
 
 

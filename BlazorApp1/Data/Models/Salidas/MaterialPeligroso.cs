@@ -2,9 +2,6 @@
 {
     public class MaterialesPeligrosos : Salida
     {
-        public int MaterialesPeligrososId { get; set; }
-
-
         public string Sustancias { get; set; }
 
 

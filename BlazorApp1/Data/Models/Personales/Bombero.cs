@@ -1,9 +1,10 @@
-﻿namespace BlazorApp1.Data.Models.Personales
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace BlazorApp1.Data.Models.Personales
 {
+    [Index(nameof(NumeroLegajo))]
     public class Bombero : Persona
     {
-        public int BomberoId { get; set; }
-
         public int NumeroLegajo { get; set; }
         public string Estado { get; set; }
         public DateTime FechaAceptacion { get; set; }
