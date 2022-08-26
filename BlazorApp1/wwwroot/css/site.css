@@ -64,10 +64,32 @@ a, .btn-link {
     }
 
 #BarraMain {
-   background-color: rgb(62, 24, 24);
-   
+    background-color: rgb(62, 24, 24);
 }
+
     #BarraMain a {
         font-size: 1.3em;
-        font-weight:inherit;
+        font-weight: inherit;
     }
+
+#FooterM {
+    background-color: rgb(62, 24, 24);
+    width:100%;
+}
+    #GrupoT{
+        width: 100%;
+        max-width: 1200px;
+        margin: auto;
+        display: grid;                
+        padding: 45px 0px;
+    }   
+    #FooterM h4 {
+        color: white;
+    }
+    #FooterM a {
+        color: white;
+    }
+.copyright {
+    background-color: rgb(79, 34, 34)
+}
+
