@@ -19,6 +19,16 @@ namespace BlazorApp1.Data.Models.Salidas
         public VehiculoAfectado VehiculoAfectado { get; set; }
         public string? LugarDeSiniestro { get; set; }
 
+        //Superficie Afectada
+        public bool? Evacuó { get; set; }
+        public int Kilometros { get; set; }
+        public int Hectareas { get; set; }
+        public int Metros { get; set; }
+        public bool? EvacuacionParcial { get; set; }
+        public bool? EvacuacionTotal { get; set; }
+        public string DetalleSuperficieAfectadaIncendio { get; set; }
+        public TipoCausaIncendio SuperficieAfectadaCausa { get; set;}
+        //Fin Superficie Afectada
         public TipoIncendio Tipo { get; set; }
     }
 }
