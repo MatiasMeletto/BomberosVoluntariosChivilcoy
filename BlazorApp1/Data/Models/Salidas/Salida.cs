@@ -7,8 +7,8 @@
         public DateTime HoraLlegada { get; set; }
 
 
-        public int PersonalSalidaId { get; set; }
-        public PersonalSalida Personalsalida { get; set; }
+        //public int PersonalSalidaId { get; set; }
+        //public PersonalSalida Personalsalida { get; set; }
 
         public int NumeroParte { get; set; }
 

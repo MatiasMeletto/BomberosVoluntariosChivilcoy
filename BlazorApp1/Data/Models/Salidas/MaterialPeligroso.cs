@@ -4,18 +4,33 @@
     {
         public string Sustancias { get; set; }
 
+        //Acciones sobre los materiales
+        public bool Controlada { get; set; }
+        public bool Venteo { get; set; }
+        public bool DilucionDeVapores { get; set; }
+        public bool Neutralizacion { get; set; }
+        public bool Trasvase { get; set; }
+        public bool OtraAccionesMateriales { get; set; }
+        public string DetallesAccionesMateriales { get; set; }
 
-        public int AccionSobreMaterialesId { get; set; }
-        public AccionSobreMateriales AccionSobreMateriales { get; set; }
+        //Acciones sobre las personas
+        public bool Evacuacion { get; set; }
+        public bool Descontaminacion { get; set; }
+        public bool Confinamiento { get; set; }
+        public bool SinAccion { get; set; }
+        public bool OtraAccionesPersonas { get; set; }
+        public string DetallesAccionesPersonas { get; set; }
 
+        //Superficie Aferctada
+        public bool? Evacuó { get; set; }
+        public int Kilometros { get; set; }
+        public int Hectareas { get; set; }
+        public int Metros { get; set; }
+        public string DetalleSuperficieAfectada { get; set; }
 
-        public int AccionSobrePersonasId { get; set; }
-        public AccionSobrePersonas AccionSobrePersonas { get; set; }
-
-
-        public string DatosDeSuperficie { get; set; }
-
-
-        public string? Situacion { get; set; }
+        //Situación
+        public bool? Derrame { get; set; }
+        public bool? Incendio { get; set; }
+        public bool? Indeterminado { get; set; }
     }
 }
