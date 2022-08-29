@@ -2,26 +2,28 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Pomelo.EntityFrameworkCore.MySql;
 using Microsoft.EntityFrameworkCore;
+using BlazorApp1.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var conexionString = "server=localhost;user=root;password=;database=bomberos";
+var serverVersion = ServerVersion.AutoDetect(conexionString);
+
+builder.Services.AddDbContext<BomberosDbContext>(
+    dbContextOptions => dbContextOptions
+    .UseMySql(conexionString, serverVersion)
+    .LogTo(Console.WriteLine, LogLevel.Information)
+    .EnableSensitiveDataLogging()
+    .EnableDetailedErrors()
+    );
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddAntDesign();
-void ConfigureServices(IServiceCollection servicios)
-{
-    var conexionString = "server=localhost;user=root;password=1234;database=ef";
-    var serverVersion = ServerVersion.AutoDetect(conexionString);
 
-    servicios.AddDbContext<>(
-        dbContextOptions => dbContextOptions
-        .UseMySql(conexionString, serverVersion)
-        .LogTo(Console.WriteLine, LogLevel.Information)
-        .EnableSensitiveDataLogging()
-        .EnableDetailedErrors()
-        );
-}
+
+
 
 var app = builder.Build();
 

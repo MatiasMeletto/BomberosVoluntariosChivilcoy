@@ -11,7 +11,7 @@
         public string TipoPrevencion { get; set; }
 
 
-        public int DatosCapacitacionId { get; set; }
-        public DatosCapacitacion DatosCapacitacion { get; set; }
+        public int? DatosCapacitacionId { get; set; }
+        public DatosCapacitacion? DatosCapacitacion { get; set; }
     }
 }
