@@ -12,6 +12,32 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Moviles\Movil13%282%29.jpg" />
+    <None Include="wwwroot\Moviles\Movil13.jpg" />
+    <None Include="wwwroot\Moviles\Movil17%282%29.jpg" />
+    <None Include="wwwroot\Moviles\Movil17.JPG" />
+    <None Include="wwwroot\Moviles\Movil18%282%29.jpg" />
+    <None Include="wwwroot\Moviles\Movil18.jpg" />
+    <None Include="wwwroot\Moviles\Movil21%282%29.jpg" />
+    <None Include="wwwroot\Moviles\Movil21.jpg" />
+    <None Include="wwwroot\Moviles\Movil22%282%29.JPG" />
+    <None Include="wwwroot\Moviles\Movil22.jpg" />
+    <None Include="wwwroot\Moviles\Movil24%282%29.JPG" />
+    <None Include="wwwroot\Moviles\Movil24.jpg" />
+    <None Include="wwwroot\Moviles\Movil25%282%29.jpg" />
+    <None Include="wwwroot\Moviles\Movil25.jpg" />
+    <None Include="wwwroot\Moviles\Movil26%282%29.jpg" />
+    <None Include="wwwroot\Moviles\Movil26.jpg" />
+    <None Include="wwwroot\Moviles\Movil27.JPG" />
+    <None Include="wwwroot\Moviles\Movil28.JPG" />
+    <None Include="wwwroot\Moviles\Movil29.JPG" />
+    <None Include="wwwroot\Moviles\Movil31.jpg" />
+    <None Include="wwwroot\Moviles\Movil32.jpg" />
+    <None Include="wwwroot\Moviles\Movil33.jpg" />
+    <None Include="wwwroot\Moviles\Movilcamioneta.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AntDesign" Version="0.11.0" />
     <PackageReference Include="BlazorStrap" Version="5.0.106" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.8" />
