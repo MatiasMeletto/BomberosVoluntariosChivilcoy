@@ -1,4 +1,6 @@
-﻿namespace BlazorApp1.Data.Models.Salidas
+﻿using BlazorApp1.Data.Models.Salidas.Planillas;
+
+namespace BlazorApp1.Data.Models.Salidas.Componentes
 {
     public class EmbarcacionAfectada
     {

@@ -1,6 +1,7 @@
 ﻿using BlazorApp1.Data.Enums;
+using BlazorApp1.Data.Models.Salidas.Componentes;
 
-namespace BlazorApp1.Data.Models.Salidas
+namespace BlazorApp1.Data.Models.Salidas.Planillas
 {
     public class Incendio : Salida
     {
@@ -25,7 +26,7 @@ namespace BlazorApp1.Data.Models.Salidas
         public bool? EvacuacionParcial { get; set; }
         public bool? EvacuacionTotal { get; set; }
         public string DetalleSuperficieAfectadaIncendio { get; set; }
-        public TipoCausaIncendio SuperficieAfectadaCausa { get; set;}
+        public TipoCausaIncendio SuperficieAfectadaCausa { get; set; }
         //Fin Superficie Afectada
         public TipoIncendio Tipo { get; set; }
     }

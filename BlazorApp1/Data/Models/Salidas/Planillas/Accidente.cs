@@ -1,6 +1,7 @@
 ﻿using BlazorApp1.Data.Models.Personales;
+using BlazorApp1.Data.Models.Salidas.Componentes;
 
-namespace BlazorApp1.Data.Models.Salidas
+namespace BlazorApp1.Data.Models.Salidas.Planillas
 {
     public class Accidente : Salida
     {

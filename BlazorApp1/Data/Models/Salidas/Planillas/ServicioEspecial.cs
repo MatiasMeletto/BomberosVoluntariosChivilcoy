@@ -1,4 +1,6 @@
-﻿namespace BlazorApp1.Data.Models.Salidas
+﻿using BlazorApp1.Data.Models.Salidas.Componentes;
+
+namespace BlazorApp1.Data.Models.Salidas.Planillas
 {
     public class ServicioEspecial : Salida
     {

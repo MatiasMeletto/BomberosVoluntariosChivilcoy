@@ -1,6 +1,7 @@
 ﻿using BlazorApp1.Data.Enums;
+using BlazorApp1.Data.Models.Salidas.Planillas;
 
-namespace BlazorApp1.Data.Models.Salidas
+namespace BlazorApp1.Data.Models.Salidas.Componentes
 {
     public class DatosCapacitacion
     {
