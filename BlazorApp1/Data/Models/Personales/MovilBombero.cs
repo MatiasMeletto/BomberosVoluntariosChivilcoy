@@ -3,8 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BlazorApp1.Data.Models.Personales
 {
-    [Index(nameof(BomberoId))]
-    [Index(nameof(MovilId), nameof(BomberoId))]
+    [Index(nameof(PerosnaId))]
+    [Index(nameof(MovilId), nameof(PerosnaId))]
     public class MovilBombero
     {
         public int MovilBomberoId { get; set; }
@@ -14,7 +14,7 @@ namespace BlazorApp1.Data.Models.Personales
         public int MovilId { get; set; }
         public Movil Movil { get; set; }
 
-        public int BomberoId { get; set; }
+        public int PerosnaId { get; set; }
         public Bombero Bombero { get; set; }
     }
 }

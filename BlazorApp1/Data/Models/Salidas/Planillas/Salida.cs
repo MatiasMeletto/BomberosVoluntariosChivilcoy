@@ -35,5 +35,10 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
 
         public int PersonaId { get; set; }
         public Bombero Chofer { get; set; }
+
+        //relaciones con bomberos y moviles
+        public List<BomberoSalida> Bomberos { get; set; }
+        public List<MovilSalida> Moviles { get; set; }
+
     }
 }

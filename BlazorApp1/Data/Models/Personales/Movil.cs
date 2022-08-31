@@ -8,5 +8,6 @@
         public string Estado { get; set; }
 
         public List<MovilBombero> Bomberos { get; set; } = new();
+        public List<MovilSalida> Salidas { get; set; } = new();
     }
 }

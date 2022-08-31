@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BlazorApp1.Data.Models.Salidas.Planillas;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlazorApp1.Data.Models.Personales
 {
@@ -21,7 +22,9 @@ namespace BlazorApp1.Data.Models.Personales
 
         public List<Vehiculo>? Vehiculos { get; set; } = new();
 
-        public int? MovilId { get; set; }
-        public Movil? Movil { get; set; }
+        public int? MovilBomberoId { get; set; }
+        public MovilBombero? Movil { get; set; }
+
+        public List<BomberoSalida> Salidas { get; set; } = new();
     }
 }
