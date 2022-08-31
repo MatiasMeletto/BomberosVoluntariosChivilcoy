@@ -5,6 +5,8 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
 {
     public class Accidente : Salida
     {
+        //Localización, datos del solicitante, personas damnificadas y datos del seguro
+
         public int CantidadVehiculos { get; set; }
 
 

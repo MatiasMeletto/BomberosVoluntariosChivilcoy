@@ -2,6 +2,8 @@
 {
     public class MaterialesPeligrosos : Salida
     {
+        //Localización, datos del solicitante, personas damnificadas y datos del seguro
+
         public string Sustancias { get; set; }
 
         //Acciones sobre los materiales
