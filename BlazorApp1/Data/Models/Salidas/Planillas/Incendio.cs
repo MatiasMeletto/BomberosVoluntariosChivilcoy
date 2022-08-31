@@ -26,5 +26,9 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
 
         //Fin Superficie Afectada
         public TipoIncendio Tipo { get; set; }
+        public TipoIncendioAbertura TipoAbertura { get; set; }
+        public string OtraAbertura { get; set; }
+        public TipoIncendioTecho TipoTecho { get; set; }
+        public string OtroTecho { get; set; }
     }
 }
