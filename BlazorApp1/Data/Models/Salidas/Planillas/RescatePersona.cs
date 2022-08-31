@@ -1,6 +1,6 @@
 ﻿namespace BlazorApp1.Data.Models.Salidas.Planillas
 {
-    public class RescatePersona : Salida
+    public class RescatePersona : Rescate
     {
         //CARCTERÍSTICAS DEL LUGAR
 

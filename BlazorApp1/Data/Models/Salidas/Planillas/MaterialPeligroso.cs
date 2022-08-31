@@ -1,4 +1,6 @@
-﻿namespace BlazorApp1.Data.Models.Salidas.Planillas
+﻿using BlazorApp1.Data.Enums;
+
+namespace BlazorApp1.Data.Models.Salidas.Planillas
 {
     public class MaterialesPeligrosos : Salida
     {
@@ -34,5 +36,7 @@
         public bool? Derrame { get; set; }
         public bool? Incendio { get; set; }
         public bool? Indeterminado { get; set; }
+
+        public TipoMaterialPeligroso Tipo { get; set; }
     }
 }
