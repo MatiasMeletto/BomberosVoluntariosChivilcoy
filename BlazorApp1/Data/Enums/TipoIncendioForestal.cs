@@ -11,6 +11,7 @@
         Pastizal,
         ArbustalOMatorral,
         Interfase,
-        Basural
+        Basural,
+        Otro
     }
 }

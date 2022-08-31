@@ -7,6 +7,7 @@
         Metalurgica,
         Quimica,
         Alimentacion,
-        Petroquimica
+        Petroquimica,
+        Otro
     }
 }

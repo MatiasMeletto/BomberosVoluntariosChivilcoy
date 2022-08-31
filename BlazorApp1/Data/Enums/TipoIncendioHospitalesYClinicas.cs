@@ -6,6 +6,7 @@
         ClinicaPrivada,
         CentroDeSalud,
         Salitas,
-        Laboratorios
+        Laboratorios,
+        Otro
     }
 }

@@ -8,19 +8,16 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
         //Localización, datos del solicitante, personas damnificadas y datos del seguro
         public bool DeteccionAutomaticaId { get; set; }
 
-        public bool Extintor { get; set; }
-        public bool Hidrante { get; set; }
+        public bool? Extintor { get; set; }
+        public bool? Hidrante { get; set; }
         public List<EmbarcacionAfectada> EmbarcacionAfectadas { get; set; }
         public List<VehiculoAfectado> VehiculoAfectados { get; set; }
-        public string? LugarDeSiniestroEmbarcacion { get; set; }
+        public TipoLugarSiniestroEmbarcacion TipoLugarSiniestroEmbarcacion { get; set; }
+        public string? OtroLugarDeSiniestroEmbarcacion { get; set; }
 
         //Superficie Afectada
-        public bool? Evacuó { get; set; }
-        public int Kilometros { get; set; }
-        public int Hectareas { get; set; }
-        public int Metros { get; set; }
-        public bool? EvacuacionParcial { get; set; }
-        public bool? EvacuacionTotal { get; set; }
+        public TipoEvacuacion TipoEvacuacion { get; set; }
+        public TipoSuperficie TipoSuperficieAfectada { get; set; }
         public string DetalleSuperficieAfectadaIncendio { get; set; }
         public TipoCausaIncendio SuperficieAfectadaCausa { get; set; }
 
@@ -30,5 +27,6 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
         public string OtraAbertura { get; set; }
         public TipoIncendioTecho TipoTecho { get; set; }
         public string OtroTecho { get; set; }
+        public string OtroLugar { get; set; }
     }
 }

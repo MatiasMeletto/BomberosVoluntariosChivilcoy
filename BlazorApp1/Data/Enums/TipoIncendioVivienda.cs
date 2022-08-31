@@ -6,6 +6,7 @@
         Depto,
         Casilla,
         Rancho,
-        Multifamiliar
+        Multifamiliar,
+        Otro
     }
 }

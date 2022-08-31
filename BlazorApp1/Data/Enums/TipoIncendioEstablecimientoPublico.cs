@@ -3,6 +3,7 @@
     public enum TipoIncendioEstablecimientoPublico
     {
         OficinaPublica,
-        Ministerio
+        Ministerio,
+        Otro
     }
 }

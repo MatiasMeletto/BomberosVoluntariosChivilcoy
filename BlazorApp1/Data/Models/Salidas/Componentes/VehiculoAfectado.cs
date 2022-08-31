@@ -2,7 +2,7 @@
 
 namespace BlazorApp1.Data.Models.Salidas.Componentes
 {
-    public abstract class VehiculoAfectado : Vehiculo
+    public class VehiculoAfectado : Vehiculo
     {
         public bool? Airbag { get; set; }
 

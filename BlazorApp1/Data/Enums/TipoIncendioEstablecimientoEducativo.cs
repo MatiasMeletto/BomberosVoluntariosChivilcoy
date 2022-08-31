@@ -6,6 +6,7 @@
         EscuelaPrimaria,
         EscuelaSecundaria,
         Terciario,
-        Universidad
+        Universidad,
+        Otro
     }
 }

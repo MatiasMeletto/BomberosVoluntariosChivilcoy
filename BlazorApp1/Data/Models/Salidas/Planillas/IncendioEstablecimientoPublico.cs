@@ -5,6 +5,5 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
     public class IncendioEstablecimientoPublico : Incendio  
     {
         public TipoIncendioEstablecimientoPublico TipoLugar { get; set; }
-        public string OtroLugar { get; set; }
     }
 }
