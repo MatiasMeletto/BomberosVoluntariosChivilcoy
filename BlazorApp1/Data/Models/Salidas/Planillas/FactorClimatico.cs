@@ -2,6 +2,12 @@
 {
     public class FactorClimatico : Salida
     {
-        public string DatosDaños { get; set; }
+        //Daños superficie evacuada
+        public bool? Evacuó { get; set; }
+        public int Kilometros { get; set; }
+        public int Hectareas { get; set; }
+        public int Metros { get; set; }
+        public string DetalleSuperficieDañada { get; set; }
+
     }
 }

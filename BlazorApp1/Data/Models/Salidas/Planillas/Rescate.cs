@@ -2,8 +2,8 @@
 {
     public class Rescate : Salida
     {
-        public int LugarId { get; set; }
-        public Lugar Lugar { get; set; }
-
+        //Localización, Datos del solicitante, personas damnificadas y datos del seguro
+        public RescatePersona? RescatePersona { get; set; }
+        public RescateAnimal? RescateAnimal { get; set; }
     }
 }

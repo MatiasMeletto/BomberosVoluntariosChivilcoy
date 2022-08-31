@@ -2,9 +2,6 @@
 {
     public class RescateAnimal : Salida
     {
-        //public int LugarId { get; set; }
-        //public Lugar Lugar { get; set; }
-
         //CARCTERÍSTICAS DEL LUGAR
 
         //Tipo de lugar animal

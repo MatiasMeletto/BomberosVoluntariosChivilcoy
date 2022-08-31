@@ -27,6 +27,7 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
         public bool? EvacuacionTotal { get; set; }
         public string DetalleSuperficieAfectadaIncendio { get; set; }
         public TipoCausaIncendio SuperficieAfectadaCausa { get; set; }
+
         //Fin Superficie Afectada
         public TipoIncendio Tipo { get; set; }
     }
