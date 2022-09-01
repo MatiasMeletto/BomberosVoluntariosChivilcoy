@@ -13,10 +13,7 @@ namespace BlazorApp1.Data.Models.Salidas.Componentes
         public TipoSexo Sexo { get; set; }
         public string LugarDeNacimiento { get; set; }
         public int Edad { get; set; }
-        public bool Herido { get; set; }
-        public bool Fallecido { get; set; }
-        public bool Desaparecido { get; set; }
-
+        public TipoDamnificado? Estado {get; set;}
         public int? VehiculoId { get; set; }
         public VehiculoDamnificado? VehiculoDamnificado { get; set; }
 
