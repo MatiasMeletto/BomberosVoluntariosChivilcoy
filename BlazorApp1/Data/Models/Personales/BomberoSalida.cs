@@ -7,7 +7,7 @@ namespace BlazorApp1.Data.Models.Personales
     {
         public int BomberoSalidaId { get; set; }
 
-        public TipoLlenadoPlanilla RolLlenado { get; set; }
+        public TipoLlenadoPlanilla? RolLlenado { get; set; }
 
         public int PersonaId { get; set; }
         public Bombero Bombero { get; set; }
