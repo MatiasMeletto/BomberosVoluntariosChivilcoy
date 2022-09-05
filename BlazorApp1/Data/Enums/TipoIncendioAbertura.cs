@@ -5,6 +5,7 @@
         Madera,
         AceroHierro,
         Aluminio,
-        Plastica
+        Plastica,
+        Otro
     }
 }

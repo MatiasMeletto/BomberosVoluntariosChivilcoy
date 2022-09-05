@@ -24,6 +24,10 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
         public string DniSolicitante { get; set; }
         public string TelefonoSolicitante { get; set; }
 
+        public string? Receptor { get; set; }
+        public int? PersonaId { get; set; }
+        public Bombero? ReceptorB { get; set; }
+
         //Si hay damnificados, entonces hay intervinientes
         public List<Damnificado> Damnificados { get; set; }
 
@@ -34,6 +38,5 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
 
         //relaciones con bomberos y moviles
         public List<MovilSalida> Moviles { get; set; }
-
     }
 }

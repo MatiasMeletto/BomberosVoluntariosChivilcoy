@@ -6,6 +6,7 @@
         Yeso,
         Tejas,
         ChapaMetalica,
-        ChapaCarton
+        ChapaCarton,
+        Otro
     }
 }

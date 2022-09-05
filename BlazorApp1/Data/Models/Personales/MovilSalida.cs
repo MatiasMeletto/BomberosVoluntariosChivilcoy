@@ -6,6 +6,8 @@ namespace BlazorApp1.Data.Models.Personales
     {
         public int MovilSalidaId { get; set; }
 
+        public bool CargoCombustible { get; set; }
+
         public int PersonaId { get; set; }
         public Bombero Chofer { get; set; }
 

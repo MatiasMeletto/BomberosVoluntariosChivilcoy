@@ -28,5 +28,9 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
         public TipoIncendioTecho TipoTecho { get; set; }
         public string OtroTecho { get; set; }
         public string OtroLugar { get; set; }
+        public string? NombreEstablecimiento { get; set; }
+        public int? CantidadPisos { get; set; }
+        public int? PisoAfectado { get; set; }
+        public int? CantidadAmbientes { get; set; }
     }
 }
