@@ -1,7 +1,31 @@
 ﻿@page "/movil"
 <h3>Moviles</h3>
-
+<div class="col-4">
 <BSContainer Container="Container.Fluid">
+    <BSCarousel HasControls="true">
+        <BSCarouselItem id="Carrusel1">
+            <BSImage Class="Imagen1" Source="/Moviles/Movil13.jpg" IsFluid="true"></BSImage>
+            <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false">               
+                <text x="50%" y="50%" fill="#555" dy=".3em"></text>               
+            </svg>
+        </BSCarouselItem>
+        <BSCarouselItem id="Carrusel2">
+
+            <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="620" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Second slide" preserveAspectRatio="xMidYMid slice" focusable="false">               
+                <text x="50%" y="50%" fill="#444" dy=".3em"></text>                
+            </svg>
+        </BSCarouselItem>
+        <BSCarouselItem id="Carrusel3">
+
+            <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="200" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Third slide" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <text x="50%" y="50%" fill="#333" dy=".3em"></text>
+            </svg>
+        </BSCarouselItem>
+    </BSCarousel>
+</BSContainer>
+</div>
+
+<div class="col-4">
     <BSCarousel HasControls="true">
         <BSCarouselItem id="Carrusel1">
             <BSImage Class="Imagen1" Source="/Moviles/Movil13.jpg" IsFluid="true"></BSImage>
@@ -22,8 +46,9 @@
             </svg>
         </BSCarouselItem>
     </BSCarousel>
-</BSContainer>
-<br>
+
+</div>
+<div class="col-4"></div>
 <h3>Moviles</h3>
 @code {
 
