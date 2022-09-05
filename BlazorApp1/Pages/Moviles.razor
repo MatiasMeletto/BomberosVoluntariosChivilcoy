@@ -1,54 +1,35 @@
 ﻿@page "/movil"
 <h3>Moviles</h3>
-<div class="col-4">
-<BSContainer Container="Container.Fluid">
-    <BSCarousel HasControls="true">
-        <BSCarouselItem id="Carrusel1">
-            <BSImage Class="Imagen1" Source="/Moviles/Movil13.jpg" IsFluid="true"></BSImage>
-            <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false">               
-                <text x="50%" y="50%" fill="#555" dy=".3em"></text>               
-            </svg>
-        </BSCarouselItem>
-        <BSCarouselItem id="Carrusel2">
+<BSContainer>
+    <BSRow Align="Align.Start">
+        <BSCol>
+            <BSCard CardType="CardType.Card" style="width: 18rem;">
+                <BSCard CardType="CardType.Image" src="/Moviles/Movil13(2).jpg" alt="Card image cap" />
+                <BSCard CardType="CardType.Body">
+                    <BSCard CardType="CardType.Title">Movil 13</BSCard>
+                    <BSCard CardType="CardType.Text">
+                        Some quick example text to build on the card title and make up the bulk of the card's content
+                    </BSCard>
+                    <BSButton Color="BSColor.Primary">Go Somewhere</BSButton>
+                </BSCard>
+            </BSCard>
+        </BSCol>
 
-            <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="620" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Second slide" preserveAspectRatio="xMidYMid slice" focusable="false">               
-                <text x="50%" y="50%" fill="#444" dy=".3em"></text>                
-            </svg>
-        </BSCarouselItem>
-        <BSCarouselItem id="Carrusel3">
-
-            <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="200" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Third slide" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <text x="50%" y="50%" fill="#333" dy=".3em"></text>
-            </svg>
-        </BSCarouselItem>
-    </BSCarousel>
+        <BSCol>
+            <BSCard CardType="CardType.Card" style="width: 18rem;">
+                <BSCard CardType="CardType.Image" src="/Moviles/Movil13.jpg" alt="Card image cap" />
+                <BSCard CardType="CardType.Body">
+                    <BSCard CardType="CardType.Title">Movil 13</BSCard>
+                    <BSCard CardType="CardType.Text">
+                        Some quick example text to build on the card title and make up the bulk of the card's content
+                    </BSCard>
+                    <BSButton Color="BSColor.Primary">Go Somewhere</BSButton>
+                </BSCard>
+            </BSCard>
+        </BSCol>
+    </BSRow>
+    <div class="col-4"></div>
 </BSContainer>
-</div>
-
-<div class="col-4">
-    <BSCarousel HasControls="true">
-        <BSCarouselItem id="Carrusel1">
-            <BSImage Class="Imagen1" Source="/Moviles/Movil13.jpg" IsFluid="true"></BSImage>
-            <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="620" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false">               
-                <text x="50%" y="50%" fill="#555" dy=".3em"></text>               
-            </svg>
-        </BSCarouselItem>
-        <BSCarouselItem id="Carrusel2">
-
-            <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="620" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Second slide" preserveAspectRatio="xMidYMid slice" focusable="false">               
-                <text x="50%" y="50%" fill="#444" dy=".3em"></text>                
-            </svg>
-        </BSCarouselItem>
-        <BSCarouselItem id="Carrusel3">
-
-            <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="200" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Third slide" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <text x="50%" y="50%" fill="#333" dy=".3em"></text>
-            </svg>
-        </BSCarouselItem>
-    </BSCarousel>
-
-</div>
-<div class="col-4"></div>
 <h3>Moviles</h3>
 @code {
 
