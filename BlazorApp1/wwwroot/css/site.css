@@ -93,20 +93,23 @@ a, .btn-link {
     background-color: rgb(79, 34, 34)
 }
 
-#Carrusel1 {
-    width: 300px;
-    height: 100%;
-    min-height: 100px;
-    display: block;
    
-}
-    #Carrusel1 Imagen1 {
-        width: 100%;
-        height: 100%;
-        min-height: 100px;
-        display:block;
-    }
 .Logo {
     max-height: 70px;
     max-width: 70px;
+}
+#Cartas Card {
+    min-height: 500px;
+    min-width: 500px;
+}
+.Titulo {
+    background-color: rgb(79, 34, 34);
+    padding:1px;
+
+
+}
+.Titulo h3 {
+    color: white;
+    text-align: center;
+    font-weight: inherit;
 }
