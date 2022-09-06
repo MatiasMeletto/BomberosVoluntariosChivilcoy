@@ -7,24 +7,18 @@ namespace BlazorApp1.Data
 {
     public class BomberosDbContext : DbContext
     {
-        DbSet<Persona> Personas { get; set; }
         DbSet<Bombero> Bomberos { get; set; }
         DbSet<Movil> Moviles { get; set; }
-        DbSet<MovilBombero> MovilesBomberos { get; set; }
         DbSet<VehiculoPersonal> VehiculosPersonales { get; set; }
         DbSet<Contacto> Contactos { get; set; }
-        DbSet<Salida> Salidas { get; set; }
         DbSet<Damnificado> Damnificados { get; set; }
         DbSet<Seguro> Seguros { get; set; }
         DbSet<DatosCapacitacion> DatosCapacitaciones { get; set; }
         DbSet<EmbarcacionAfectada> EmbarcacionesAfectadas { get; set; }
-        DbSet<VehiculoAfectado> VehiculosAfectados { get; set; }
         DbSet<VehiculoAfectadoAccidente> VehiculosAfectadosAccidentes { get; set; }
         DbSet<VehiculoAfectadoIncendio> VehiculosAfectadoIncendios { get; set; }
         DbSet<VehiculoDamnificado> VehiculosDamnificados { get; set; }
         DbSet<Accidente> Accidentes { get; set; }
-        DbSet<Incendio> Incendios { get; set; }
-        DbSet<Rescate> Rescates { get; set; }
         DbSet<FactorClimatico> FactoresClimaticos { get; set; }
         DbSet<RescatePersona> RescatePersonas { get; set; }
         DbSet<RescateAnimal> RescateAnimales { get; set; }
@@ -35,7 +29,7 @@ namespace BlazorApp1.Data
         DbSet<IncendioHospitalesYClinicas> IncendiosHospitalesYClinicas { get; set; }
         DbSet<IncendioIndustria> IncendiosIndustrias {get; set; }
         DbSet<IncendioVivienda> IncendiosViviendas { get; set; }
-        DbSet<MaterialesPeligrosos> MaterialesPeligrosos { get; set; }
+        DbSet<MaterialPeligroso> MaterialesPeligrosos { get; set; }
         DbSet<ServicioEspecial> ServicioEspeciales { get; set; }
 
 
@@ -45,12 +39,37 @@ namespace BlazorApp1.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<Persona>()
                 .HasDiscriminator<int>("Tipo")
                 .HasValue<Bombero>(1);
             modelBuilder.Entity<Persona>()
                 .ToTable("Personas");
+
+            modelBuilder.Entity<Salida>()
+                .HasDiscriminator<int>("Tipo")
+                .HasValue<Accidente>(1)
+                .HasValue<FactorClimatico>(2)
+                .HasValue<MaterialPeligroso>(3)
+                .HasValue<ServicioEspecial>(4)
+                .HasValue<RescateAnimal>(5)
+                .HasValue<RescatePersona>(6)
+                .HasValue<IncendioComercio>(7)
+                .HasValue<IncendioEstablecimientoEducativo>(8)
+                .HasValue<IncendioEstablecimientoPublico>(9)
+                .HasValue<IncendioForestal>(10)
+                .HasValue<IncendioHospitalesYClinicas>(11)
+                .HasValue<IncendioIndustria>(12)
+                .HasValue<IncendioVivienda>(13);
+            modelBuilder.Entity<Salida>()
+                .ToTable("Salidas");
+
+            modelBuilder.Entity<Vehiculo>()
+                .HasDiscriminator<int>("Tipo")
+                .HasValue<VehiculoAfectadoAccidente>(1)
+                .HasValue<VehiculoAfectadoIncendio>(2)
+                .HasValue<VehiculoDamnificado>(3)
+                .HasValue<VehiculoPersonal>(4)
+                .HasValue<Movil>(5);
         }
     }
 }

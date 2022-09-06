@@ -1,9 +1,12 @@
-﻿namespace BlazorApp1.Data.Models.Personales
+﻿using BlazorApp1.Data.Enums;
+
+namespace BlazorApp1.Data.Models.Personales
 {
     public class Persona
     {
         public int PersonaId { get; set; }
         public DateTime FechaNacimiento { get; set; }
+        public TipoSexo Sexo { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Direccion { get; set; }

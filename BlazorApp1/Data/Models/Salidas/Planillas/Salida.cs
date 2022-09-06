@@ -26,6 +26,7 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
         public string TelefonoSolicitante { get; set; }
 
         public string? Receptor { get; set; }
+
         public int? ReceptorId { get; set; }
 
         [ForeignKey("ReceptorId")]

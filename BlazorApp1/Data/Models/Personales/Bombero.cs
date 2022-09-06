@@ -1,4 +1,5 @@
-﻿using BlazorApp1.Data.Models.Salidas.Planillas;
+﻿using BlazorApp1.Data.Enums;
+using BlazorApp1.Data.Models.Salidas.Planillas;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlazorApp1.Data.Models.Personales
