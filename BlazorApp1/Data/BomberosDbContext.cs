@@ -45,6 +45,7 @@ namespace BlazorApp1.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<Persona>()
                 .HasDiscriminator<int>("Tipo")
                 .HasValue<Bombero>(1);
