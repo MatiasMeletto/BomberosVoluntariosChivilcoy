@@ -40,13 +40,13 @@ namespace BlazorApp1.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Persona>()
-                .HasDiscriminator<int>("Tipo")
+                .HasDiscriminator<int>("TipoPersona")
                 .HasValue<Bombero>(1);
             modelBuilder.Entity<Persona>()
                 .ToTable("Personas");
 
             modelBuilder.Entity<Salida>()
-                .HasDiscriminator<int>("Tipo")
+                .HasDiscriminator<int>("TipoSalida")
                 .HasValue<Accidente>(1)
                 .HasValue<FactorClimatico>(2)
                 .HasValue<MaterialPeligroso>(3)
@@ -64,7 +64,7 @@ namespace BlazorApp1.Data
                 .ToTable("Salidas");
 
             modelBuilder.Entity<Vehiculo>()
-                .HasDiscriminator<int>("Tipo")
+                .HasDiscriminator<int>("TipoVehiculo")
                 .HasValue<VehiculoAfectadoAccidente>(1)
                 .HasValue<VehiculoAfectadoIncendio>(2)
                 .HasValue<VehiculoDamnificado>(3)

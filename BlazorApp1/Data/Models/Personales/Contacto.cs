@@ -9,7 +9,7 @@
         public string? TelefonoFijo { get; set; }
         public string? Email { get; set; }
 
-        public int BomberoId { get; set; }
-        public Bombero Bombero { get; set; }
+        public int PersonaId { get; set; }
+        public Persona Persona { get; set; }
     }
 }

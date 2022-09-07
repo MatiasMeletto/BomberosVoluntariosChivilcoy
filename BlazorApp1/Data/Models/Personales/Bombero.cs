@@ -10,6 +10,7 @@ namespace BlazorApp1.Data.Models.Personales
         public int NumeroLegajo { get; set; }
         public string Estado { get; set; }
         public DateTime FechaAceptacion { get; set; }
+        public EscalafonJerarquico Grado { get; set; }
         public string Dotacion { get; set; }
         public string Brigada { get; set; }
         public string Resolucion1 { get; set; }

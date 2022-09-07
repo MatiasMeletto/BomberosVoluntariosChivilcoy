@@ -9,8 +9,5 @@ namespace BlazorApp1.Data.Models.Salidas.Componentes
 
         public int DamnificadoId { get; set; }
         public Damnificado Damnificado { get; set; }
-
-        public int SeguroId { get; set; }
-        public Seguro Seguro { get; set; }
     }
 }

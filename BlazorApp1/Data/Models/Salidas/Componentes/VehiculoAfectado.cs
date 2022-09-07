@@ -6,9 +6,6 @@ namespace BlazorApp1.Data.Models.Salidas.Componentes
     {
         public bool? Airbag { get; set; }
 
-        public int SeguroId { get; set; }
-        public Seguro Seguro { get; set; }
-
         public int SalidaId { get; set; }
     }
 }

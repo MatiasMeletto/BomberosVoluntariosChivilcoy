@@ -14,6 +14,7 @@ namespace BlazorApp1.Data.Models.Salidas.Componentes
         public string LugarDeNacimiento { get; set; }
         public int Edad { get; set; }
         public TipoDamnificado Estado {get; set;}
+
         public int? VehiculoId { get; set; }
         public VehiculoDamnificado? VehiculoDamnificado { get; set; }
 

@@ -19,7 +19,7 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
         public string? EntreCalles { get; set; }
         public string? PisoNumero { get; set; }
         public string? Depto { get; set; }
-        public TipoZona Tipo { get; set; }
+        public TipoZona TipoZona { get; set; }
         public string NombreSolicitante { get; set; }
         public string ApellidoSolicitante { get; set; }
         public string DniSolicitante { get; set; }

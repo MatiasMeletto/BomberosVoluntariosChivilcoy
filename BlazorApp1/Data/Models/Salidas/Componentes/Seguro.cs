@@ -1,4 +1,5 @@
-﻿using BlazorApp1.Data.Models.Salidas.Planillas;
+﻿using BlazorApp1.Data.Models.Personales;
+using BlazorApp1.Data.Models.Salidas.Planillas;
 
 namespace BlazorApp1.Data.Models.Salidas.Componentes
 {
@@ -10,7 +11,7 @@ namespace BlazorApp1.Data.Models.Salidas.Componentes
         public string NumeroDePoliza { get; set; }
         public DateTime FechaDeVencimineto { get; set; }
 
-        public int SalidaId { get; set; }
-        public Salida Salida { get; set; }
+        public int VehiculoId { get; set; }
+        public Vehiculo Vehiculo { get; set; }
     }
 }
