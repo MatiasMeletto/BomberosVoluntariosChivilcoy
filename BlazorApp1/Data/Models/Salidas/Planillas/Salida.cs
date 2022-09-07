@@ -35,10 +35,7 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
         //Si hay damnificados, entonces hay intervinientes
         public List<Damnificado> Damnificados { get; set; }
 
-        public int SeguroId { get; set; }
         public Seguro Seguro { get; set; }
-
-        
 
         //relaciones con bomberos y moviles
         public List<MovilSalida> Moviles { get; set; }
@@ -46,12 +43,10 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
         public List<BomberoSalida> CuerpoParticipante { get; set; }
 
         public int EncargadoId { get; set; }
-
         [ForeignKey("EncargadoId")]
         public Bombero Encargado { get; set; }
 
         public int QuienLlenoId { get; set; }
-
         [ForeignKey("QuienLlenoId")]
         public Bombero QuienLleno { get; set; }
     }

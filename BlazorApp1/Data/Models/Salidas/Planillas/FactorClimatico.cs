@@ -9,10 +9,8 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
         public TipoFactoresClimaticos Tipo { get; set; }
 
         //Daños superficie evacuada
-        public bool? Evacuó { get; set; }
-        public int Kilometros { get; set; }
-        public int Hectareas { get; set; }
-        public int Metros { get; set; }
+        public TipoEvacuacion Evacuacion { get; set; }
+        public TipoSuperficie Superficie { get; set; }
         public string DetalleSuperficieDañada { get; set; }
 
     }

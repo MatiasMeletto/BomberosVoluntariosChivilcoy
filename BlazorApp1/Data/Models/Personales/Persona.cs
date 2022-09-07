@@ -18,7 +18,6 @@ namespace BlazorApp1.Data.Models.Personales
         public string NivelEstudios { get; set; }
         public string NumeroIoma { get; set; }
 
-        public int ContactoId { get; set; }
         public Contacto Contacto { get; set; }
     }
 }

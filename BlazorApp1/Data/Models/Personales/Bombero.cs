@@ -24,9 +24,9 @@ namespace BlazorApp1.Data.Models.Personales
 
         public List<Vehiculo>? Vehiculos { get; set; } = new();
 
-        public int? MovilBomberoId { get; set; }
         public MovilBombero? Movil { get; set; }
 
         public List<BomberoSalida> Salidas { get; set; } = new();
+
     }
 }
