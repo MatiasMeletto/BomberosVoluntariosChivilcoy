@@ -30,7 +30,8 @@ namespace BlazorApp1.Data
         DbSet<IncendioIndustria> IncendiosIndustrias {get; set; }
         DbSet<IncendioVivienda> IncendiosViviendas { get; set; }
         DbSet<MaterialPeligroso> MaterialesPeligrosos { get; set; }
-        DbSet<ServicioEspecial> ServicioEspeciales { get; set; }
+        DbSet<ServicioEspecialRepresentacion> ServicioEspecialesRespresentaciones { get; set; }
+        DbSet<ServicioEspecialPrevencion> ServicioEspecialPrevenciones { get; set; }
 
 
         public BomberosDbContext(DbContextOptions<BomberosDbContext> options)
@@ -50,7 +51,7 @@ namespace BlazorApp1.Data
                 .HasValue<Accidente>(1)
                 .HasValue<FactorClimatico>(2)
                 .HasValue<MaterialPeligroso>(3)
-                .HasValue<ServicioEspecial>(4)
+                .HasValue<ServicioEspecialRepresentacion>(4)
                 .HasValue<RescateAnimal>(5)
                 .HasValue<RescatePersona>(6)
                 .HasValue<IncendioComercio>(7)
@@ -59,7 +60,8 @@ namespace BlazorApp1.Data
                 .HasValue<IncendioForestal>(10)
                 .HasValue<IncendioHospitalesYClinicas>(11)
                 .HasValue<IncendioIndustria>(12)
-                .HasValue<IncendioVivienda>(13);
+                .HasValue<IncendioVivienda>(13)
+                .HasValue<ServicioEspecialPrevencion>(14);
             modelBuilder.Entity<Salida>()
                 .ToTable("Salidas");
 
