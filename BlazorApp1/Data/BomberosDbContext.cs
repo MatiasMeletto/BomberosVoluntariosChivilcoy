@@ -42,7 +42,8 @@ namespace BlazorApp1.Data
         {
             modelBuilder.Entity<Persona>()
                 .HasDiscriminator<int>("TipoPersona")
-                .HasValue<Bombero>(1);
+                .HasValue<Bombero>(1)
+                .HasValue<Persona>(2);
             modelBuilder.Entity<Persona>()
                 .ToTable("Personas");
 
@@ -61,7 +62,9 @@ namespace BlazorApp1.Data
                 .HasValue<IncendioHospitalesYClinicas>(11)
                 .HasValue<IncendioIndustria>(12)
                 .HasValue<IncendioVivienda>(13)
-                .HasValue<ServicioEspecialPrevencion>(14);
+                .HasValue<ServicioEspecialPrevencion>(14)
+                .HasValue<Incendio>(15)
+                .HasValue<ServicioEspecial>(16);
             modelBuilder.Entity<Salida>()
                 .ToTable("Salidas");
 
@@ -71,7 +74,24 @@ namespace BlazorApp1.Data
                 .HasValue<VehiculoAfectadoIncendio>(2)
                 .HasValue<VehiculoDamnificado>(3)
                 .HasValue<VehiculoPersonal>(4)
-                .HasValue<Movil>(5);
+                .HasValue<Movil>(5)
+                .HasValue<VehiculoAfectado>(6);
+
+
+            modelBuilder.Entity<Bombero>()
+                .HasOne(b => b.Movil)
+                .WithOne(m => m.Bombero)
+                .HasForeignKey<MovilBombero>(mb => mb.PersonaId);
+
+            modelBuilder.Entity<ServicioEspecial>()
+                .HasOne(se => se.DatosCapacitacion)
+                .WithOne(dc => dc.ServicioEspecial)
+                .HasForeignKey<DatosCapacitacion>(dc => dc.DatosCapacitacionId);
+
+            modelBuilder.Entity<Salida>()
+                .HasOne(sa => sa.Seguro)
+                .WithOne(se => se.Salida)
+                .HasForeignKey<Seguro>(se => se.SeguroId);
         }
     }
 }
