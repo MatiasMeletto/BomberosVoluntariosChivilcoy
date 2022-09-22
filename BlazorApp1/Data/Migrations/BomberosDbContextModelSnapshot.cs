@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace BlazorApp1.Data.Migration
+namespace BlazorApp1.Data.Migrations
 {
     [DbContext(typeof(BomberosDbContext))]
     partial class BomberosDbContextModelSnapshot : ModelSnapshot

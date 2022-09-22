@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace BlazorApp1.Data.Migration
+namespace BlazorApp1.Data.Migrations
 {
     public partial class Inicial : Migration
     {

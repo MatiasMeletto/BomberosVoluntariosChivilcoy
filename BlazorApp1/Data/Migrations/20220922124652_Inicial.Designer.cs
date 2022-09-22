@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace BlazorApp1.Data.Migration
+namespace BlazorApp1.Data.Migrations
 {
     [DbContext(typeof(BomberosDbContext))]
-    [Migration("20220909141730_inicial")]
+    [Migration("20220922124652_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
