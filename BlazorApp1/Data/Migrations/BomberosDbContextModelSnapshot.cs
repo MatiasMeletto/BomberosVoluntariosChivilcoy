@@ -534,9 +534,8 @@ namespace BlazorApp1.Data.Migrations
                 {
                     b.HasBaseType("BlazorApp1.Data.Models.Personales.Vehiculo");
 
-                    b.Property<string>("Estado")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<int>("Estado")
+                        .HasColumnType("int");
 
                     b.Property<string>("NumeroChasis")
                         .IsRequired()

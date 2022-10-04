@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BlazorApp1.Data.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -377,8 +377,7 @@ namespace BlazorApp1.Data.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     NumeroChasis = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Estado = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Estado = table.Column<int>(type: "int", nullable: true),
                     BomberoId = table.Column<int>(type: "int", nullable: true),
                     Airbag = table.Column<bool>(type: "tinyint(1)", nullable: true),
                     SalidaId = table.Column<int>(type: "int", nullable: true),
