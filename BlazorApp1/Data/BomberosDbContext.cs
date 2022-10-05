@@ -7,31 +7,31 @@ namespace BlazorApp1.Data
 {
     public class BomberosDbContext : DbContext
     {
-        DbSet<Bombero> Bomberos { get; set; }
-        DbSet<Movil> Moviles { get; set; }
-        DbSet<VehiculoPersonal> VehiculosPersonales { get; set; }
-        DbSet<Contacto> Contactos { get; set; }
-        DbSet<Damnificado> Damnificados { get; set; }
-        DbSet<Seguro> Seguros { get; set; }
-        DbSet<DatosCapacitacion> DatosCapacitaciones { get; set; }
-        DbSet<EmbarcacionAfectada> EmbarcacionesAfectadas { get; set; }
-        DbSet<VehiculoAfectadoAccidente> VehiculosAfectadosAccidentes { get; set; }
-        DbSet<VehiculoAfectadoIncendio> VehiculosAfectadoIncendios { get; set; }
-        DbSet<VehiculoDamnificado> VehiculosDamnificados { get; set; }
-        DbSet<Accidente> Accidentes { get; set; }
-        DbSet<FactorClimatico> FactoresClimaticos { get; set; }
-        DbSet<RescatePersona> RescatePersonas { get; set; }
-        DbSet<RescateAnimal> RescateAnimales { get; set; }
-        DbSet<IncendioComercio> IncendiosComercios { get; set; }
-        DbSet<IncendioEstablecimientoEducativo> IncendiosEstablecimientosEducativos { get; set; }
-        DbSet<IncendioEstablecimientoPublico> IncendiosEstablecimientosPublicos { get; set; }
-        DbSet<IncendioForestal> IncendiosForestales { get; set; }
-        DbSet<IncendioHospitalesYClinicas> IncendiosHospitalesYClinicas { get; set; }
-        DbSet<IncendioIndustria> IncendiosIndustrias {get; set; }
-        DbSet<IncendioVivienda> IncendiosViviendas { get; set; }
-        DbSet<MaterialPeligroso> MaterialesPeligrosos { get; set; }
-        DbSet<ServicioEspecialRepresentacion> ServicioEspecialesRespresentaciones { get; set; }
-        DbSet<ServicioEspecialPrevencion> ServicioEspecialPrevenciones { get; set; }
+        public DbSet<Bombero> Bomberos { get; set; }
+        public DbSet<Movil> Moviles { get; set; }
+        public DbSet<VehiculoPersonal> VehiculosPersonales { get; set; }
+        public DbSet<Contacto> Contactos { get; set; }
+        public DbSet<Damnificado> Damnificados { get; set; }
+        public DbSet<Seguro> Seguros { get; set; }
+        public DbSet<DatosCapacitacion> DatosCapacitaciones { get; set; }
+        public DbSet<EmbarcacionAfectada> EmbarcacionesAfectadas { get; set; }
+        public DbSet<VehiculoAfectadoAccidente> VehiculosAfectadosAccidentes { get; set; }
+       public  DbSet<VehiculoAfectadoIncendio> VehiculosAfectadoIncendios { get; set; }
+        public DbSet<VehiculoDamnificado> VehiculosDamnificados { get; set; }
+        public DbSet<Accidente> Accidentes { get; set; }
+        public DbSet<FactorClimatico> FactoresClimaticos { get; set; }
+        public DbSet<RescatePersona> RescatePersonas { get; set; }
+        public DbSet<RescateAnimal> RescateAnimales { get; set; }
+        public DbSet<IncendioComercio> IncendiosComercios { get; set; }
+        public DbSet<IncendioEstablecimientoEducativo> IncendiosEstablecimientosEducativos { get; set; }
+        public DbSet<IncendioEstablecimientoPublico> IncendiosEstablecimientosPublicos { get; set; }
+        public DbSet<IncendioForestal> IncendiosForestales { get; set; }
+        public DbSet<IncendioHospitalesYClinicas> IncendiosHospitalesYClinicas { get; set; }
+        public DbSet<IncendioIndustria> IncendiosIndustrias { get; set; }
+        public DbSet<IncendioVivienda> IncendiosViviendas { get; set; }
+        public DbSet<MaterialPeligroso> MaterialesPeligrosos { get; set; }
+        public DbSet<ServicioEspecialRepresentacion> ServicioEspecialesRespresentaciones { get; set; }
+        public DbSet<ServicioEspecialPrevencion> ServicioEspecialPrevenciones { get; set; }
 
 
         public BomberosDbContext(DbContextOptions<BomberosDbContext> options)
@@ -92,6 +92,19 @@ namespace BlazorApp1.Data
                 .HasOne(sa => sa.Seguro)
                 .WithOne(se => se.Salida)
                 .HasForeignKey<Seguro>(se => se.SeguroId);
+
+            // Enum
+            modelBuilder
+                .Entity<Persona>()
+                .Property(p => p.Sexo)                
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<Bombero>()
+                .Property(b => b.Grado)
+                .HasConversion<string>()
+                .HasMaxLength(255);
         }
     }
 }

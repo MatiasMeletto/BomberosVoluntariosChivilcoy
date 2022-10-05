@@ -1,4 +1,5 @@
-﻿@page "/moviles"
+﻿@inject IDbContextFactory<BomberosDbContext> DbFactory
+@page "/moviles"
 
 <h3>Moviles</h3>
 
@@ -64,6 +65,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        
+        using var db = DbFactory.CreateDbContext();
+
+        moviles = await db.Set<Movil>().ToArrayAsync();
     }
 }

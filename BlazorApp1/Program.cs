@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 var conexionString = "server=localhost;user=root;password=;database=bomberos";
 var serverVersion = ServerVersion.AutoDetect(conexionString);
 
-builder.Services.AddDbContext<BomberosDbContext>(
+builder.Services.AddDbContextFactory<BomberosDbContext>(
     dbContextOptions => dbContextOptions
     .UseMySql(conexionString, serverVersion)
     .LogTo(Console.WriteLine, LogLevel.Information)
@@ -20,7 +20,6 @@ builder.Services.AddDbContext<BomberosDbContext>(
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddAntDesign();
 
 
 

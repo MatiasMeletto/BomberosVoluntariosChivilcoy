@@ -1,4 +1,5 @@
 ﻿using BlazorApp1.Data.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace BlazorApp1.Data.Models.Personales
 {
@@ -7,6 +8,7 @@ namespace BlazorApp1.Data.Models.Personales
         public int PersonaId { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public TipoSexo Sexo { get; set; }
+        [Required, StringLength(255)]
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Direccion { get; set; }
