@@ -105,6 +105,216 @@ namespace BlazorApp1.Data
                 .Property(b => b.Grado)
                 .HasConversion<string>()
                 .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<Bombero>()
+                .Property(b => b.Estado)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<ServicioEspecialRepresentacion>()
+                .Property(s => s.TipoRepresentacion)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<ServicioEspecialPrevencion>()
+                .Property(s => s.TipoPrevencion)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<ServicioEspecial>()
+                .Property(s => s.Tipo)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<ServicioEspecial>()
+                .Property(s => s.TipoOrganizacion)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<RescateAnimal>()
+                .Property(r => r.TipoRescateAnimal)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<Salida>()
+                .Property(s => s.TipoZona)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<RescatePersona>()
+                .Property(r => r.TipoRescatePersona)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<IncendioVivienda>()
+                .Property(i => i.TipoLugar)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<IncendioIndustria>()
+                .Property(i => i.TipoLugar)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<IncendioHospitalesYClinicas>()
+                .Property(i => i.TipoLugar)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<IncendioForestal>()
+                .Property(i => i.TipoLugar)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<IncendioEstablecimientoPublico>()
+                .Property(i => i.TipoLugar)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<IncendioEstablecimientoEducativo>()
+                .Property(i => i.TipoLugar)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<IncendioComercio>()
+                .Property(i => i.TipoLugar)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<IncendioVivienda>()
+                .Property(i => i.TipoLugar)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<Incendio>()
+                .Property(i => i.TipoLugarSiniestroEmbarcacion)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<Incendio>()
+                .Property(i => i.TipoEvacuacion)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<Incendio>()
+                .Property(i => i.TipoSuperficieAfectada)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<Incendio>()
+                .Property(i => i.SuperficieAfectadaCausa)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<Incendio>()
+                .Property(i => i.Tipo)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<Incendio>()
+                .Property(i => i.TipoAbertura)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<Incendio>()
+                .Property(i => i.TipoTecho)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<FactorClimatico>()
+                .Property(f => f.Tipo)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<FactorClimatico>()
+                .Property(f => f.Evacuacion)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<FactorClimatico>()
+                .Property(f => f.Superficie)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<Accidente>()
+                .Property(a => a.Tipo)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<DatosCapacitacion>()
+                .Property(d => d.NivelCapacitacion)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<DatosCapacitacion>()
+                .Property(d => d.TipoCapacitacion)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<MovilBombero>()
+                .Property(m => m.Rol)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<BomberoSalida>()
+                .Property(b => b.Grado)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<Damnificado>()
+                .Property(d => d.Sexo)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<Damnificado>()
+                .Property(d => d.Estado)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<Movil>()
+                .Property(m => m.Estado)
+                .HasConversion<string>()
+                .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<MaterialPeligroso>()
+                .Property(m => m.Tipo)
+                .HasConversion<string>()
+                .HasMaxLength(255);
         }
     }
 }

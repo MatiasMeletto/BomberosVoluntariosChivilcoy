@@ -36,7 +36,5 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
 
         //Situación
         public TipoSituacionExplosion TipoSituacion { get; set; }
-
-        public TipoMaterialPeligroso Tipo { get; set; }
     }
 }
