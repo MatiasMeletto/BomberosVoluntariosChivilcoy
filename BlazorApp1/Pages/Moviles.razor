@@ -49,6 +49,16 @@
     <br />
     <button @onclick="AgregarMovil">Crear movil</button>
 }
+<br>
+<br>
+@if(moviles is not null)
+{
+    @foreach(Movil m in moviles)
+    {
+        <label>@m.VehiculoId        @m.NumeroMovil</label>
+        <br>
+    }
+}
 
 @code {
 

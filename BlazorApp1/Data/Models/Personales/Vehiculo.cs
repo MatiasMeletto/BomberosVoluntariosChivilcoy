@@ -11,8 +11,8 @@ namespace BlazorApp1.Data.Models.Personales
         public string Marca { get; set; }
         [Required, StringLength(255)]
         public string Modelo { get; set; }
-        [Required, StringLength(255)]
         public int Año { get; set; }
+        [Required, StringLength(255)]
         public string Patente { get; set; }
         [Required, StringLength(255)]
         public string Tipo { get; set; }
