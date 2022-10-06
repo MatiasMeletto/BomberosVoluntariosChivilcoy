@@ -3,23 +3,31 @@
 
 <h3>Moviles</h3>
 
-@if(movilView is not null)
+@if (movilView is not null)
 {
-    <label>Marca:</label><input type="text" @bind="movilView.Marca" />
+    <label>Marca:</label>
+    <input type="text" @bind="movilView.Marca" />
     <br>
-    <label>Modelo:</label><input type="text" @bind="movilView.Modelo" />
+    <label>Modelo:</label>
+    <input type="text" @bind="movilView.Modelo" />
     <br>
-    <label>Año:</label><input type="text" @bind="movilView.Año" />
+    <label>Año:</label>
+    <input type="text" @bind="movilView.Año" />
     <br>
-    <label>Patente:</label><input type="text" @bind="movilView.Patente" />
+    <label>Patente:</label>
+    <input type="text" @bind="movilView.Patente" />
     <br>
-    <label>Tipo:</label><input type="text" @bind="movilView.Tipo" />
+    <label>Tipo:</label>
+    <input type="text" @bind="movilView.Tipo" />
     <br>
-    <label>Nº movil:</label><input type="text" @bind="movilView.NumeroMovil" />
+    <label>Nº movil:</label>
+    <input type="text" @bind="movilView.NumeroMovil" />
     <br>
-    <label>Nº motor:</label><input type="text" @bind="movilView.NumeroMotor" />
+    <label>Nº motor:</label>
+    <input type="text" @bind="movilView.NumeroMotor" />
     <br>
-    <label>Nº chasis:</label><input type="text" @bind="movilView.NumeroChasis" />
+    <label>Nº chasis:</label>
+    <input type="text" @bind="movilView.NumeroChasis" />
     <br>
     <select @bind="movilView.Estado">
         <option value="@TipoEstadoMovil.Activo">Activo</option>
@@ -30,11 +38,14 @@
     <br>
     <h5>Seguro</h5>
 
-    <label>Compañia:</label><input type="text" @bind="seguroView.CompañiaAseguradora" />
+    <label>Compañia:</label>
+    <input type="text" @bind="seguroView.CompañiaAseguradora" />
     <br>
-    <label>Nº poliza:</label><input type="text" @bind="seguroView.NumeroDePoliza" />
+    <label>Nº poliza:</label>
+    <input type="text" @bind="seguroView.NumeroDePoliza" />
     <br>
-    <label>Fecha de vencimiento:</label><input type="datetime" @bind="seguroView.FechaDeVencimiento" />
+    <label>Fecha de vencimiento:</label>
+    <input type="datetime" @bind="seguroView.FechaDeVencimiento" />
     <br />
     <button @onclick="AgregarMovil">Crear movil</button>
 }
@@ -76,31 +87,29 @@
     {
         using var db = DbFactory.CreateDbContext();
 
-        if(movilView is not null)
+        if (movilView is not null)
         {
             Movil movil = new Movil()
-            {
-                Marca = movilView.Marca,
-                Modelo = movilView.Modelo,
-                Año = movilView.Año,
-                Patente = movilView.Patente,
-                Tipo = movilView.Tipo,
-                NumeroChasis = movilView.NumeroChasis,
-                NumeroMotor = movilView.NumeroMotor,
-                NumeroMovil = movilView.NumeroMovil,
-                Estado = movilView.Estado,
-                Seguro = new()
-            };
-
-            movil.Seguro = new Seguro()
-            {
-                CompañiaAseguradora = seguroView.CompañiaAseguradora,
-                FechaDeVencimineto = seguroView.FechaDeVencimiento,
-                NumeroDePoliza = seguroView.NumeroDePoliza
-            };
+                {
+                    Marca = movilView.Marca,
+                    Modelo = movilView.Modelo,
+                    Año = movilView.Año,
+                    Patente = movilView.Patente,
+                    Tipo = movilView.Tipo,
+                    NumeroChasis = movilView.NumeroChasis,
+                    NumeroMotor = movilView.NumeroMotor,
+                    NumeroMovil = movilView.NumeroMovil,
+                    Estado = movilView.Estado,
+                    Seguro = new()
+                    {
+                        CompañiaAseguradora = seguroView.CompañiaAseguradora,
+                        FechaDeVencimineto = seguroView.FechaDeVencimiento,
+                        NumeroDePoliza = seguroView.NumeroDePoliza
+                    }
+                };
 
             db.Moviles.Add(movil);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
         }
     }
 }

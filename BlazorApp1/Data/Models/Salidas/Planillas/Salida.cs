@@ -48,7 +48,8 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
         //Si hay damnificados, entonces hay intervinientes
         public List<Damnificado> Damnificados { get; set; }
 
-        public Seguro Seguro { get; set; }
+        public int? SeguroId { get; set; }
+        public SeguroSalida? Seguro { get; set; }
 
         //relaciones con bomberos y moviles
         public List<MovilSalida> Moviles { get; set; }

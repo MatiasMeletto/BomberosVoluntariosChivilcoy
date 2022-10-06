@@ -236,6 +236,9 @@ namespace BlazorApp1.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("SeguroId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Tipo")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -245,6 +248,9 @@ namespace BlazorApp1.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("VehiculoId");
+
+                    b.HasIndex("SeguroId")
+                        .IsUnique();
 
                     b.ToTable("Vehiculo");
 
@@ -377,12 +383,17 @@ namespace BlazorApp1.Data.Migrations
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.Seguro", b =>
                 {
                     b.Property<int>("SeguroId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("CompañiaAseguradora")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("FechaDeVencimineto")
                         .HasColumnType("datetime(6)");
@@ -392,18 +403,11 @@ namespace BlazorApp1.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.Property<int?>("SalidaId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("VehiculoId")
-                        .HasColumnType("int");
-
                     b.HasKey("SeguroId");
 
-                    b.HasIndex("VehiculoId")
-                        .IsUnique();
-
                     b.ToTable("Seguros");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Seguro");
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.Salida", b =>
@@ -486,6 +490,9 @@ namespace BlazorApp1.Data.Migrations
                     b.Property<int?>("ReceptorId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SeguroId")
+                        .HasColumnType("int");
+
                     b.Property<string>("TelefonoSolicitante")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -506,6 +513,9 @@ namespace BlazorApp1.Data.Migrations
                     b.HasIndex("QuienLlenoId");
 
                     b.HasIndex("ReceptorId");
+
+                    b.HasIndex("SeguroId")
+                        .IsUnique();
 
                     b.ToTable("Salidas", (string)null);
 
@@ -615,12 +625,23 @@ namespace BlazorApp1.Data.Migrations
                     b.HasDiscriminator().HasValue(4);
                 });
 
+            modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.SeguroSalida", b =>
+                {
+                    b.HasBaseType("BlazorApp1.Data.Models.Salidas.Componentes.Seguro");
+
+                    b.HasDiscriminator().HasValue("SeguroSalida");
+                });
+
+            modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.SeguroVehiculo", b =>
+                {
+                    b.HasBaseType("BlazorApp1.Data.Models.Salidas.Componentes.Seguro");
+
+                    b.HasDiscriminator().HasValue("SeguroVehiculo");
+                });
+
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.VehiculoAfectado", b =>
                 {
                     b.HasBaseType("BlazorApp1.Data.Models.Personales.Vehiculo");
-
-                    b.Property<int?>("AccidenteSalidaId")
-                        .HasColumnType("int");
 
                     b.Property<bool?>("Airbag")
                         .HasColumnType("tinyint(1)");
@@ -630,8 +651,6 @@ namespace BlazorApp1.Data.Migrations
 
                     b.Property<int>("SalidaId")
                         .HasColumnType("int");
-
-                    b.HasIndex("AccidenteSalidaId");
 
                     b.HasIndex("IncendioSalidaId");
 
@@ -1136,6 +1155,17 @@ namespace BlazorApp1.Data.Migrations
                     b.Navigation("Salida");
                 });
 
+            modelBuilder.Entity("BlazorApp1.Data.Models.Personales.Vehiculo", b =>
+                {
+                    b.HasOne("BlazorApp1.Data.Models.Salidas.Componentes.SeguroVehiculo", "Seguro")
+                        .WithOne("Vehiculo")
+                        .HasForeignKey("BlazorApp1.Data.Models.Personales.Vehiculo", "SeguroId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Seguro");
+                });
+
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.Damnificado", b =>
                 {
                     b.HasOne("BlazorApp1.Data.Models.Salidas.Planillas.Salida", "Salida")
@@ -1169,23 +1199,6 @@ namespace BlazorApp1.Data.Migrations
                     b.Navigation("Incendio");
                 });
 
-            modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.Seguro", b =>
-                {
-                    b.HasOne("BlazorApp1.Data.Models.Salidas.Planillas.Salida", "Salida")
-                        .WithOne("Seguro")
-                        .HasForeignKey("BlazorApp1.Data.Models.Salidas.Componentes.Seguro", "SeguroId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BlazorApp1.Data.Models.Personales.Vehiculo", "Vehiculo")
-                        .WithOne("Seguro")
-                        .HasForeignKey("BlazorApp1.Data.Models.Salidas.Componentes.Seguro", "VehiculoId");
-
-                    b.Navigation("Salida");
-
-                    b.Navigation("Vehiculo");
-                });
-
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.Salida", b =>
                 {
                     b.HasOne("BlazorApp1.Data.Models.Personales.Bombero", "Encargado")
@@ -1204,11 +1217,17 @@ namespace BlazorApp1.Data.Migrations
                         .WithMany()
                         .HasForeignKey("ReceptorId");
 
+                    b.HasOne("BlazorApp1.Data.Models.Salidas.Componentes.SeguroSalida", "Seguro")
+                        .WithOne("Salida")
+                        .HasForeignKey("BlazorApp1.Data.Models.Salidas.Planillas.Salida", "SeguroId");
+
                     b.Navigation("Encargado");
 
                     b.Navigation("QuienLleno");
 
                     b.Navigation("ReceptorBombero");
+
+                    b.Navigation("Seguro");
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Personales.VehiculoPersonal", b =>
@@ -1224,10 +1243,6 @@ namespace BlazorApp1.Data.Migrations
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.VehiculoAfectado", b =>
                 {
-                    b.HasOne("BlazorApp1.Data.Models.Salidas.Planillas.Accidente", null)
-                        .WithMany("VehiculosAfectado")
-                        .HasForeignKey("AccidenteSalidaId");
-
                     b.HasOne("BlazorApp1.Data.Models.Salidas.Planillas.Incendio", null)
                         .WithMany("VehiculoAfectados")
                         .HasForeignKey("IncendioSalidaId");
@@ -1247,7 +1262,7 @@ namespace BlazorApp1.Data.Migrations
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.VehiculoAfectadoAccidente", b =>
                 {
                     b.HasOne("BlazorApp1.Data.Models.Salidas.Planillas.Accidente", "Accidente")
-                        .WithMany()
+                        .WithMany("VehiculosAfectado")
                         .HasForeignKey("SalidaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1272,12 +1287,6 @@ namespace BlazorApp1.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BlazorApp1.Data.Models.Personales.Vehiculo", b =>
-                {
-                    b.Navigation("Seguro")
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.Damnificado", b =>
                 {
                     b.Navigation("VehiculoDamnificado");
@@ -1290,9 +1299,6 @@ namespace BlazorApp1.Data.Migrations
                     b.Navigation("Damnificados");
 
                     b.Navigation("Moviles");
-
-                    b.Navigation("Seguro")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Personales.Bombero", b =>
@@ -1309,6 +1315,18 @@ namespace BlazorApp1.Data.Migrations
                     b.Navigation("Bomberos");
 
                     b.Navigation("Salidas");
+                });
+
+            modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.SeguroSalida", b =>
+                {
+                    b.Navigation("Salida")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.SeguroVehiculo", b =>
+                {
+                    b.Navigation("Vehiculo")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.Accidente", b =>

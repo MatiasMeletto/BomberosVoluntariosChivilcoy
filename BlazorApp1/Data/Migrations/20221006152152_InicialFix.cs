@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -25,6 +26,14 @@ namespace BlazorApp1.Data.Migrations
                 table: "MovilSalida");
 
             migrationBuilder.DropForeignKey(
+                name: "FK_Seguros_Salidas_SeguroId",
+                table: "Seguros");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Seguros_Vehiculo_VehiculoId",
+                table: "Seguros");
+
+            migrationBuilder.DropForeignKey(
                 name: "FK_Vehiculo_Personas_BomberoId",
                 table: "Vehiculo");
 
@@ -32,9 +41,21 @@ namespace BlazorApp1.Data.Migrations
                 name: "FK_Vehiculo_Personas_BomberoPersonaId",
                 table: "Vehiculo");
 
+            migrationBuilder.DropForeignKey(
+                name: "FK_Vehiculo_Salidas_AccidenteSalidaId",
+                table: "Vehiculo");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Vehiculo_AccidenteSalidaId",
+                table: "Vehiculo");
+
             migrationBuilder.DropIndex(
                 name: "IX_Vehiculo_BomberoId",
                 table: "Vehiculo");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Seguros_VehiculoId",
+                table: "Seguros");
 
             migrationBuilder.DropIndex(
                 name: "IX_MovilSalida_ChoferPersonaId",
@@ -49,8 +70,20 @@ namespace BlazorApp1.Data.Migrations
                 table: "BomberoSalida");
 
             migrationBuilder.DropColumn(
+                name: "AccidenteSalidaId",
+                table: "Vehiculo");
+
+            migrationBuilder.DropColumn(
                 name: "BomberoId",
                 table: "Vehiculo");
+
+            migrationBuilder.DropColumn(
+                name: "SalidaId",
+                table: "Seguros");
+
+            migrationBuilder.DropColumn(
+                name: "VehiculoId",
+                table: "Seguros");
 
             migrationBuilder.DropColumn(
                 name: "ChoferPersonaId",
@@ -164,6 +197,13 @@ namespace BlazorApp1.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4")
                 .OldAnnotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.AddColumn<int>(
+                name: "SeguroId",
+                table: "Vehiculo",
+                type: "int",
+                nullable: false,
+                defaultValue: 0);
+
             migrationBuilder.AlterColumn<string>(
                 name: "NumeroDePoliza",
                 table: "Seguros",
@@ -185,6 +225,22 @@ namespace BlazorApp1.Data.Migrations
                 oldType: "longtext")
                 .Annotation("MySql:CharSet", "utf8mb4")
                 .OldAnnotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.AlterColumn<int>(
+                name: "SeguroId",
+                table: "Seguros",
+                type: "int",
+                nullable: false,
+                oldClrType: typeof(int),
+                oldType: "int")
+                .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Discriminator",
+                table: "Seguros",
+                type: "longtext",
+                nullable: false)
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.AlterColumn<string>(
                 name: "TipoZona",
@@ -771,6 +827,12 @@ namespace BlazorApp1.Data.Migrations
                 oldNullable: true)
                 .Annotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.AddColumn<int>(
+                name: "SeguroId",
+                table: "Salidas",
+                type: "int",
+                nullable: true);
+
             migrationBuilder.AlterColumn<string>(
                 name: "Sexo",
                 table: "Personas",
@@ -1223,6 +1285,18 @@ namespace BlazorApp1.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Vehiculo_SeguroId",
+                table: "Vehiculo",
+                column: "SeguroId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Salidas_SeguroId",
+                table: "Salidas",
+                column: "SeguroId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_MovilSalida_PersonaId",
                 table: "MovilSalida",
                 column: "PersonaId");
@@ -1270,11 +1344,26 @@ namespace BlazorApp1.Data.Migrations
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
+                name: "FK_Salidas_Seguros_SeguroId",
+                table: "Salidas",
+                column: "SeguroId",
+                principalTable: "Seguros",
+                principalColumn: "SeguroId");
+
+            migrationBuilder.AddForeignKey(
                 name: "FK_Vehiculo_Personas_PersonaId",
                 table: "Vehiculo",
                 column: "PersonaId",
                 principalTable: "Personas",
                 principalColumn: "PersonaId",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Vehiculo_Seguros_SeguroId",
+                table: "Vehiculo",
+                column: "SeguroId",
+                principalTable: "Seguros",
+                principalColumn: "SeguroId",
                 onDelete: ReferentialAction.Cascade);
         }
 
@@ -1297,8 +1386,24 @@ namespace BlazorApp1.Data.Migrations
                 table: "MovilSalida");
 
             migrationBuilder.DropForeignKey(
+                name: "FK_Salidas_Seguros_SeguroId",
+                table: "Salidas");
+
+            migrationBuilder.DropForeignKey(
                 name: "FK_Vehiculo_Personas_PersonaId",
                 table: "Vehiculo");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Vehiculo_Seguros_SeguroId",
+                table: "Vehiculo");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Vehiculo_SeguroId",
+                table: "Vehiculo");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Salidas_SeguroId",
+                table: "Salidas");
 
             migrationBuilder.DropIndex(
                 name: "IX_MovilSalida_PersonaId",
@@ -1311,6 +1416,18 @@ namespace BlazorApp1.Data.Migrations
             migrationBuilder.DropIndex(
                 name: "IX_BomberoSalida_PersonaId",
                 table: "BomberoSalida");
+
+            migrationBuilder.DropColumn(
+                name: "SeguroId",
+                table: "Vehiculo");
+
+            migrationBuilder.DropColumn(
+                name: "Discriminator",
+                table: "Seguros");
+
+            migrationBuilder.DropColumn(
+                name: "SeguroId",
+                table: "Salidas");
 
             migrationBuilder.RenameColumn(
                 name: "PersonaId",
@@ -1413,6 +1530,12 @@ namespace BlazorApp1.Data.Migrations
                 .OldAnnotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.AddColumn<int>(
+                name: "AccidenteSalidaId",
+                table: "Vehiculo",
+                type: "int",
+                nullable: true);
+
+            migrationBuilder.AddColumn<int>(
                 name: "BomberoId",
                 table: "Vehiculo",
                 type: "int",
@@ -1439,6 +1562,27 @@ namespace BlazorApp1.Data.Migrations
                 oldMaxLength: 255)
                 .Annotation("MySql:CharSet", "utf8mb4")
                 .OldAnnotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.AlterColumn<int>(
+                name: "SeguroId",
+                table: "Seguros",
+                type: "int",
+                nullable: false,
+                oldClrType: typeof(int),
+                oldType: "int")
+                .OldAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+            migrationBuilder.AddColumn<int>(
+                name: "SalidaId",
+                table: "Seguros",
+                type: "int",
+                nullable: true);
+
+            migrationBuilder.AddColumn<int>(
+                name: "VehiculoId",
+                table: "Seguros",
+                type: "int",
+                nullable: true);
 
             migrationBuilder.AlterColumn<int>(
                 name: "TipoZona",
@@ -2490,9 +2634,20 @@ namespace BlazorApp1.Data.Migrations
                 defaultValue: 0);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Vehiculo_AccidenteSalidaId",
+                table: "Vehiculo",
+                column: "AccidenteSalidaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Vehiculo_BomberoId",
                 table: "Vehiculo",
                 column: "BomberoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Seguros_VehiculoId",
+                table: "Seguros",
+                column: "VehiculoId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_MovilSalida_ChoferPersonaId",
@@ -2542,6 +2697,21 @@ namespace BlazorApp1.Data.Migrations
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
+                name: "FK_Seguros_Salidas_SeguroId",
+                table: "Seguros",
+                column: "SeguroId",
+                principalTable: "Salidas",
+                principalColumn: "SalidaId",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Seguros_Vehiculo_VehiculoId",
+                table: "Seguros",
+                column: "VehiculoId",
+                principalTable: "Vehiculo",
+                principalColumn: "VehiculoId");
+
+            migrationBuilder.AddForeignKey(
                 name: "FK_Vehiculo_Personas_BomberoId",
                 table: "Vehiculo",
                 column: "BomberoId",
@@ -2555,6 +2725,13 @@ namespace BlazorApp1.Data.Migrations
                 column: "BomberoPersonaId",
                 principalTable: "Personas",
                 principalColumn: "PersonaId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Vehiculo_Salidas_AccidenteSalidaId",
+                table: "Vehiculo",
+                column: "AccidenteSalidaId",
+                principalTable: "Salidas",
+                principalColumn: "SalidaId");
         }
     }
 }

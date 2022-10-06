@@ -13,8 +13,8 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
 
         public int CantidadVehiculos { get; set; }
 
-        public List<VehiculoAfectado> VehiculosAfectado { get; set; }
+        public List<VehiculoAfectadoAccidente> VehiculosAfectado { get; set; }
         [Required, StringLength(255)]
-        public string CondicionesClimaticas { get; set; }
+        public string CondicionesClimaticas { get; set; } // enum
     }
 }

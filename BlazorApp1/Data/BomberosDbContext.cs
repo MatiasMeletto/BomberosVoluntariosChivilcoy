@@ -88,11 +88,6 @@ namespace BlazorApp1.Data
                 .WithOne(dc => dc.ServicioEspecial)
                 .HasForeignKey<DatosCapacitacion>(dc => dc.DatosCapacitacionId);
 
-            modelBuilder.Entity<Salida>()
-                .HasOne(sa => sa.Seguro)
-                .WithOne(se => se.Salida)
-                .HasForeignKey<Seguro>(se => se.SeguroId);
-
             // Enum
             modelBuilder
                 .Entity<Persona>()

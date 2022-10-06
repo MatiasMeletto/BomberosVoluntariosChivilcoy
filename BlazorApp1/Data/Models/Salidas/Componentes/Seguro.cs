@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BlazorApp1.Data.Models.Salidas.Componentes
 {
-    public class Seguro
+    public abstract class Seguro
     {
         public int SeguroId { get; set; }
         [Required, StringLength(255)]
@@ -13,10 +13,10 @@ namespace BlazorApp1.Data.Models.Salidas.Componentes
         public string NumeroDePoliza { get; set; }
         public DateTime FechaDeVencimineto { get; set; }
 
-        public int? VehiculoId { get; set; }
-        public Vehiculo? Vehiculo { get; set; }
+        //public int? VehiculoId { get; set; }
+        //public Vehiculo? Vehiculo { get; set; }
 
-        public int? SalidaId { get; set; }
-        public Salida? Salida { get; set; }
+        //public int? SalidaId { get; set; }
+        //public Salida? Salida { get; set; }
     }
 }
