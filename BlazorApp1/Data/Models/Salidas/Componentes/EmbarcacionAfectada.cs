@@ -1,5 +1,6 @@
 ﻿using BlazorApp1.Data.Models.Salidas.Planillas;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlazorApp1.Data.Models.Salidas.Componentes
 {
@@ -16,6 +17,7 @@ namespace BlazorApp1.Data.Models.Salidas.Componentes
         public string? Otro { get; set; }
 
         public int SalidaId { get; set; }
+        [ForeignKey("SalidaId")]
         public Incendio Incendio { get; set; }
     }
 }

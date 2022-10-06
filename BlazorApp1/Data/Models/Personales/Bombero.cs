@@ -29,7 +29,6 @@ namespace BlazorApp1.Data.Models.Personales
         public string? Resolucion5 { get; set; }
         [StringLength(255)]
         public string? Resolucion6 { get; set; }
-        [StringLength(255)]
         public bool Chofer { get; set; }
         public DateTime? VencimientoRegistro { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using BlazorApp1.Data.Models.Salidas.Planillas;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlazorApp1.Data.Models.Personales
 {
@@ -9,6 +10,7 @@ namespace BlazorApp1.Data.Models.Personales
         public bool CargoCombustible { get; set; }
 
         public int PersonaId { get; set; }
+        [ForeignKey("PersonaId")]
         public Bombero Chofer { get; set; }
 
         public int MovilId { get; set; }
