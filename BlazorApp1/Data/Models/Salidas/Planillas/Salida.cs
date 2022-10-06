@@ -1,6 +1,7 @@
 ﻿using BlazorApp1.Data.Enums;
 using BlazorApp1.Data.Models.Personales;
 using BlazorApp1.Data.Models.Salidas.Componentes;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlazorApp1.Data.Models.Salidas.Planillas
@@ -15,18 +16,28 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
         public int KmSalida { get; set; }
         public int KmLlegada { get; set; }
         public int NumeroParte { get; set; }
+        [Required, StringLength(255)]
         public string Descripcion { get; set; }
+        [Required, StringLength(255)]
         public string CalleORuta { get; set; }
+        [Required, StringLength(255)]
         public string NumeroOKilometro { get; set; }
+        [Required, StringLength(255)]
         public string? EntreCalles { get; set; }
+        [StringLength(255)]
         public string? PisoNumero { get; set; }
+        [StringLength(255)]
         public string? Depto { get; set; }
         public TipoZona TipoZona { get; set; }
+        [Required, StringLength(255)]
         public string NombreSolicitante { get; set; }
+        [Required, StringLength(255)]
         public string ApellidoSolicitante { get; set; }
+        [Required, StringLength(255)]
         public string DniSolicitante { get; set; }
+        [Required, StringLength(255)]
         public string TelefonoSolicitante { get; set; }
-
+        [StringLength(255)]
         public string? Receptor { get; set; }
 
         public int? ReceptorId { get; set; }

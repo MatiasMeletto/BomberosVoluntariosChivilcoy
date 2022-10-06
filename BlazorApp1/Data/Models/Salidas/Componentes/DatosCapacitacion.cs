@@ -1,5 +1,6 @@
 ﻿using BlazorApp1.Data.Enums;
 using BlazorApp1.Data.Models.Salidas.Planillas;
+using System.ComponentModel.DataAnnotations;
 
 namespace BlazorApp1.Data.Models.Salidas.Componentes
 {
@@ -8,10 +9,14 @@ namespace BlazorApp1.Data.Models.Salidas.Componentes
         public int DatosCapacitacionId { get; set; }
 
         public TipoNivelCapacitacion? NivelCapacitacion { get; set; }
+        [StringLength(255)]
         public string? NivelCapacitacionOtro { get; set; }
         public TipoCapacitacion? TipoCapacitacion { get; set; }
+        [StringLength(255)]
         public string? CapacitacionOtra { get; set; }
+        [Required, StringLength(255)]
         public string DiasCapacitacion { get; set; }
+        [Required, StringLength(255)]
         public string HorariosCapacitacion { get; set; }
 
         public int SalidaId { get; set; }

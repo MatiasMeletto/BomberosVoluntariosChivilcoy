@@ -1,4 +1,5 @@
 ﻿using BlazorApp1.Data.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace BlazorApp1.Data.Models.Salidas.Planillas
 {
@@ -11,6 +12,7 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
         //Daños superficie evacuada
         public TipoEvacuacion Evacuacion { get; set; }
         public TipoSuperficie Superficie { get; set; }
+        [Required, StringLength(255)]
         public string DetalleSuperficieDañada { get; set; }
 
     }

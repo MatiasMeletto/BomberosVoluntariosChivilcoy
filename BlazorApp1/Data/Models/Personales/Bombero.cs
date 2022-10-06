@@ -10,17 +10,26 @@ namespace BlazorApp1.Data.Models.Personales
     {
         [Required]
         public int NumeroLegajo { get; set; }
-        public string Estado { get; set; } // Tiene que ser un enum
+        public EstadoBombero Estado { get; set; } // Tiene que ser un enum
         public DateTime FechaAceptacion { get; set; }
         public EscalafonJerarquico Grado { get; set; }
+        [Required, StringLength(255)]
         public string Dotacion { get; set; } // Tiene que ser un enum (1, 2, 3, 4)
+        [Required, StringLength(255)]
         public string Brigada { get; set; } // ¿Debería ser una clase y una relación?
+        [StringLength(255)]
         public string? Resolucion1 { get; set; }
+        [StringLength(255)]
         public string? Resolucion2 { get; set; }
+        [StringLength(255)]
         public string? Resolucion3 { get; set; }
+        [StringLength(255)]
         public string? Resolucion4 { get; set; }
+        [StringLength(255)]
         public string? Resolucion5 { get; set; }
+        [StringLength(255)]
         public string? Resolucion6 { get; set; }
+        [StringLength(255)]
         public bool Chofer { get; set; }
         public DateTime? VencimientoRegistro { get; set; }
 

@@ -1,11 +1,13 @@
 ﻿using BlazorApp1.Data.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace BlazorApp1.Data.Models.Salidas.Planillas
 {
     public class MaterialPeligroso : Salida
     {
         //Localización, datos del solicitante, personas damnificadas y datos del seguro
-
+        public TipoMaterialPeligroso Tipo { get; set; }  
+        [Required, StringLength(255)]  
         public string Sustancias { get; set; }
 
         //Acciones sobre los materiales
@@ -15,6 +17,7 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
         public bool Neutralizacion { get; set; }
         public bool Trasvase { get; set; }
         public bool OtraAccionesMateriales { get; set; }
+        [Required, StringLength(255)]
         public string DetallesAccionesMateriales { get; set; }
 
         //Acciones sobre las personas
@@ -23,10 +26,12 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
         public bool Confinamiento { get; set; }
         public bool SinAccion { get; set; }
         public bool OtraAccionesPersonas { get; set; }
+        [Required, StringLength(255)]
         public string DetallesAccionesPersonas { get; set; }
 
         //Superficie Aferctada
         public TipoSuperficie TipoSuperficie { get; set; }
+        [Required, StringLength(255)]
         public string DetalleSuperficieAfectada { get; set; }
 
         //Situación
