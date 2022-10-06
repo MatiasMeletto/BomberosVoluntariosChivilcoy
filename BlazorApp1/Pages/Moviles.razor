@@ -3,37 +3,41 @@
 
 <h3>Moviles</h3>
 
-<label>Marca:</label><input type="text" @bind="movilView.Marca" />
-<br>
-<label>Modelo:</label><input type="text" @bind="movilView.Modelo" />
-<br>
-<label>Año:</label><input type="text" @bind="movilView.Año" />
-<br>
-<label>Patente:</label><input type="text" @bind="movilView.Patente" />
-<br>
-<label>Tipo:</label><input type="text" @bind="movilView.Tipo" />
-<br>
-<label>Nº movil:</label><input type="text" @bind="movilView.NumeroMovil" />
-<br>
-<label>Nº motor:</label><input type="text" @bind="movilView.NumeroMotor" />
-<br>
-<label>Nº chasis:</label><input type="text" @bind="movilView.NumeroChasis" />
-<br>
-<select @bind="movilView.Estado">
-    <option value="@TipoEstadoMovil.Activo">Activo</option>
-    <option value="@TipoEstadoMovil.Inactivo">Inactivo</option>
-    <option value="@TipoEstadoMovil.Reparacion">Reparacion</option>
-    <option value="@TipoEstadoMovil.Limpieza">Limpieza</option>
-</select>
-<br>
-<h5>Seguro</h5>
+@if(movilView is not null)
+{
+    <label>Marca:</label><input type="text" @bind="movilView.Marca" />
+    <br>
+    <label>Modelo:</label><input type="text" @bind="movilView.Modelo" />
+    <br>
+    <label>Año:</label><input type="text" @bind="movilView.Año" />
+    <br>
+    <label>Patente:</label><input type="text" @bind="movilView.Patente" />
+    <br>
+    <label>Tipo:</label><input type="text" @bind="movilView.Tipo" />
+    <br>
+    <label>Nº movil:</label><input type="text" @bind="movilView.NumeroMovil" />
+    <br>
+    <label>Nº motor:</label><input type="text" @bind="movilView.NumeroMotor" />
+    <br>
+    <label>Nº chasis:</label><input type="text" @bind="movilView.NumeroChasis" />
+    <br>
+    <select @bind="movilView.Estado">
+        <option value="@TipoEstadoMovil.Activo">Activo</option>
+        <option value="@TipoEstadoMovil.Inactivo">Inactivo</option>
+        <option value="@TipoEstadoMovil.Reparacion">Reparacion</option>
+        <option value="@TipoEstadoMovil.Limpieza">Limpieza</option>
+    </select>
+    <br>
+    <h5>Seguro</h5>
 
-<label>Compañia:</label><input type="text" @bind="seguroView.CompañiaAseguradora" />
-<br>
-<label>Nº poliza:</label><input type="text" @bind="seguroView.NumeroDePoliza" />
-<br>
-<label>Fecha de vencimiento:</label><input type="datetime" @bind="seguroView.FechaDeVencimineto" />
-<br>
+    <label>Compañia:</label><input type="text" @bind="seguroView.CompañiaAseguradora" />
+    <br>
+    <label>Nº poliza:</label><input type="text" @bind="seguroView.NumeroDePoliza" />
+    <br>
+    <label>Fecha de vencimiento:</label><input type="datetime" @bind="seguroView.FechaDeVencimiento" />
+    <br />
+    <button @onclick="AgregarMovil">Crear movil</button>
+}
 
 @code {
 
@@ -48,25 +52,55 @@
         public string NumeroMotor { get; set; }
         public string NumeroChasis { get; set; }
         public TipoEstadoMovil Estado { get; set; }
-
-        public SeguroViewModel Seguro { get; set; }
     }
 
     public class SeguroViewModel
     {
         public string CompañiaAseguradora { get; set; }
         public string NumeroDePoliza { get; set; }
-        public DateTime FechaDeVencimineto { get; set; }
+        public DateTime FechaDeVencimiento { get; set; }
     }
 
-    public MovilViewModel movilView { get; set; }
-    public SeguroViewModel seguroView { get; set; }
+    public MovilViewModel movilView { get; set; } = new();
+    public SeguroViewModel seguroView { get; set; } = new();
     public Movil[]? moviles;
 
     protected override async Task OnInitializedAsync()
     {
         using var db = DbFactory.CreateDbContext();
 
-        moviles = await db.Set<Movil>().ToArrayAsync();
+        moviles = await db.Moviles.ToArrayAsync();
+    }
+
+    private async void AgregarMovil()
+    {
+        using var db = DbFactory.CreateDbContext();
+
+        if(movilView is not null)
+        {
+            Movil movil = new Movil()
+            {
+                Marca = movilView.Marca,
+                Modelo = movilView.Modelo,
+                Año = movilView.Año,
+                Patente = movilView.Patente,
+                Tipo = movilView.Tipo,
+                NumeroChasis = movilView.NumeroChasis,
+                NumeroMotor = movilView.NumeroMotor,
+                NumeroMovil = movilView.NumeroMovil,
+                Estado = movilView.Estado,
+                Seguro = new()
+            };
+
+            movil.Seguro = new Seguro()
+            {
+                CompañiaAseguradora = seguroView.CompañiaAseguradora,
+                FechaDeVencimineto = seguroView.FechaDeVencimiento,
+                NumeroDePoliza = seguroView.NumeroDePoliza
+            };
+
+            db.Moviles.Add(movil);
+            db.SaveChanges();
+        }
     }
 }
