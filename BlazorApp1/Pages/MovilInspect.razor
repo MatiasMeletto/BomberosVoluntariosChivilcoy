@@ -1,0 +1,106 @@
+﻿@inject IDbContextFactory<BomberosDbContext> DbFactory
+@page "/moviles/{NumeroMovilP}"
+
+<h3>Movil </h3>
+@if (existe)
+{
+    @if (movilView is not null)
+    {
+        <label>Marca: @movilView.Marca</label>
+        <br>
+        <label>Modelo: @movilView.Modelo</label>
+        <br>
+        <label>Año: @movilView.Año</label>
+        <br>
+        <label>Patente: @movilView.Patente</label>
+        <br>
+        <label>Tipo: @movilView.Tipo</label>
+        <br>
+        <label>N° motor: @movilView.NumeroMotor</label>
+        <br>
+        <label>N° movil: @movilView.NumeroMovil</label>
+        <br>
+        <label>N° chasis: @movilView.NumeroChasis</label>
+        <br>
+        <label>Estado: @movilView.Estado</label>
+        <br>
+        <br>
+
+        <h4>seguro</h4>
+        <br>
+        <br>
+
+        <label>Compañia: @seguroView.CompañiaAseguradora</label>
+        <br>
+        <label>N° poliza: @seguroView.NumeroDePoliza</label>
+        <br>
+        <label>Fecha de vencimiento: @seguroView.FechaDeVencimiento</label>
+    }
+}
+else
+{
+    <h1>No existe ese movil</h1>
+}
+
+@code {
+    [Parameter]
+    public string NumeroMovilP { get; set; }
+
+    public class MovilViewModel
+    {
+        public string Marca { get; set; }
+        public string Modelo { get; set; }
+        public int Año { get; set; }
+        public string Patente { get; set; }
+        public string Tipo { get; set; }
+        public string NumeroMovil { get; set; }
+        public string NumeroMotor { get; set; }
+        public string NumeroChasis { get; set; }
+        public TipoEstadoMovil Estado { get; set; }
+    }
+
+    public class SeguroViewModel
+    {
+        public string CompañiaAseguradora { get; set; }
+        public string NumeroDePoliza { get; set; }
+        public DateTime FechaDeVencimiento { get; set; }
+    }
+
+    public MovilViewModel movilView { get; set; } = new();
+    public SeguroViewModel seguroView { get; set; } = new();
+    public bool existe;
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var db = DbFactory.CreateDbContext();
+
+        Movil? movil = await db.Moviles.Where(m => m.NumeroMovil == NumeroMovilP).SingleOrDefaultAsync();
+
+        if (movil is not null)
+        {
+            movilView.Marca = movil.Marca;
+            movilView.Modelo = movil.Modelo;
+            movilView.Año = movil.Año;
+            movilView.Patente = movil.Patente;
+            movilView.Tipo = movil.Tipo;
+            movilView.NumeroMovil = movil.NumeroMovil;
+            movilView.NumeroMotor = movil.NumeroMotor;
+            movilView.NumeroChasis = movil.NumeroChasis;
+            movilView.Estado = movil.Estado;
+
+            Seguro? seguro = await db.Seguros.Where(s => s.SeguroId == movil.SeguroId).SingleOrDefaultAsync();
+
+            if (seguro is not null)
+            {
+                seguroView.CompañiaAseguradora = seguro.CompañiaAseguradora;
+                seguroView.NumeroDePoliza = seguro.NumeroDePoliza;
+                seguroView.FechaDeVencimiento = seguro.FechaDeVencimineto;
+            }
+            existe = true;
+        }
+        else if (movil is null)
+        {
+            existe = false;
+        }
+    }
+}
