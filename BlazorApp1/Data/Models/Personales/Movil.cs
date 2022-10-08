@@ -1,4 +1,5 @@
 ﻿using BlazorApp1.Data.Enums;
+using BlazorApp1.Data.Models.Salidas.Componentes;
 using System.ComponentModel.DataAnnotations;
 
 namespace BlazorApp1.Data.Models.Personales
@@ -14,6 +15,9 @@ namespace BlazorApp1.Data.Models.Personales
         public TipoEstadoMovil Estado { get; set; }
 
         public List<MovilBombero> Bomberos { get; set; } = new();
+
         public List<MovilSalida> Salidas { get; set; } = new();
+
+        public List<Incidente> Incidentes { get; set; } = new();
     }
 }

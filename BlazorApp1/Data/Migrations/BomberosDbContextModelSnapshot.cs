@@ -25,10 +25,11 @@ namespace BlazorApp1.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Grado")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("BomberoPersonaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Grado")
+                        .HasColumnType("int");
 
                     b.Property<int>("PersonaId")
                         .HasColumnType("int");
@@ -41,45 +42,40 @@ namespace BlazorApp1.Data.Migrations
 
                     b.HasKey("BomberoSalidaId");
 
-                    b.HasIndex("PersonaId");
+                    b.HasIndex("BomberoPersonaId");
 
                     b.HasIndex("SalidaId");
 
-                    b.ToTable("BomberoSalida");
+                    b.ToTable("BomberoSalida", (string)null);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Personales.Contacto", b =>
                 {
                     b.Property<int>("ContactoId")
                         .ValueGeneratedOnAdd()
-                        .HasMaxLength(255)
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("PersonaId")
                         .HasColumnType("int");
 
                     b.Property<string>("TelefonoCel")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("TelefonoFijo")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("TelefonoLaboral")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("ContactoId");
 
                     b.HasIndex("PersonaId")
                         .IsUnique();
 
-                    b.ToTable("Contactos");
+                    b.ToTable("Contactos", (string)null);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Personales.MovilBombero", b =>
@@ -88,15 +84,13 @@ namespace BlazorApp1.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int>("MovilId")
+                        .HasColumnType("int");
+
                     b.Property<int>("PersonaId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Rol")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<int>("VehiculoId")
+                    b.Property<int>("Rol")
                         .HasColumnType("int");
 
                     b.HasKey("MovilBomberoId");
@@ -104,9 +98,9 @@ namespace BlazorApp1.Data.Migrations
                     b.HasIndex("PersonaId")
                         .IsUnique();
 
-                    b.HasIndex("VehiculoId", "PersonaId");
+                    b.HasIndex("MovilId", "PersonaId");
 
-                    b.ToTable("MovilBombero");
+                    b.ToTable("MovilBombero", (string)null);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Personales.MovilSalida", b =>
@@ -117,6 +111,9 @@ namespace BlazorApp1.Data.Migrations
 
                     b.Property<bool>("CargoCombustible")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("ChoferPersonaId")
+                        .HasColumnType("int");
 
                     b.Property<int>("MovilId")
                         .HasColumnType("int");
@@ -129,13 +126,13 @@ namespace BlazorApp1.Data.Migrations
 
                     b.HasKey("MovilSalidaId");
 
-                    b.HasIndex("MovilId");
+                    b.HasIndex("ChoferPersonaId");
 
-                    b.HasIndex("PersonaId");
+                    b.HasIndex("MovilId");
 
                     b.HasIndex("SalidaId");
 
-                    b.ToTable("MovilSalida");
+                    b.ToTable("MovilSalida", (string)null);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Personales.Persona", b =>
@@ -146,61 +143,49 @@ namespace BlazorApp1.Data.Migrations
 
                     b.Property<string>("Apellido")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Direccion")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Documento")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("FechaNacimiento")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("GrupoSanguineo")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("LugarNacimiento")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("NivelEstudios")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("NumeroIoma")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Observaciones")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Profesion")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
-                    b.Property<string>("Sexo")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("Sexo")
+                        .HasColumnType("int");
 
                     b.Property<int>("TipoPersona")
                         .HasColumnType("int");
@@ -219,40 +204,35 @@ namespace BlazorApp1.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Año")
-                        .HasMaxLength(255)
+                        .HasColumnType("int");
+
+                    b.Property<int?>("BomberoPersonaId")
                         .HasColumnType("int");
 
                     b.Property<string>("Marca")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Modelo")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Patente")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("SeguroId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Tipo")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("TipoVehiculo")
                         .HasColumnType("int");
 
                     b.HasKey("VehiculoId");
 
-                    b.HasIndex("SeguroId")
-                        .IsUnique();
+                    b.HasIndex("BomberoPersonaId");
 
-                    b.ToTable("Vehiculo");
+                    b.ToTable("Vehiculo", (string)null);
 
                     b.HasDiscriminator<int>("TipoVehiculo");
                 });
@@ -265,45 +245,37 @@ namespace BlazorApp1.Data.Migrations
 
                     b.Property<string>("Apellido")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Dni")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("Edad")
                         .HasColumnType("int");
 
-                    b.Property<string>("Estado")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("Estado")
+                        .HasColumnType("int");
 
                     b.Property<string>("LugarDeNacimiento")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("SalidaId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Sexo")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("Sexo")
+                        .HasColumnType("int");
 
                     b.HasKey("DamnificadoId");
 
                     b.HasIndex("SalidaId");
 
-                    b.ToTable("Damnificados");
+                    b.ToTable("Damnificados", (string)null);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.DatosCapacitacion", b =>
@@ -312,37 +284,31 @@ namespace BlazorApp1.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CapacitacionOtra")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("DiasCapacitacion")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("HorariosCapacitacion")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
-                    b.Property<string>("NivelCapacitacion")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                    b.Property<int?>("NivelCapacitacion")
+                        .HasColumnType("int");
 
                     b.Property<string>("NivelCapacitacionOtro")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("SalidaId")
                         .HasColumnType("int");
 
-                    b.Property<string>("TipoCapacitacion")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                    b.Property<int?>("TipoCapacitacion")
+                        .HasColumnType("int");
 
                     b.HasKey("DatosCapacitacionId");
 
-                    b.ToTable("DatosCapacitaciones");
+                    b.ToTable("DatosCapacitaciones", (string)null);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.EmbarcacionAfectada", b =>
@@ -363,35 +329,31 @@ namespace BlazorApp1.Data.Migrations
                     b.Property<int>("CantidadLanchas")
                         .HasColumnType("int");
 
+                    b.Property<int>("IncendioSalidaId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("Intervinientes")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Otro")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("SalidaId")
                         .HasColumnType("int");
 
                     b.HasKey("EmbarcacionAfectadaId");
 
-                    b.HasIndex("SalidaId");
+                    b.HasIndex("IncendioSalidaId");
 
-                    b.ToTable("EmbarcacionesAfectadas");
+                    b.ToTable("EmbarcacionesAfectadas", (string)null);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.Seguro", b =>
                 {
                     b.Property<int>("SeguroId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("CompañiaAseguradora")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("Discriminator")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -400,14 +362,20 @@ namespace BlazorApp1.Data.Migrations
 
                     b.Property<string>("NumeroDePoliza")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("SalidaId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("VehiculoId")
+                        .HasColumnType("int");
 
                     b.HasKey("SeguroId");
 
-                    b.ToTable("Seguros");
+                    b.HasIndex("VehiculoId")
+                        .IsUnique();
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Seguro");
+                    b.ToTable("Seguros", (string)null);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.Salida", b =>
@@ -418,35 +386,28 @@ namespace BlazorApp1.Data.Migrations
 
                     b.Property<string>("ApellidoSolicitante")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("CalleORuta")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Depto")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("DniSolicitante")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("EncargadoId")
                         .HasColumnType("int");
 
                     b.Property<string>("EntreCalles")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime(6)");
@@ -465,46 +426,36 @@ namespace BlazorApp1.Data.Migrations
 
                     b.Property<string>("NombreSolicitante")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("NumeroOKilometro")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("NumeroParte")
                         .HasColumnType("int");
 
                     b.Property<string>("PisoNumero")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("QuienLlenoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Receptor")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("ReceptorId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SeguroId")
-                        .HasColumnType("int");
-
                     b.Property<string>("TelefonoSolicitante")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("TipoSalida")
                         .HasColumnType("int");
 
-                    b.Property<string>("TipoZona")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("TipoZona")
+                        .HasColumnType("int");
 
                     b.HasKey("SalidaId");
 
@@ -513,9 +464,6 @@ namespace BlazorApp1.Data.Migrations
                     b.HasIndex("QuienLlenoId");
 
                     b.HasIndex("ReceptorId");
-
-                    b.HasIndex("SeguroId")
-                        .IsUnique();
 
                     b.ToTable("Salidas", (string)null);
 
@@ -528,56 +476,51 @@ namespace BlazorApp1.Data.Migrations
 
                     b.Property<string>("Brigada")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("Chofer")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Dotacion")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Estado")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("FechaAceptacion")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Grado")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("Grado")
+                        .HasColumnType("int");
 
                     b.Property<int>("NumeroLegajo")
                         .HasColumnType("int");
 
                     b.Property<string>("Resolucion1")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Resolucion2")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Resolucion3")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Resolucion4")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Resolucion5")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Resolucion6")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime?>("VencimientoRegistro")
                         .HasColumnType("datetime(6)");
@@ -591,57 +534,38 @@ namespace BlazorApp1.Data.Migrations
                 {
                     b.HasBaseType("BlazorApp1.Data.Models.Personales.Vehiculo");
 
-                    b.Property<string>("Estado")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("Estado")
+                        .HasColumnType("int");
 
                     b.Property<string>("NumeroChasis")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("NumeroMotor")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("NumeroMovil")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.HasDiscriminator().HasValue(5);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Personales.VehiculoPersonal", b =>
                 {
                     b.HasBaseType("BlazorApp1.Data.Models.Personales.Vehiculo");
 
-                    b.Property<int>("PersonaId")
+                    b.Property<int>("BomberoId")
                         .HasColumnType("int");
 
-                    b.HasIndex("PersonaId");
-
-                    b.HasDiscriminator().HasValue(4);
-                });
-
-            modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.SeguroSalida", b =>
-                {
-                    b.HasBaseType("BlazorApp1.Data.Models.Salidas.Componentes.Seguro");
-
-                    b.HasDiscriminator().HasValue("SeguroSalida");
-                });
-
-            modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.SeguroVehiculo", b =>
-                {
-                    b.HasBaseType("BlazorApp1.Data.Models.Salidas.Componentes.Seguro");
-
-                    b.HasDiscriminator().HasValue("SeguroVehiculo");
+                    b.HasIndex("BomberoId");
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.VehiculoAfectado", b =>
                 {
                     b.HasBaseType("BlazorApp1.Data.Models.Personales.Vehiculo");
+
+                    b.Property<int?>("AccidenteSalidaId")
+                        .HasColumnType("int");
 
                     b.Property<bool?>("Airbag")
                         .HasColumnType("tinyint(1)");
@@ -652,9 +576,9 @@ namespace BlazorApp1.Data.Migrations
                     b.Property<int>("SalidaId")
                         .HasColumnType("int");
 
-                    b.HasIndex("IncendioSalidaId");
+                    b.HasIndex("AccidenteSalidaId");
 
-                    b.HasDiscriminator().HasValue(6);
+                    b.HasIndex("IncendioSalidaId");
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.VehiculoDamnificado", b =>
@@ -667,16 +591,13 @@ namespace BlazorApp1.Data.Migrations
 
                     b.Property<string>("Color")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("DamnificadoId")
                         .HasColumnType("int");
 
                     b.HasIndex("DamnificadoId")
                         .IsUnique();
-
-                    b.HasDiscriminator().HasValue(3);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.Accidente", b =>
@@ -688,16 +609,11 @@ namespace BlazorApp1.Data.Migrations
 
                     b.Property<string>("CondicionesClimaticas")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
+                    b.Property<int>("Tipo")
+                        .HasColumnType("int")
                         .HasColumnName("Accidente_Tipo");
-
-                    b.HasDiscriminator().HasValue(1);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.FactorClimatico", b =>
@@ -706,27 +622,18 @@ namespace BlazorApp1.Data.Migrations
 
                     b.Property<string>("DetalleSuperficieDañada")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
-                    b.Property<string>("Evacuacion")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
+                    b.Property<int>("Evacuacion")
+                        .HasColumnType("int")
                         .HasColumnName("FactorClimatico_Evacuacion");
 
-                    b.Property<string>("Superficie")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("Superficie")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
+                    b.Property<int>("Tipo")
+                        .HasColumnType("int")
                         .HasColumnName("FactorClimatico_Tipo");
-
-                    b.HasDiscriminator().HasValue(2);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.Incendio", b =>
@@ -741,8 +648,7 @@ namespace BlazorApp1.Data.Migrations
 
                     b.Property<string>("DetalleSuperficieAfectadaIncendio")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("DeteccionAutomaticaId")
                         .HasColumnType("tinyint(1)");
@@ -754,68 +660,47 @@ namespace BlazorApp1.Data.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("NombreEstablecimiento")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("OtraAbertura")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("OtroLugar")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("OtroLugarDeSiniestroEmbarcacion")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("OtroTecho")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("PisoAfectado")
                         .HasColumnType("int");
 
-                    b.Property<string>("SuperficieAfectadaCausa")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("SuperficieAfectadaCausa")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
+                    b.Property<int>("Tipo")
+                        .HasColumnType("int")
                         .HasColumnName("Incendio_Tipo");
 
-                    b.Property<string>("TipoAbertura")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("TipoAbertura")
+                        .HasColumnType("int");
 
-                    b.Property<string>("TipoEvacuacion")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("TipoEvacuacion")
+                        .HasColumnType("int");
 
-                    b.Property<string>("TipoLugarSiniestroEmbarcacion")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("TipoLugarSiniestroEmbarcacion")
+                        .HasColumnType("int");
 
-                    b.Property<string>("TipoSuperficieAfectada")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("TipoSuperficieAfectada")
+                        .HasColumnType("int");
 
-                    b.Property<string>("TipoTecho")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
-
-                    b.HasDiscriminator().HasValue(15);
+                    b.Property<int>("TipoTecho")
+                        .HasColumnType("int");
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.MaterialPeligroso", b =>
@@ -833,18 +718,15 @@ namespace BlazorApp1.Data.Migrations
 
                     b.Property<string>("DetalleSuperficieAfectada")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("DetallesAccionesMateriales")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("DetallesAccionesPersonas")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("DilucionDeVapores")
                         .HasColumnType("tinyint(1)");
@@ -866,13 +748,10 @@ namespace BlazorApp1.Data.Migrations
 
                     b.Property<string>("Sustancias")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("Tipo")
+                        .HasColumnType("int");
 
                     b.Property<int>("TipoSituacion")
                         .HasColumnType("int");
@@ -885,8 +764,6 @@ namespace BlazorApp1.Data.Migrations
 
                     b.Property<bool>("Venteo")
                         .HasColumnType("tinyint(1)");
-
-                    b.HasDiscriminator().HasValue(3);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.RescateAnimal", b =>
@@ -896,15 +773,10 @@ namespace BlazorApp1.Data.Migrations
                     b.Property<string>("Otro")
                         .IsRequired()
                         .ValueGeneratedOnUpdateSometimes()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
-                    b.Property<string>("TipoRescateAnimal")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
-
-                    b.HasDiscriminator().HasValue(5);
+                    b.Property<int>("TipoRescateAnimal")
+                        .HasColumnType("int");
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.RescatePersona", b =>
@@ -914,15 +786,10 @@ namespace BlazorApp1.Data.Migrations
                     b.Property<string>("Otro")
                         .IsRequired()
                         .ValueGeneratedOnUpdateSometimes()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
-                    b.Property<string>("TipoRescatePersona")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
-
-                    b.HasDiscriminator().HasValue(6);
+                    b.Property<int>("TipoRescatePersona")
+                        .HasColumnType("int");
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.ServicioEspecial", b =>
@@ -930,21 +797,14 @@ namespace BlazorApp1.Data.Migrations
                     b.HasBaseType("BlazorApp1.Data.Models.Salidas.Planillas.Salida");
 
                     b.Property<string>("OtroRepresentacion")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
+                    b.Property<int>("Tipo")
+                        .HasColumnType("int")
                         .HasColumnName("ServicioEspecial_Tipo");
 
-                    b.Property<string>("TipoOrganizacion")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
-
-                    b.HasDiscriminator().HasValue(16);
+                    b.Property<int>("TipoOrganizacion")
+                        .HasColumnType("int");
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.VehiculoAfectadoAccidente", b =>
@@ -952,8 +812,6 @@ namespace BlazorApp1.Data.Migrations
                     b.HasBaseType("BlazorApp1.Data.Models.Salidas.Componentes.VehiculoAfectado");
 
                     b.HasIndex("SalidaId");
-
-                    b.HasDiscriminator().HasValue(1);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.VehiculoAfectadoIncendio", b =>
@@ -969,112 +827,78 @@ namespace BlazorApp1.Data.Migrations
                 {
                     b.HasBaseType("BlazorApp1.Data.Models.Salidas.Planillas.Incendio");
 
-                    b.Property<string>("TipoLugar")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
-
-                    b.HasDiscriminator().HasValue(7);
+                    b.Property<int>("TipoLugar")
+                        .HasColumnType("int");
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.IncendioEstablecimientoEducativo", b =>
                 {
                     b.HasBaseType("BlazorApp1.Data.Models.Salidas.Planillas.Incendio");
 
-                    b.Property<string>("TipoLugar")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
+                    b.Property<int>("TipoLugar")
+                        .HasColumnType("int")
                         .HasColumnName("IncendioEstablecimientoEducativo_TipoLugar");
-
-                    b.HasDiscriminator().HasValue(8);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.IncendioEstablecimientoPublico", b =>
                 {
                     b.HasBaseType("BlazorApp1.Data.Models.Salidas.Planillas.Incendio");
 
-                    b.Property<string>("TipoLugar")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
+                    b.Property<int>("TipoLugar")
+                        .HasColumnType("int")
                         .HasColumnName("IncendioEstablecimientoPublico_TipoLugar");
-
-                    b.HasDiscriminator().HasValue(9);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.IncendioForestal", b =>
                 {
                     b.HasBaseType("BlazorApp1.Data.Models.Salidas.Planillas.Incendio");
 
-                    b.Property<string>("TipoLugar")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
+                    b.Property<int>("TipoLugar")
+                        .HasColumnType("int")
                         .HasColumnName("IncendioForestal_TipoLugar");
-
-                    b.HasDiscriminator().HasValue(10);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.IncendioHospitalesYClinicas", b =>
                 {
                     b.HasBaseType("BlazorApp1.Data.Models.Salidas.Planillas.Incendio");
 
-                    b.Property<string>("TipoLugar")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
+                    b.Property<int>("TipoLugar")
+                        .HasColumnType("int")
                         .HasColumnName("IncendioHospitalesYClinicas_TipoLugar");
-
-                    b.HasDiscriminator().HasValue(11);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.IncendioIndustria", b =>
                 {
                     b.HasBaseType("BlazorApp1.Data.Models.Salidas.Planillas.Incendio");
 
-                    b.Property<string>("TipoLugar")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
+                    b.Property<int>("TipoLugar")
+                        .HasColumnType("int")
                         .HasColumnName("IncendioIndustria_TipoLugar");
-
-                    b.HasDiscriminator().HasValue(12);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.IncendioVivienda", b =>
                 {
                     b.HasBaseType("BlazorApp1.Data.Models.Salidas.Planillas.Incendio");
 
-                    b.Property<string>("TipoLugar")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
+                    b.Property<int>("TipoLugar")
+                        .HasColumnType("int")
                         .HasColumnName("IncendioVivienda_TipoLugar");
-
-                    b.HasDiscriminator().HasValue(13);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.ServicioEspecialPrevencion", b =>
                 {
                     b.HasBaseType("BlazorApp1.Data.Models.Salidas.Planillas.ServicioEspecial");
 
-                    b.Property<string>("TipoPrevencion")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
-
-                    b.HasDiscriminator().HasValue(14);
+                    b.Property<int>("TipoPrevencion")
+                        .HasColumnType("int");
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.ServicioEspecialRepresentacion", b =>
                 {
                     b.HasBaseType("BlazorApp1.Data.Models.Salidas.Planillas.ServicioEspecial");
 
-                    b.Property<string>("TipoRepresentacion")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("TipoRepresentacion")
+                        .HasColumnType("int");
 
                     b.HasDiscriminator().HasValue(4);
                 });
@@ -1083,7 +907,7 @@ namespace BlazorApp1.Data.Migrations
                 {
                     b.HasOne("BlazorApp1.Data.Models.Personales.Bombero", "Bombero")
                         .WithMany("Salidas")
-                        .HasForeignKey("PersonaId")
+                        .HasForeignKey("BomberoPersonaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1111,15 +935,15 @@ namespace BlazorApp1.Data.Migrations
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Personales.MovilBombero", b =>
                 {
-                    b.HasOne("BlazorApp1.Data.Models.Personales.Bombero", "Bombero")
-                        .WithOne("Movil")
-                        .HasForeignKey("BlazorApp1.Data.Models.Personales.MovilBombero", "PersonaId")
+                    b.HasOne("BlazorApp1.Data.Models.Personales.Movil", "Movil")
+                        .WithMany("Bomberos")
+                        .HasForeignKey("MovilId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BlazorApp1.Data.Models.Personales.Movil", "Movil")
-                        .WithMany("Bomberos")
-                        .HasForeignKey("VehiculoId")
+                    b.HasOne("BlazorApp1.Data.Models.Personales.Bombero", "Bombero")
+                        .WithOne("Movil")
+                        .HasForeignKey("BlazorApp1.Data.Models.Personales.MovilBombero", "PersonaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1130,15 +954,15 @@ namespace BlazorApp1.Data.Migrations
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Personales.MovilSalida", b =>
                 {
-                    b.HasOne("BlazorApp1.Data.Models.Personales.Movil", "Movil")
-                        .WithMany("Salidas")
-                        .HasForeignKey("MovilId")
+                    b.HasOne("BlazorApp1.Data.Models.Personales.Bombero", "Chofer")
+                        .WithMany()
+                        .HasForeignKey("ChoferPersonaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BlazorApp1.Data.Models.Personales.Bombero", "Chofer")
-                        .WithMany()
-                        .HasForeignKey("PersonaId")
+                    b.HasOne("BlazorApp1.Data.Models.Personales.Movil", "Movil")
+                        .WithMany("Salidas")
+                        .HasForeignKey("MovilId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1157,13 +981,9 @@ namespace BlazorApp1.Data.Migrations
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Personales.Vehiculo", b =>
                 {
-                    b.HasOne("BlazorApp1.Data.Models.Salidas.Componentes.SeguroVehiculo", "Seguro")
-                        .WithOne("Vehiculo")
-                        .HasForeignKey("BlazorApp1.Data.Models.Personales.Vehiculo", "SeguroId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Seguro");
+                    b.HasOne("BlazorApp1.Data.Models.Personales.Bombero", null)
+                        .WithMany("Vehiculos")
+                        .HasForeignKey("BomberoPersonaId");
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.Damnificado", b =>
@@ -1192,11 +1012,28 @@ namespace BlazorApp1.Data.Migrations
                 {
                     b.HasOne("BlazorApp1.Data.Models.Salidas.Planillas.Incendio", "Incendio")
                         .WithMany("EmbarcacionAfectadas")
-                        .HasForeignKey("SalidaId")
+                        .HasForeignKey("IncendioSalidaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Incendio");
+                });
+
+            modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.Seguro", b =>
+                {
+                    b.HasOne("BlazorApp1.Data.Models.Salidas.Planillas.Salida", "Salida")
+                        .WithOne("Seguro")
+                        .HasForeignKey("BlazorApp1.Data.Models.Salidas.Componentes.Seguro", "SeguroId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BlazorApp1.Data.Models.Personales.Vehiculo", "Vehiculo")
+                        .WithOne("Seguro")
+                        .HasForeignKey("BlazorApp1.Data.Models.Salidas.Componentes.Seguro", "VehiculoId");
+
+                    b.Navigation("Salida");
+
+                    b.Navigation("Vehiculo");
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.Salida", b =>
@@ -1217,24 +1054,18 @@ namespace BlazorApp1.Data.Migrations
                         .WithMany()
                         .HasForeignKey("ReceptorId");
 
-                    b.HasOne("BlazorApp1.Data.Models.Salidas.Componentes.SeguroSalida", "Seguro")
-                        .WithOne("Salida")
-                        .HasForeignKey("BlazorApp1.Data.Models.Salidas.Planillas.Salida", "SeguroId");
-
                     b.Navigation("Encargado");
 
                     b.Navigation("QuienLleno");
 
                     b.Navigation("ReceptorBombero");
-
-                    b.Navigation("Seguro");
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Personales.VehiculoPersonal", b =>
                 {
                     b.HasOne("BlazorApp1.Data.Models.Personales.Bombero", "Bombero")
-                        .WithMany("Vehiculos")
-                        .HasForeignKey("PersonaId")
+                        .WithMany()
+                        .HasForeignKey("BomberoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1243,6 +1074,10 @@ namespace BlazorApp1.Data.Migrations
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.VehiculoAfectado", b =>
                 {
+                    b.HasOne("BlazorApp1.Data.Models.Salidas.Planillas.Accidente", null)
+                        .WithMany("VehiculosAfectado")
+                        .HasForeignKey("AccidenteSalidaId");
+
                     b.HasOne("BlazorApp1.Data.Models.Salidas.Planillas.Incendio", null)
                         .WithMany("VehiculoAfectados")
                         .HasForeignKey("IncendioSalidaId");
@@ -1262,7 +1097,7 @@ namespace BlazorApp1.Data.Migrations
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.VehiculoAfectadoAccidente", b =>
                 {
                     b.HasOne("BlazorApp1.Data.Models.Salidas.Planillas.Accidente", "Accidente")
-                        .WithMany("VehiculosAfectado")
+                        .WithMany()
                         .HasForeignKey("SalidaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1287,6 +1122,12 @@ namespace BlazorApp1.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("BlazorApp1.Data.Models.Personales.Vehiculo", b =>
+                {
+                    b.Navigation("Seguro")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.Damnificado", b =>
                 {
                     b.Navigation("VehiculoDamnificado");
@@ -1299,6 +1140,9 @@ namespace BlazorApp1.Data.Migrations
                     b.Navigation("Damnificados");
 
                     b.Navigation("Moviles");
+
+                    b.Navigation("Seguro")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Personales.Bombero", b =>
@@ -1315,18 +1159,6 @@ namespace BlazorApp1.Data.Migrations
                     b.Navigation("Bomberos");
 
                     b.Navigation("Salidas");
-                });
-
-            modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.SeguroSalida", b =>
-                {
-                    b.Navigation("Salida")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.SeguroVehiculo", b =>
-                {
-                    b.Navigation("Vehiculo")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.Accidente", b =>

@@ -1,4 +1,5 @@
 ﻿using BlazorApp1.Data.Enums;
+using BlazorApp1.Data.Models.Salidas.Componentes;
 using BlazorApp1.Data.Models.Salidas.Planillas;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
@@ -35,6 +36,10 @@ namespace BlazorApp1.Data.Models.Personales
         public List<VehiculoPersonal> Vehiculos { get; set; } = new();
 
         public MovilBombero? Movil { get; set; }
+
+        public BomberoDependencia? Dependencia { get; set; }
+
+        public List<Incidente> Incidentes { get; set; } = new();
 
         public List<BomberoSalida> Salidas { get; set; } = new();
 
