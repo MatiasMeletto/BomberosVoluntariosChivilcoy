@@ -310,6 +310,12 @@ namespace BlazorApp1.Data
                 .Property(m => m.Tipo)
                 .HasConversion<string>()
                 .HasMaxLength(255);
+
+            modelBuilder
+                .Entity<Accidente>()
+                .Property(a => a.CondicionesClimaticas)
+                .HasConversion<string>()
+                .HasMaxLength(255);
         }
     }
 }

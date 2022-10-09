@@ -1,6 +1,7 @@
 ﻿using BlazorApp1.Data.Enums;
 using BlazorApp1.Data.Models.Personales;
 using BlazorApp1.Data.Models.Salidas.Componentes;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace BlazorApp1.Data.Models.Salidas.Planillas
@@ -14,7 +15,8 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
         public int CantidadVehiculos { get; set; }
 
         public List<VehiculoAfectadoAccidente> VehiculosAfectado { get; set; }
+        public TipoCondicionesClimaticas CondicionesClimaticas { get; set; }
         [Required, StringLength(255)]
-        public string CondicionesClimaticas { get; set; } // enum
+        public string? OtroCondicion { get; set; }
     }
 }

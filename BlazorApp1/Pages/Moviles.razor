@@ -106,26 +106,29 @@
         if (movilView is not null)
         {
             Movil movil = new Movil()
+            {
+                Marca = movilView.Marca,
+                Modelo = movilView.Modelo,
+                Año = movilView.Año,
+                Patente = movilView.Patente,
+                Tipo = movilView.Tipo,
+                NumeroChasis = movilView.NumeroChasis,
+                NumeroMotor = movilView.NumeroMotor,
+                NumeroMovil = movilView.NumeroMovil,
+                Estado = movilView.Estado,
+                Seguro = new()
                 {
-                    Marca = movilView.Marca,
-                    Modelo = movilView.Modelo,
-                    Año = movilView.Año,
-                    Patente = movilView.Patente,
-                    Tipo = movilView.Tipo,
-                    NumeroChasis = movilView.NumeroChasis,
-                    NumeroMotor = movilView.NumeroMotor,
-                    NumeroMovil = movilView.NumeroMovil,
-                    Estado = movilView.Estado,
-                    Seguro = new()
-                    {
-                        CompañiaAseguradora = seguroView.CompañiaAseguradora,
-                        FechaDeVencimineto = seguroView.FechaDeVencimiento,
-                        NumeroDePoliza = seguroView.NumeroDePoliza
-                    }
-                };
+                    CompañiaAseguradora = seguroView.CompañiaAseguradora,
+                    FechaDeVencimineto = seguroView.FechaDeVencimiento,
+                    NumeroDePoliza = seguroView.NumeroDePoliza
+                }
+            };
 
             db.Moviles.Add(movil);
             await db.SaveChangesAsync();
         }
+        moviles = await db.Moviles.ToArrayAsync();
+
+        StateHasChanged();
     }
 }

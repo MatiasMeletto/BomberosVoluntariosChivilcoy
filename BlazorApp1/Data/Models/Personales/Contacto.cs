@@ -4,8 +4,8 @@ namespace BlazorApp1.Data.Models.Personales
 {
     public class Contacto
     {
-        [StringLength(255)]
         public int ContactoId { get; set; }
+
         [StringLength(255)]
         public string? TelefonoCel { get; set; }
         [StringLength(255)]

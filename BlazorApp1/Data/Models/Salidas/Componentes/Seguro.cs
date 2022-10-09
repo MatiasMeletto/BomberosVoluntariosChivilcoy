@@ -12,11 +12,5 @@ namespace BlazorApp1.Data.Models.Salidas.Componentes
         [Required, StringLength(255)]
         public string NumeroDePoliza { get; set; }
         public DateTime FechaDeVencimineto { get; set; }
-
-        //public int? VehiculoId { get; set; }
-        //public Vehiculo? Vehiculo { get; set; }
-
-        //public int? SalidaId { get; set; }
-        //public Salida? Salida { get; set; }
     }
 }

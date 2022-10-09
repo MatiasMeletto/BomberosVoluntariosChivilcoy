@@ -1,4 +1,5 @@
-﻿@inject IDbContextFactory<BomberosDbContext> DbFactory
+﻿@inject NavigationManager navigationManager
+@inject IDbContextFactory<BomberosDbContext> DbFactory
 @page "/moviles/{NumeroMovilP}"
 
 <h3>Movil </h3>
@@ -35,6 +36,8 @@
         <label>N° poliza: @seguroView.NumeroDePoliza</label>
         <br>
         <label>Fecha de vencimiento: @seguroView.FechaDeVencimiento</label>
+
+        <button @onclick="EliminarMovil">Eliminar este movil</button>
     }
 }
 else
@@ -102,5 +105,18 @@ else
         {
             existe = false;
         }
+    }
+
+    public async void EliminarMovil()
+    {
+        using var db = DbFactory.CreateDbContext();
+
+        Movil? movil = await db.Moviles.Where(m => m.NumeroMovil == movilView.NumeroMovil).SingleOrDefaultAsync();
+
+        if(movil is not null)
+            db.Remove(movil);
+        await db.SaveChangesAsync();
+
+        navigationManager.NavigateTo("/moviles");
     }
 }
