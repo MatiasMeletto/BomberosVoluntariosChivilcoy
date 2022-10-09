@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorApp1.Data.Migrations
 {
     [DbContext(typeof(BomberosDbContext))]
-    [Migration("20221009020926_InicialFix")]
+    [Migration("20221009033701_InicialFix")]
     partial class InicialFix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -688,7 +688,8 @@ namespace BlazorApp1.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.HasIndex("NumeroMovil");
+                    b.HasIndex("NumeroMovil")
+                        .IsUnique();
 
                     b.HasDiscriminator().HasValue(5);
                 });

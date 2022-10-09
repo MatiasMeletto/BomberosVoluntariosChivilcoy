@@ -686,7 +686,8 @@ namespace BlazorApp1.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.HasIndex("NumeroMovil");
+                    b.HasIndex("NumeroMovil")
+                        .IsUnique();
 
                     b.HasDiscriminator().HasValue(5);
                 });

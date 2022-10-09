@@ -40,6 +40,10 @@ namespace BlazorApp1.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Movil>()
+                .HasIndex(m => m.NumeroMovil)
+                .IsUnique();
+
             modelBuilder.Entity<Persona>()
                 .HasDiscriminator<int>("TipoPersona")
                 .HasValue<Bombero>(1)

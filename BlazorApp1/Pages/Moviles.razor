@@ -105,27 +105,32 @@
 
         if (movilView is not null)
         {
-            Movil movil = new Movil()
-            {
-                Marca = movilView.Marca,
-                Modelo = movilView.Modelo,
-                Año = movilView.Año,
-                Patente = movilView.Patente,
-                Tipo = movilView.Tipo,
-                NumeroChasis = movilView.NumeroChasis,
-                NumeroMotor = movilView.NumeroMotor,
-                NumeroMovil = movilView.NumeroMovil,
-                Estado = movilView.Estado,
-                Seguro = new()
-                {
-                    CompañiaAseguradora = seguroView.CompañiaAseguradora,
-                    FechaDeVencimineto = seguroView.FechaDeVencimiento,
-                    NumeroDePoliza = seguroView.NumeroDePoliza
-                }
-            };
+            Movil? comprobante = await db.Moviles.Where(m => m.NumeroMovil == movilView.NumeroMovil).SingleOrDefaultAsync();
 
-            db.Moviles.Add(movil);
-            await db.SaveChangesAsync();
+            if (comprobante is null)
+            {
+                Movil movil = new Movil()
+                {
+                    Marca = movilView.Marca,
+                    Modelo = movilView.Modelo,
+                    Año = movilView.Año,
+                    Patente = movilView.Patente,
+                    Tipo = movilView.Tipo,
+                    NumeroChasis = movilView.NumeroChasis,
+                    NumeroMotor = movilView.NumeroMotor,
+                    NumeroMovil = movilView.NumeroMovil,
+                    Estado = movilView.Estado,
+                    Seguro = new()
+                    {
+                        CompañiaAseguradora = seguroView.CompañiaAseguradora,
+                        FechaDeVencimineto = seguroView.FechaDeVencimiento,
+                        NumeroDePoliza = seguroView.NumeroDePoliza
+                    }
+                };
+
+                db.Moviles.Add(movil);
+                await db.SaveChangesAsync();
+            }
         }
         moviles = await db.Moviles.ToArrayAsync();
 

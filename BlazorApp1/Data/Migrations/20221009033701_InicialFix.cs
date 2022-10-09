@@ -1400,7 +1400,8 @@ namespace BlazorApp1.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Vehiculo_NumeroMovil",
                 table: "Vehiculo",
-                column: "NumeroMovil");
+                column: "NumeroMovil",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Vehiculo_SeguroId",
