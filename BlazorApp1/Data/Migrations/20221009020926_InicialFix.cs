@@ -141,6 +141,18 @@ namespace BlazorApp1.Data.Migrations
                 .OldAnnotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.AlterColumn<string>(
+                name: "NumeroMovil",
+                table: "Vehiculo",
+                type: "varchar(255)",
+                maxLength: 255,
+                nullable: true,
+                oldClrType: typeof(string),
+                oldType: "longtext",
+                oldNullable: true)
+                .Annotation("MySql:CharSet", "utf8mb4")
+                .OldAnnotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.AlterColumn<string>(
                 name: "NumeroMotor",
                 table: "Vehiculo",
                 type: "varchar(255)",
@@ -839,6 +851,14 @@ namespace BlazorApp1.Data.Migrations
                 oldNullable: true)
                 .Annotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.AddColumn<string>(
+                name: "OtroCondicion",
+                table: "Salidas",
+                type: "varchar(255)",
+                maxLength: 255,
+                nullable: true)
+                .Annotation("MySql:CharSet", "utf8mb4");
+
             migrationBuilder.AddColumn<int>(
                 name: "SeguroId",
                 table: "Salidas",
@@ -1378,6 +1398,11 @@ namespace BlazorApp1.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Vehiculo_NumeroMovil",
+                table: "Vehiculo",
+                column: "NumeroMovil");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Vehiculo_SeguroId",
                 table: "Vehiculo",
                 column: "SeguroId",
@@ -1526,6 +1551,10 @@ namespace BlazorApp1.Data.Migrations
                 name: "Dependencia");
 
             migrationBuilder.DropIndex(
+                name: "IX_Vehiculo_NumeroMovil",
+                table: "Vehiculo");
+
+            migrationBuilder.DropIndex(
                 name: "IX_Vehiculo_SeguroId",
                 table: "Vehiculo");
 
@@ -1552,6 +1581,10 @@ namespace BlazorApp1.Data.Migrations
             migrationBuilder.DropColumn(
                 name: "Discriminator",
                 table: "Seguros");
+
+            migrationBuilder.DropColumn(
+                name: "OtroCondicion",
+                table: "Salidas");
 
             migrationBuilder.DropColumn(
                 name: "SeguroId",
@@ -1596,6 +1629,18 @@ namespace BlazorApp1.Data.Migrations
                 oldClrType: typeof(string),
                 oldType: "varchar(255)",
                 oldMaxLength: 255)
+                .Annotation("MySql:CharSet", "utf8mb4")
+                .OldAnnotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.AlterColumn<string>(
+                name: "NumeroMovil",
+                table: "Vehiculo",
+                type: "longtext",
+                nullable: true,
+                oldClrType: typeof(string),
+                oldType: "varchar(255)",
+                oldMaxLength: 255,
+                oldNullable: true)
                 .Annotation("MySql:CharSet", "utf8mb4")
                 .OldAnnotation("MySql:CharSet", "utf8mb4");
 

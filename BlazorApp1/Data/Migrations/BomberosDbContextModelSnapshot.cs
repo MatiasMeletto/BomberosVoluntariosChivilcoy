@@ -77,7 +77,6 @@ namespace BlazorApp1.Data.Migrations
                 {
                     b.Property<int>("ContactoId")
                         .ValueGeneratedOnAdd()
-                        .HasMaxLength(255)
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -684,7 +683,10 @@ namespace BlazorApp1.Data.Migrations
 
                     b.Property<string>("NumeroMovil")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.HasIndex("NumeroMovil");
 
                     b.HasDiscriminator().HasValue(5);
                 });
@@ -775,6 +777,11 @@ namespace BlazorApp1.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CondicionesClimaticas")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("OtroCondicion")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
