@@ -59,6 +59,10 @@ namespace BlazorApp1.Data.Migrations
                 table: "Seguros");
 
             migrationBuilder.DropIndex(
+                name: "IX_Personas_NumeroLegajo",
+                table: "Personas");
+
+            migrationBuilder.DropIndex(
                 name: "IX_MovilSalida_ChoferPersonaId",
                 table: "MovilSalida");
 
@@ -1416,6 +1420,12 @@ namespace BlazorApp1.Data.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Personas_NumeroLegajo",
+                table: "Personas",
+                column: "NumeroLegajo",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_MovilSalida_PersonaId",
                 table: "MovilSalida",
                 column: "PersonaId");
@@ -1562,6 +1572,10 @@ namespace BlazorApp1.Data.Migrations
             migrationBuilder.DropIndex(
                 name: "IX_Salidas_SeguroId",
                 table: "Salidas");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Personas_NumeroLegajo",
+                table: "Personas");
 
             migrationBuilder.DropIndex(
                 name: "IX_MovilSalida_PersonaId",
@@ -2833,6 +2847,11 @@ namespace BlazorApp1.Data.Migrations
                 table: "Seguros",
                 column: "VehiculoId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Personas_NumeroLegajo",
+                table: "Personas",
+                column: "NumeroLegajo");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MovilSalida_ChoferPersonaId",

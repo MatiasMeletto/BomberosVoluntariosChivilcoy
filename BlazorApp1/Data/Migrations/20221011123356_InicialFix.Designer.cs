@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorApp1.Data.Migrations
 {
     [DbContext(typeof(BomberosDbContext))]
-    [Migration("20221009033701_InicialFix")]
+    [Migration("20221011123356_InicialFix")]
     partial class InicialFix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -659,7 +659,8 @@ namespace BlazorApp1.Data.Migrations
                     b.Property<DateTime?>("VencimientoRegistro")
                         .HasColumnType("datetime(6)");
 
-                    b.HasIndex("NumeroLegajo");
+                    b.HasIndex("NumeroLegajo")
+                        .IsUnique();
 
                     b.HasDiscriminator().HasValue(1);
                 });

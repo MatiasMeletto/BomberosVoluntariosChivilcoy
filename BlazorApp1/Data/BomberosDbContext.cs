@@ -44,6 +44,10 @@ namespace BlazorApp1.Data
                 .HasIndex(m => m.NumeroMovil)
                 .IsUnique();
 
+            modelBuilder.Entity<Bombero>()
+                .HasIndex(b => b.NumeroLegajo)
+                .IsUnique();
+
             modelBuilder.Entity<Persona>()
                 .HasDiscriminator<int>("TipoPersona")
                 .HasValue<Bombero>(1)

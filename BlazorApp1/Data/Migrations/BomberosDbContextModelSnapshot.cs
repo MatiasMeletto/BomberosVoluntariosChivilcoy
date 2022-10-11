@@ -657,7 +657,8 @@ namespace BlazorApp1.Data.Migrations
                     b.Property<DateTime?>("VencimientoRegistro")
                         .HasColumnType("datetime(6)");
 
-                    b.HasIndex("NumeroLegajo");
+                    b.HasIndex("NumeroLegajo")
+                        .IsUnique();
 
                     b.HasDiscriminator().HasValue(1);
                 });
