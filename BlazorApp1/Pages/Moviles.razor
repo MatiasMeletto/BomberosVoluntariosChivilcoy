@@ -64,7 +64,7 @@
 @code {
 
     public class MovilViewModel
-    {
+    { [Required, StringLength(255)]
         public string Marca { get; set; }
         public string Modelo { get; set; }
         public int Año { get; set; }

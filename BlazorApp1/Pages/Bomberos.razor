@@ -44,6 +44,24 @@
         <label>Nivel De Estudios:</label>
     <input type="text" @bind="bomberoView.NivelEstudios" />
     <br>
+    <label>Resulucion 1:</label>
+    <input type="text" @bind="bomberoView.Resolucion1" />
+    <br>
+        <label>Resulucion 2:</label>
+    <input type="text" @bind="bomberoView.Resolucion2" />
+    <br>
+        <label>Resulucion 3:</label>
+    <input type="text" @bind="bomberoView.Resolucion3" />
+    <br>
+        <label>Resulucion 4:</label>
+    <input type="text" @bind="bomberoView.Resolucion4" />
+    <br>
+        <label>Resulucion 5:</label>
+    <input type="text" @bind="bomberoView.Resolucion5" />
+    <br>
+        <label>Resulucion 6:</label>
+    <input type="text" @bind="bomberoView.Resolucion6" />
+    <br>
     <input type="checkbox" @bind="bomberoView.Chofer" />
     if (bomberoView.Chofer)
     {
@@ -115,7 +133,9 @@
     {
         public DateTime FechaNacimiento { get; set; }
         public DateTime FechaAceptacion { get; set; }
+        [Required, StringLength(255)]
         public string Nombre { get; set; }
+        [Required, StringLength(255)]
         public string Apellido { get; set; }
         public EstadoBombero Estado { get; set; }
         public int NumeroLegajo { get; set;  }
@@ -123,14 +143,28 @@
         public bool Chofer { get; set; }
         public DateTime? VencimientoRegistro { get; set; }
         public TipoSexo Sexo { get; set; }
+        [Required, StringLength(255)]
         public string Direccion { get; set; }
+        [Required, StringLength(255)]
         public string LugarNacimiento { get; set; }
+        [Required, StringLength(255)]
         public string Documento { get; set; }
+        [Required, StringLength(255)]
         public string GrupoSanguineo { get; set; }
+        [Required, StringLength(255)]
         public string Observaciones { get; set; }
+        [Required, StringLength(255)]
         public string Profesion { get; set; }
         public string NivelEstudios { get; set; }
         public string NumeroIoma { get; set; }
+        public string? Resolucion1 { get; set; }
+        public string? Resolucion2 { get; set; }
+        public string? Resolucion3 { get; set; }
+        public string? Resolucion4 { get; set; }
+        public string? Resolucion5 { get; set; }
+        public string? Resolucion6 { get; set; }
+
+
     }
     public class ContactoViewModel
     {

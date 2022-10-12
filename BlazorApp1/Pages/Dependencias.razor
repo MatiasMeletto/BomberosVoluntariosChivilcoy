@@ -1,0 +1,119 @@
+﻿@inject NavigationManager navigationManager
+@inject IDbContextFactory<BomberosDbContext> DbFactory
+@page "/dependencias"
+
+<h3>Dependencias</h3>
+@if (dependenciasView is not null)
+{
+    <label>Nombre:</label>
+    <input type="text" @bind="dependenciasView.NombreDependencia" />
+    <br>
+    <label>Incidentes:</label>
+    <input type="text" @bind="dependenciasView.Incidentes" />
+    <br>
+    <label>Bomberos:</label>
+    <input type="text" @bind="dependenciasView.Bomberos" />
+    <br>
+
+    <h5>Dependencia Bombero</h5>
+
+    <label>Bombero:</label>
+    <input type="text" @bind="bomberoDependenciaView.Bombero" />
+    <br>
+    <label>Dependencia:</label>
+    <input type="text" @bind="bomberoDependenciaView.Dependencia" />
+    <br>
+    <select @bind="bomberoDependenciaView.Rol">
+        <option value="@TipoRol.Encargado">Encargado</option>
+        <option value="@TipoRol.Subalterno">Subalterno </option>
+        </select>
+        <h5>Incidente Dependencia</h5>
+
+    <label>Dependencia:</label>
+    <input type="text" @bind="incidenteDependenciaView.Dependencia" />
+    <br>
+    <label>Observacion:</label>
+    <input type="text" @bind="incidenteDependenciaView.Observacion" />
+    <br>
+    <label>Fecha:</label>
+    <input type="date" @bind="incidenteDependenciaView.Fecha" />
+    <br>
+    <label>Quien Realizo:</label>
+    <input type="text" @bind="incidenteDependenciaView.QuienHizo" />
+    <br>
+     <button @onclick="AgregarDependencia">Agregar Dependencia</button>
+}
+@if(dependencias is not null)
+{
+    @foreach(Dependencia b in dependencias)
+    {
+        <a @onclick="@(() => { string NombreDependencia = d.IdDependencia; IrADependenciaIndividual(NombreDependencia); })"><label>@b.DependenciaId   @d.NombreDependencia</label></a>
+        <br>
+    }
+}
+
+@code 
+{
+    public class dependenciasViewModel
+    {
+        public string NombreDependencia { get; set; }
+        public List<BomberoDependencia> Bomberos { get; set; } = new();
+        public List<IncidenteDependencia> Incidentes { get; set; } = new();
+    }
+    public class BomberoDependenciaViewModel
+    {
+        public TipoRol Rol{ get; set; }
+        public Bombero Bombero { get; set; }
+        public Dependencia Dependencia { get; set; }
+    }
+    public class IncidenteDependenciaViewModel
+    {
+        public Dependencia Dependencia { get; set; }
+        public string Observacion { get; set; }
+        public DateTime Fecha{ get; set; }
+        public Bombero QuienHizo{ get; set; }
+    }
+
+    public dependenciasViewModel dependenciasView { get; set; } = new();
+    public BomberoDependenciaViewModel bomberoDependenciaView { get; set; } = new();
+    public IncidenteDependenciaViewModel incidenteDependenciaView { get; set; } = new();
+    public Dependencia[]? dependencias;
+    protected override async Task OnInitializedAsync()
+    {
+        using var db = DbFactory.CreateDbContext();
+
+        dependencias = await db.Dependencias.ToArrayAsync();
+    }
+    public void IrADependenciaIndividual(string NombreDependencia)
+    {
+        navigationManager.NavigateTo($"/dependencias/{NombreDependencia}");
+    }
+
+
+    private async void AgregarDependencia()
+    {
+        using var db = DbFactory.CreateDbContext();
+
+        if (dependenciasView is not null)
+        {
+            Dependencia? comprobante = await db.Dependencias.Where(m => m.NombreDependencia == dependenciasView.NombreDependencia).SingleOrDefaultAsync();
+            if (comprobante is null)
+            {
+                Dependencia dependencia = new Dependencia()
+                {
+                    NombreDependencia= dependenciasView.NombreDependencia
+                    BomberoDependencia = new()
+
+                    
+                }
+                       db.Bomberos.Add(dependencia);
+                await db.SaveChangesAsync();
+            }
+        }
+        dependencias = await db.Bomberos.ToArrayAsync();
+
+        StateHasChanged();
+    }
+}
+
+}
