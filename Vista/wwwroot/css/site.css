@@ -62,3 +62,59 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+#BarraMain {
+    background-color: rgb(62, 24, 24);
+}
+
+    #BarraMain a {
+        font-size: 1.3em;
+        font-weight: inherit;
+    }
+
+#FooterM {
+    background-color: rgb(62, 24, 24);
+    width: 100%;
+}
+
+#GrupoT {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    padding: 45px 0px;
+}
+
+#FooterM h4 {
+    color: white;
+}
+
+#FooterM a {
+    color: white;
+}
+
+.copyright {
+    background-color: rgb(79, 34, 34)
+}
+
+
+.Logo {
+    max-height: 70px;
+    max-width: 70px;
+}
+
+#Cartas Card {
+    min-height: 500px;
+    min-width: 500px;
+}
+
+.Titulo {
+    background-color: rgb(79, 34, 34);
+    padding: 1px;
+}
+
+    .Titulo h3 {
+        color: white;
+        text-align: center;
+        font-weight: inherit;
+    }
