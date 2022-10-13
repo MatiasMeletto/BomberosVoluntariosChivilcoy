@@ -51,20 +51,29 @@ else
 
     public class MovilViewModel
     {
+        [Required, StringLength(255)]
         public string Marca { get; set; }
+        [Required, StringLength(255)]
         public string Modelo { get; set; }
         public int Año { get; set; }
+        [Required, StringLength(255)]
         public string Patente { get; set; }
+        [Required, StringLength(255)]
         public string Tipo { get; set; }
+        [Required, StringLength(255)]
         public string NumeroMovil { get; set; }
+        [Required, StringLength(255)]
         public string NumeroMotor { get; set; }
+        [Required, StringLength(255)]
         public string NumeroChasis { get; set; }
         public TipoEstadoMovil Estado { get; set; }
     }
 
     public class SeguroViewModel
     {
+        [Required, StringLength(255)]
         public string CompañiaAseguradora { get; set; }
+        [Required, StringLength(255)]
         public string NumeroDePoliza { get; set; }
         public DateTime FechaDeVencimiento { get; set; }
     }

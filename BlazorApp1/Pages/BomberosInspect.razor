@@ -71,19 +71,19 @@ else
         public DateTime FechaNacimiento { get; set; }
 
         public TipoSexo Sexo { get; set; }
-
+        [Required, StringLength(255)]
         public string Nombre { get; set; }
-
+        [Required, StringLength(255)]
         public string Apellido { get; set; }
-
+        [Required, StringLength(255)]
         public string Direccion { get; set; }
-
+        [Required, StringLength(255)]
         public string Documento { get; set; }
-
+        [Required, StringLength(255)]
         public string LugarNacimiento { get; set; }
-
+        [Required, StringLength(255)]
         public string GrupoSanguineo { get; set; }
-
+        [Required, StringLength(255)]
         public string NumeroIoma { get; set; }
 
         public int NumeroLegajo { get; set; }
@@ -93,21 +93,21 @@ else
         public DateTime FechaAceptacion { get; set; }
 
         public EscalafonJerarquico Grado { get; set; }
-
+        [Required, StringLength(255)]
         public string Dotacion { get; set; } 
-
+        [Required, StringLength(255)]
         public string Brigada { get; set; } 
-
+        [Required, StringLength(255)]
         public string? Resolucion1 { get; set; }
-
+        [Required, StringLength(255)]
         public string? Resolucion2 { get; set; }
-
+        [Required, StringLength(255)]
         public string? Resolucion3 { get; set; }
-
+        [Required, StringLength(255)]
         public string? Resolucion4 { get; set; }
-
+        [Required, StringLength(255)]
         public string? Resolucion5 { get; set; }
-
+        [Required, StringLength(255)]
         public string? Resolucion6 { get; set; }
 
         public bool Chofer { get; set; }
