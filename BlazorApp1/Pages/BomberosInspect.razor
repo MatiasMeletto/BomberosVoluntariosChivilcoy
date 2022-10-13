@@ -1,6 +1,6 @@
 ﻿@inject NavigationManager navigationManager
 @inject IDbContextFactory<BomberosDbContext> DbFactory
-@page "/bomberos/{NumeroLegajoP}"
+@page "/bomberos/{BomberoId:int?}"
 
 <h3>Bombero</h3>
 @if (existe)
@@ -64,7 +64,7 @@ else
 }
 @code {
     [Parameter]
-    public int NumeroLegajoP { get; set; }
+    public int? BomberoId { get; set; }
 
     public class BomberosViewModel
     {
@@ -123,7 +123,8 @@ else
     {
         using var db = DbFactory.CreateDbContext();
 
-        Bombero? bombero = await db.Bomberos.Where(m => m.NumeroLegajo == NumeroLegajoP).SingleOrDefaultAsync();
+        //revisar como controlar si es bombero
+        Bombero? bombero = await db.Bomberos.Where(m => m.PersonaId == BomberoId && m.NumeroLegajo != 0).SingleOrDefaultAsync();
         if (bombero is not null)
         {    
             bomberosView.FechaNacimiento = bombero.FechaNacimiento;
