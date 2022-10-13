@@ -155,22 +155,34 @@
         public string Observaciones { get; set; }
         [Required, StringLength(255)]
         public string Profesion { get; set; }
+        [Required, StringLength(255)]
         public string NivelEstudios { get; set; }
+        [Required, StringLength(255)]
         public string NumeroIoma { get; set; }
+        [Required, StringLength(255)]
         public string? Resolucion1 { get; set; }
+        [Required, StringLength(255)]
         public string? Resolucion2 { get; set; }
+        [Required, StringLength(255)]
         public string? Resolucion3 { get; set; }
+        [Required, StringLength(255)]
         public string? Resolucion4 { get; set; }
+        [Required, StringLength(255)]
         public string? Resolucion5 { get; set; }
+        [Required, StringLength(255)]
         public string? Resolucion6 { get; set; }
 
 
     }
     public class ContactoViewModel
     {
+        [Required, StringLength(255)]
         public string? TelefonoCel { get; set; }
+        [Required, StringLength(255)]
         public string? TelefonoLaboral { get; set; }
+        [Required, StringLength(255)]
         public string? TelefonoFijo { get; set; }
+        [Required, StringLength(255)]
         public string? Email { get; set; }
     }
     public BomberosViewModel bomberoView { get; set; } = new();
