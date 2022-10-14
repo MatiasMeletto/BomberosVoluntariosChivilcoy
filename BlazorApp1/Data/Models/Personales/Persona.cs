@@ -6,7 +6,7 @@ namespace BlazorApp1.Data.Models.Personales
     public class Persona
     {
         public int PersonaId { get; set; }
-        public DateTime FechaNacimiento { get; set; }
+        public DateOnly FechaNacimiento { get; set; }
         public TipoSexo Sexo { get; set; }
         [Required, StringLength(255)]
         public string Nombre { get; set; }

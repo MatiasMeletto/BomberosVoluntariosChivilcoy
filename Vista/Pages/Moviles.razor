@@ -1,4 +1,6 @@
-﻿@page "/movil"
+﻿@inject NavigationManager navigationManager
+@page "/movil"
+
 <BSContainer Container="Container.Medium">
     <div class="Titulo ">
         <h3> Moviles </h3>
@@ -48,9 +50,9 @@
                         <BSCard CardType="CardType.Text">
                             Movil encargado a ""
                         </BSCard>
-                        <a href="/Movil18">
+                        @*<a @onclick="@(() => { navigationManager.NavigateTo(); })">
                         <BSButton Color="BSColor.Danger">Ver Información</BSButton>
-                        </a>
+                        </a>*@
                     </BSCard>
                 </BSCard>
             </BSContainer>

@@ -10,7 +10,7 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
     {
         public int SalidaId { get; set; }
 
-        public DateTime Fecha { get; set; }
+        public DateOnly Fecha { get; set; }
         public DateTime HoraSalida { get; set; }
         public DateTime HoraLlegada { get; set; }
         public int KmSalida { get; set; }

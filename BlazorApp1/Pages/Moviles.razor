@@ -46,7 +46,7 @@
     <input type="text" @bind="seguroView.NumeroDePoliza" />
     <br>
     <label>Fecha de vencimiento:</label>
-    <input type="datetime" @bind="seguroView.FechaDeVencimiento" />
+    <input type="date" @bind="seguroView.FechaDeVencimiento" />
     <br />
     <button @onclick="AgregarMovil">Crear movil</button>
 }
@@ -56,7 +56,7 @@
 {
     @foreach(Movil m in moviles)
     {
-        <a @onclick="@(() => { string NMovil = m.NumeroMovil; IrAMovilIndividual(NMovil); })"><label>@m.VehiculoId   @m.NumeroMovil</label></a>
+        <a @onclick="@(() => { navigationManager.NavigateTo($"/moviles/{m.VehiculoId}"); })"><label>@m.VehiculoId   @m.NumeroMovil</label></a>
         <br>
     }
 }
@@ -64,7 +64,8 @@
 @code {
 
     public class MovilViewModel
-    { [Required, StringLength(255)]
+    { 
+        [Required, StringLength(255)]
         public string Marca { get; set; }
         [Required, StringLength(255)]
         public string Modelo { get; set; }
@@ -101,11 +102,6 @@
         using var db = DbFactory.CreateDbContext();
 
         moviles = await db.Moviles.ToArrayAsync();
-    }
-
-    public void IrAMovilIndividual(string NMovil)
-    {
-        navigationManager.NavigateTo($"/moviles/{NMovil}");
     }
 
     private async void AgregarMovil()

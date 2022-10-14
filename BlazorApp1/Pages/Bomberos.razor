@@ -27,7 +27,7 @@
     <input type="number" @bind="bomberoView.NumeroLegajo" />
     <br>
     <label>Fecha De Aceptacion:</label>
-    <input type="datetime" @bind="bomberoView.FechaAceptacion" />    
+    <input type="date" @bind="bomberoView.FechaAceptacion" />    
     <br>
     <label> Direccion:</label>
     <input type="text" @bind="bomberoView.Direccion" />
@@ -72,7 +72,7 @@
     if (bomberoView.Chofer)
     {
         <label>Es chofer</label>
-        <input type="datetime" @bind="bomberoView.VencimientoRegistro"/>
+        <input type="date" @bind="bomberoView.VencimientoRegistro"/>
     }
     if(!bomberoView.Chofer)
     {
@@ -129,7 +129,7 @@
 {
     @foreach(Bombero b in bomberos)
     {
-        <a @onclick="@(() => { int Id = b.PersonaId; IrABomberoIndividual(Id); })"><label>@b.PersonaId   @b.NumeroLegajo</label></a>
+        <a @onclick="@(() => { navigationManager.NavigateTo($"/bomberos/{b.PersonaId}"); })"><label>@b.PersonaId   @b.NumeroLegajo</label></a>
         <br>
     }
 }
@@ -206,10 +206,6 @@
         bomberos = await db.Bomberos.ToArrayAsync();
     }
 
-    public void IrABomberoIndividual(int BomberoId)
-    {
-        navigationManager.NavigateTo($"/bomberos/{BomberoId}");
-    }
     private async void AgregarBombero()
     {
         using var db = DbFactory.CreateDbContext();

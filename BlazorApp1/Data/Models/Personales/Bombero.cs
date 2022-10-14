@@ -31,7 +31,7 @@ namespace BlazorApp1.Data.Models.Personales
         [StringLength(255)]
         public string? Resolucion6 { get; set; }
         public bool Chofer { get; set; }
-        public DateTime? VencimientoRegistro { get; set; }
+        public DateOnly? VencimientoRegistro { get; set; }
 
         public List<VehiculoPersonal> Vehiculos { get; set; } = new();
 

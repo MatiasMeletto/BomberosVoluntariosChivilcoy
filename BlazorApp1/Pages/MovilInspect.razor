@@ -1,6 +1,6 @@
 ﻿@inject NavigationManager navigationManager
 @inject IDbContextFactory<BomberosDbContext> DbFactory
-@page "/moviles/{NumeroMovilP}"
+@page "/moviles/{VehiculoId:int?}"
 
 <h3>Movil </h3>
 @if (existe)
@@ -47,7 +47,7 @@ else
 
 @code {
     [Parameter]
-    public string NumeroMovilP { get; set; }
+    public int? VehiculoId { get; set; }
 
     public class MovilViewModel
     {
@@ -86,7 +86,7 @@ else
     {
         using var db = DbFactory.CreateDbContext();
 
-        Movil? movil = await db.Moviles.Where(m => m.NumeroMovil == NumeroMovilP).SingleOrDefaultAsync();
+        Movil? movil = await db.Moviles.Where(m => m.VehiculoId == VehiculoId).SingleOrDefaultAsync();
 
         if (movil is not null)
         {
