@@ -103,10 +103,15 @@ a, .btn-link {
     max-width: 70px;
 }
 
-#Cartas Card {
-    min-height: 500px;
-    min-width: 500px;
+.card-img, .card-img-bottom {
+    max-height: 200px;
+    max-width: 500px;
+    min-width: 300px;
+    min-height: 200px;
+    border-bottom-right-radius: calc(0.25rem - 1px);
+    border-bottom-left-radius: calc(0.25rem - 1px);
 }
+
 
 .Titulo {
     background-color: rgb(79, 34, 34);
@@ -118,3 +123,4 @@ a, .btn-link {
         text-align: center;
         font-weight: inherit;
     }
+
