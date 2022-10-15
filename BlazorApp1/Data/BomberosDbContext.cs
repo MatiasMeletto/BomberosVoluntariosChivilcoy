@@ -12,7 +12,10 @@ namespace BlazorApp1.Data
         public DbSet<VehiculoPersonal> VehiculosPersonales { get; set; }
         public DbSet<Contacto> Contactos { get; set; }
         public DbSet<Damnificado> Damnificados { get; set; }
-        public DbSet<Seguro> Seguros { get; set; }
+        public DbSet<ImagenBombero> ImagenesBomberos { get; set; }
+        public DbSet<ImagenMovil> ImagenesMoviles { get; set; }
+        public DbSet<SeguroSalida> SegurosSalidas { get; set; }
+        public DbSet<SeguroVehiculo> SeguroVehiculos { get; set; }
         public DbSet<DatosCapacitacion> DatosCapacitaciones { get; set; }
         public DbSet<EmbarcacionAfectada> EmbarcacionesAfectadas { get; set; }
         public DbSet<VehiculoAfectadoAccidente> VehiculosAfectadosAccidentes { get; set; }
@@ -54,6 +57,20 @@ namespace BlazorApp1.Data
                 .HasValue<Persona>(2);
             modelBuilder.Entity<Persona>()
                 .ToTable("Personas");
+
+            modelBuilder.Entity<Seguro>()
+                .HasDiscriminator<int>("TipoSeguro")
+                .HasValue<SeguroSalida>(1)
+                .HasValue<SeguroVehiculo>(2);
+            modelBuilder.Entity<Seguro>()
+                .ToTable("Seguros");
+
+            modelBuilder.Entity<Imagen>()
+                .HasDiscriminator<int>("TipoImagen")
+                .HasValue<ImagenBombero>(1)
+                .HasValue<ImagenMovil>(2);
+            modelBuilder.Entity<Imagen>()
+                .ToTable("Imagenes");
 
             modelBuilder.Entity<Salida>()
                 .HasDiscriminator<int>("TipoSalida")

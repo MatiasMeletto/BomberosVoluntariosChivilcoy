@@ -15,7 +15,7 @@ namespace BlazorApp1.Data.Models.Personales
         [Required, StringLength(255)]
         public string NumeroChasis { get; set; }
         public TipoEstadoMovil Estado { get; set; }
-        public string FotoBase64 { get; set; }
+        public ImagenMovil Imagen { get; set; }
 
         public List<MovilBombero> Bomberos { get; set; } = new();
 
