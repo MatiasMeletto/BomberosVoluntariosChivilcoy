@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "BlazorApp1": {
+    "Vista": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
