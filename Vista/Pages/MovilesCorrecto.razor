@@ -10,33 +10,31 @@
         </div>
     </BSContainer>
     <BSContainer id="Cartas">
-        @foreach(Movil m in moviles)
-        {
-            <BSCol>
-                <BSContainer id="Cartas" Container="Container.Fluid">
-                    <BSCard CardType="CardType.Card" style="width: 18rem;">
-                        <BSCard CardType="CardType.Image" src="/" alt="Card image cap" />
-                        <BSCard CardType="CardType.Body">
-                            <BSCard CardType="CardType.Title">Movil 13</BSCard>
-                            <BSCard CardType="CardType.Text">
-                                Movil encargado a ""
-                            </BSCard>
-                            <a href="/Movil13">
+        <BSRow Align="Align.Start">
+            @foreach(Movil m in moviles)
+            {
+                <BSCol>
+                    <BSContainer id="Cartas" Container="Container.Fluid">
+                        <BSCard CardType="CardType.Card" style="width: 18rem;">
+                            <BSCard CardType="CardType.Image" src="@CargarImage(m)" alt="Card image cap" />
+                            <BSCard CardType="CardType.Body">
+                                <BSCard CardType="CardType.Title">Movil @m.NumeroMovil</BSCard>
+                                <a @onclick="@(() => { navigationManager.NavigateTo($"/moviles/movil-{m.VehiculoId}"); })">
                                 <BSButton Color="BSColor.Danger">Ver Información</BSButton>
-                            </a>
+                                </a>
+                            </BSCard>
                         </BSCard>
-                    </BSCard>
-                </BSContainer>
-            </BSCol>
-        }
+                    </BSContainer>
+                </BSCol>
+            }
+        </BSRow>
     </BSContainer>
 }
 else
 {
-    <h1>No hay moviles</h1>
+    <h5>No hay moviles</h5>
 }
 @code {
-
     public Movil[]? moviles;
 
     protected override async Task OnInitializedAsync()
@@ -44,6 +42,22 @@ else
         using var db = DbFactory.CreateDbContext();
 
         moviles = await db.Moviles.ToArrayAsync();
+    }
+
+    public string CargarImage(Movil movil)
+    {
+        using var db = DbFactory.CreateDbContext();
+
+        string src = "/";
+
+        ImagenMovil? imagen = db.ImagenesMoviles.Where(i => i.ImagenId == movil.ImagenId).SingleOrDefault();
+
+        if (imagen is not null)
+        {
+            src = $"data:{imagen.TipoImagen}; base64,{imagen.Base64Imagen}";
+        }
+
+        return src;
     }
 }
 
