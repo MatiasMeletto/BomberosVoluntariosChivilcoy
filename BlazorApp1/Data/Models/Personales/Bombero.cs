@@ -12,7 +12,7 @@ namespace BlazorApp1.Data.Models.Personales
         [Required]
         public int NumeroLegajo { get; set; }
         public EstadoBombero Estado { get; set; } 
-        public DateTime FechaAceptacion { get; set; }
+        public DateOnly FechaAceptacion { get; set; }
         public EscalafonJerarquico Grado { get; set; }
         [Required, StringLength(255)]
         public string Dotacion { get; set; } // Tiene que ser un enum (1, 2, 3, 4)
