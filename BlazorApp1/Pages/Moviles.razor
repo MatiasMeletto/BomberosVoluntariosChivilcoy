@@ -15,6 +15,8 @@
     <label>Año:</label>
     <input type="text" @bind="movilView.Año" />
     <br>
+    <InputFile OnChange="SubirFoto" />
+    <br>
     <label>Patente:</label>
     <input type="text" @bind="movilView.Patente" />
     <br>
@@ -83,7 +85,6 @@
         [Required, StringLength(255)]
         public TipoEstadoMovil Estado { get; set; }
     }
-
     public class SeguroViewModel
     {
         [Required, StringLength(255)]
@@ -92,7 +93,16 @@
         public string NumeroDePoliza { get; set; }
         public DateTime FechaDeVencimiento { get; set; }
     }
+    public class ImagenViewModel
+    {
+        public string Base64 { get; set; }
+        [Required, StringLength(255)]
+        public string TipoImagen { get; set; }
+        [Required, StringLength(255)]
+        public string Nombre { get; set; }
+    }
 
+    public ImagenViewModel imagenView { get; set; } = new();
     public MovilViewModel movilView { get; set; } = new();
     public SeguroViewModel seguroView { get; set; } = new();
     public Movil[]? moviles;
@@ -102,6 +112,15 @@
         using var db = DbFactory.CreateDbContext();
 
         moviles = await db.Moviles.ToArrayAsync();
+    }
+
+    private async void SubirFoto(InputFileChangeEventArgs e)
+    {
+        string imagenBase64 = await Base64Helper.StreamToBase64(e.File.OpenReadStream());
+
+        imagenView.Base64 = imagenBase64;
+        imagenView.TipoImagen = e.File.ContentType;
+        imagenView.Nombre = e.File.Name;
     }
 
     private async void AgregarMovil()
@@ -121,6 +140,12 @@
                     Año = movilView.Año,
                     Patente = movilView.Patente,
                     Tipo = movilView.Tipo,
+                    Imagen = new()
+                    {                      
+                        NombreImagen = imagenView.Nombre,
+                        TipoImagen = imagenView.TipoImagen,
+                        Base64Imagen = imagenView.Base64
+                    },
                     NumeroChasis = movilView.NumeroChasis,
                     NumeroMotor = movilView.NumeroMotor,
                     NumeroMovil = movilView.NumeroMovil,

@@ -17,6 +17,8 @@
         <br>
         <label>Tipo: @movilView.Tipo</label>
         <br>
+        <img src="data:@imagenView.TipoImagen;base64,@imagenView.Base64" />
+        <br>
         <label>N° motor: @movilView.NumeroMotor</label>
         <br>
         <label>N° movil: @movilView.NumeroMovil</label>
@@ -68,7 +70,14 @@ else
         public string NumeroChasis { get; set; }
         public TipoEstadoMovil Estado { get; set; }
     }
-
+    public class ImagenViewModel
+    {
+        public string Base64 { get; set; }
+        [Required, StringLength(255)]
+        public string TipoImagen { get; set; }
+        [Required, StringLength(255)]
+        public string Nombre { get; set; }
+    }
     public class SeguroViewModel
     {
         [Required, StringLength(255)]
@@ -78,6 +87,7 @@ else
         public DateTime FechaDeVencimiento { get; set; }
     }
 
+    public ImagenViewModel imagenView { get; set; } = new();
     public MovilViewModel movilView { get; set; } = new();
     public SeguroViewModel seguroView { get; set; } = new();
     public bool existe;
@@ -100,13 +110,22 @@ else
             movilView.NumeroChasis = movil.NumeroChasis;
             movilView.Estado = movil.Estado;
 
-            Seguro? seguro = await db.Seguros.Where(s => s.SeguroId == movil.SeguroId).SingleOrDefaultAsync();
+            SeguroVehiculo? seguro = await db.SeguroVehiculos.Where(s => s.SeguroId == movil.SeguroId).SingleOrDefaultAsync();
 
             if (seguro is not null)
             {
                 seguroView.CompañiaAseguradora = seguro.CompañiaAseguradora;
                 seguroView.NumeroDePoliza = seguro.NumeroDePoliza;
                 seguroView.FechaDeVencimiento = seguro.FechaDeVencimineto;
+            }
+
+            ImagenMovil? imagen = await db.ImagenesMoviles.Where(i => i.ImagenId == movil.ImagenId).SingleOrDefaultAsync();
+
+            if (imagen is not null)
+            {
+                imagenView.Nombre = imagen.NombreImagen;
+                imagenView.TipoImagen = imagen.TipoImagen;
+                imagenView.Base64 = imagen.Base64Imagen;
             }
             existe = true;
         }

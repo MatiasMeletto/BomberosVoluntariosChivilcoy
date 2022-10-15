@@ -79,10 +79,6 @@ namespace BlazorApp1.Data.Migrations
                 table: "Vehiculo");
 
             migrationBuilder.DropColumn(
-                name: "BomberoId",
-                table: "Vehiculo");
-
-            migrationBuilder.DropColumn(
                 name: "SalidaId",
                 table: "Seguros");
 
@@ -106,6 +102,11 @@ namespace BlazorApp1.Data.Migrations
                 name: "BomberoPersonaId",
                 table: "Vehiculo",
                 newName: "PersonaId");
+
+            migrationBuilder.RenameColumn(
+                name: "BomberoId",
+                table: "Vehiculo",
+                newName: "ImagenId");
 
             migrationBuilder.RenameIndex(
                 name: "IX_Vehiculo_BomberoPersonaId",
@@ -225,13 +226,6 @@ namespace BlazorApp1.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4")
                 .OldAnnotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.AddColumn<string>(
-                name: "FotoBase64",
-                table: "Vehiculo",
-                type: "longtext",
-                nullable: true)
-                .Annotation("MySql:CharSet", "utf8mb4");
-
             migrationBuilder.AddColumn<int>(
                 name: "SeguroId",
                 table: "Vehiculo",
@@ -270,12 +264,12 @@ namespace BlazorApp1.Data.Migrations
                 oldType: "int")
                 .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
-            migrationBuilder.AddColumn<string>(
-                name: "Discriminator",
+            migrationBuilder.AddColumn<int>(
+                name: "TipoSeguro",
                 table: "Seguros",
-                type: "longtext",
-                nullable: false)
-                .Annotation("MySql:CharSet", "utf8mb4");
+                type: "int",
+                nullable: false,
+                defaultValue: 0);
 
             migrationBuilder.AlterColumn<string>(
                 name: "TipoZona",
@@ -1149,12 +1143,11 @@ namespace BlazorApp1.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4")
                 .OldAnnotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.AddColumn<string>(
-                name: "FotoBase64",
+            migrationBuilder.AddColumn<int>(
+                name: "ImagenId",
                 table: "Personas",
-                type: "longtext",
-                nullable: true)
-                .Annotation("MySql:CharSet", "utf8mb4");
+                type: "int",
+                nullable: true);
 
             migrationBuilder.AlterColumn<string>(
                 name: "Rol",
@@ -1384,6 +1377,26 @@ namespace BlazorApp1.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Imagenes",
+                columns: table => new
+                {
+                    ImagenId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    NombreImagen = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Base64Imagen = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    TipoImagen = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    TipoImagenDiscriminador = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Imagenes", x => x.ImagenId);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "BomberoDependencia",
                 columns: table => new
                 {
@@ -1450,6 +1463,12 @@ namespace BlazorApp1.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Vehiculo_ImagenId",
+                table: "Vehiculo",
+                column: "ImagenId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Vehiculo_NumeroMovil",
                 table: "Vehiculo",
                 column: "NumeroMovil",
@@ -1465,6 +1484,12 @@ namespace BlazorApp1.Data.Migrations
                 name: "IX_Salidas_SeguroId",
                 table: "Salidas",
                 column: "SeguroId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Personas_ImagenId",
+                table: "Personas",
+                column: "ImagenId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -1547,11 +1572,27 @@ namespace BlazorApp1.Data.Migrations
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
+                name: "FK_Personas_Imagenes_ImagenId",
+                table: "Personas",
+                column: "ImagenId",
+                principalTable: "Imagenes",
+                principalColumn: "ImagenId",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
                 name: "FK_Salidas_Seguros_SeguroId",
                 table: "Salidas",
                 column: "SeguroId",
                 principalTable: "Seguros",
                 principalColumn: "SeguroId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Vehiculo_Imagenes_ImagenId",
+                table: "Vehiculo",
+                column: "ImagenId",
+                principalTable: "Imagenes",
+                principalColumn: "ImagenId",
+                onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Vehiculo_Personas_PersonaId",
@@ -1589,8 +1630,16 @@ namespace BlazorApp1.Data.Migrations
                 table: "MovilSalida");
 
             migrationBuilder.DropForeignKey(
+                name: "FK_Personas_Imagenes_ImagenId",
+                table: "Personas");
+
+            migrationBuilder.DropForeignKey(
                 name: "FK_Salidas_Seguros_SeguroId",
                 table: "Salidas");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Vehiculo_Imagenes_ImagenId",
+                table: "Vehiculo");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_Vehiculo_Personas_PersonaId",
@@ -1604,10 +1653,17 @@ namespace BlazorApp1.Data.Migrations
                 name: "BomberoDependencia");
 
             migrationBuilder.DropTable(
+                name: "Imagenes");
+
+            migrationBuilder.DropTable(
                 name: "Incidente");
 
             migrationBuilder.DropTable(
                 name: "Dependencia");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Vehiculo_ImagenId",
+                table: "Vehiculo");
 
             migrationBuilder.DropIndex(
                 name: "IX_Vehiculo_NumeroMovil",
@@ -1620,6 +1676,10 @@ namespace BlazorApp1.Data.Migrations
             migrationBuilder.DropIndex(
                 name: "IX_Salidas_SeguroId",
                 table: "Salidas");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Personas_ImagenId",
+                table: "Personas");
 
             migrationBuilder.DropIndex(
                 name: "IX_Personas_NumeroLegajo",
@@ -1638,15 +1698,11 @@ namespace BlazorApp1.Data.Migrations
                 table: "BomberoSalida");
 
             migrationBuilder.DropColumn(
-                name: "FotoBase64",
-                table: "Vehiculo");
-
-            migrationBuilder.DropColumn(
                 name: "SeguroId",
                 table: "Vehiculo");
 
             migrationBuilder.DropColumn(
-                name: "Discriminator",
+                name: "TipoSeguro",
                 table: "Seguros");
 
             migrationBuilder.DropColumn(
@@ -1658,13 +1714,18 @@ namespace BlazorApp1.Data.Migrations
                 table: "Salidas");
 
             migrationBuilder.DropColumn(
-                name: "FotoBase64",
+                name: "ImagenId",
                 table: "Personas");
 
             migrationBuilder.RenameColumn(
                 name: "PersonaId",
                 table: "Vehiculo",
                 newName: "BomberoPersonaId");
+
+            migrationBuilder.RenameColumn(
+                name: "ImagenId",
+                table: "Vehiculo",
+                newName: "BomberoId");
 
             migrationBuilder.RenameIndex(
                 name: "IX_Vehiculo_PersonaId",
@@ -1786,12 +1847,6 @@ namespace BlazorApp1.Data.Migrations
 
             migrationBuilder.AddColumn<int>(
                 name: "AccidenteSalidaId",
-                table: "Vehiculo",
-                type: "int",
-                nullable: true);
-
-            migrationBuilder.AddColumn<int>(
-                name: "BomberoId",
                 table: "Vehiculo",
                 type: "int",
                 nullable: true);

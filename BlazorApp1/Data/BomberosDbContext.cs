@@ -66,7 +66,7 @@ namespace BlazorApp1.Data
                 .ToTable("Seguros");
 
             modelBuilder.Entity<Imagen>()
-                .HasDiscriminator<int>("TipoImagen")
+                .HasDiscriminator<int>("TipoImagenDiscriminador")
                 .HasValue<ImagenBombero>(1)
                 .HasValue<ImagenMovil>(2);
             modelBuilder.Entity<Imagen>()

@@ -122,6 +122,36 @@ namespace BlazorApp1.Data.Migrations
                     b.ToTable("Dependencia");
                 });
 
+            modelBuilder.Entity("BlazorApp1.Data.Models.Personales.Imagen", b =>
+                {
+                    b.Property<int>("ImagenId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Base64Imagen")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("NombreImagen")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("TipoImagen")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int>("TipoImagenDiscriminador")
+                        .HasColumnType("int");
+
+                    b.HasKey("ImagenId");
+
+                    b.ToTable("Imagenes", (string)null);
+
+                    b.HasDiscriminator<int>("TipoImagenDiscriminador");
+                });
+
             modelBuilder.Entity("BlazorApp1.Data.Models.Personales.MovilBombero", b =>
                 {
                     b.Property<int>("MovilBomberoId")
@@ -466,10 +496,6 @@ namespace BlazorApp1.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<DateTime>("FechaDeVencimineto")
                         .HasColumnType("datetime(6)");
 
@@ -478,11 +504,14 @@ namespace BlazorApp1.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
+                    b.Property<int>("TipoSeguro")
+                        .HasColumnType("int");
+
                     b.HasKey("SeguroId");
 
-                    b.ToTable("Seguros");
+                    b.ToTable("Seguros", (string)null);
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Seguro");
+                    b.HasDiscriminator<int>("TipoSeguro");
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Planillas.Salida", b =>
@@ -622,14 +651,13 @@ namespace BlazorApp1.Data.Migrations
                     b.Property<DateOnly>("FechaAceptacion")
                         .HasColumnType("date");
 
-                    b.Property<string>("FotoBase64")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<string>("Grado")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
+
+                    b.Property<int>("ImagenId")
+                        .HasColumnType("int");
 
                     b.Property<int>("NumeroLegajo")
                         .HasColumnType("int");
@@ -661,10 +689,27 @@ namespace BlazorApp1.Data.Migrations
                     b.Property<DateOnly?>("VencimientoRegistro")
                         .HasColumnType("date");
 
+                    b.HasIndex("ImagenId")
+                        .IsUnique();
+
                     b.HasIndex("NumeroLegajo")
                         .IsUnique();
 
                     b.HasDiscriminator().HasValue(1);
+                });
+
+            modelBuilder.Entity("BlazorApp1.Data.Models.Personales.ImagenBombero", b =>
+                {
+                    b.HasBaseType("BlazorApp1.Data.Models.Personales.Imagen");
+
+                    b.HasDiscriminator().HasValue(1);
+                });
+
+            modelBuilder.Entity("BlazorApp1.Data.Models.Personales.ImagenMovil", b =>
+                {
+                    b.HasBaseType("BlazorApp1.Data.Models.Personales.Imagen");
+
+                    b.HasDiscriminator().HasValue(2);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Personales.Movil", b =>
@@ -676,9 +721,8 @@ namespace BlazorApp1.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.Property<string>("FotoBase64")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<int>("ImagenId")
+                        .HasColumnType("int");
 
                     b.Property<string>("NumeroChasis")
                         .IsRequired()
@@ -694,6 +738,9 @@ namespace BlazorApp1.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
+
+                    b.HasIndex("ImagenId")
+                        .IsUnique();
 
                     b.HasIndex("NumeroMovil")
                         .IsUnique();
@@ -729,14 +776,14 @@ namespace BlazorApp1.Data.Migrations
                 {
                     b.HasBaseType("BlazorApp1.Data.Models.Salidas.Componentes.Seguro");
 
-                    b.HasDiscriminator().HasValue("SeguroSalida");
+                    b.HasDiscriminator().HasValue(1);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.SeguroVehiculo", b =>
                 {
                     b.HasBaseType("BlazorApp1.Data.Models.Salidas.Componentes.Seguro");
 
-                    b.HasDiscriminator().HasValue("SeguroVehiculo");
+                    b.HasDiscriminator().HasValue(2);
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Salidas.Componentes.VehiculoAfectado", b =>
@@ -1369,6 +1416,28 @@ namespace BlazorApp1.Data.Migrations
                     b.Navigation("Seguro");
                 });
 
+            modelBuilder.Entity("BlazorApp1.Data.Models.Personales.Bombero", b =>
+                {
+                    b.HasOne("BlazorApp1.Data.Models.Personales.ImagenBombero", "Imagen")
+                        .WithOne("Bombero")
+                        .HasForeignKey("BlazorApp1.Data.Models.Personales.Bombero", "ImagenId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Imagen");
+                });
+
+            modelBuilder.Entity("BlazorApp1.Data.Models.Personales.Movil", b =>
+                {
+                    b.HasOne("BlazorApp1.Data.Models.Personales.ImagenMovil", "Imagen")
+                        .WithOne("Movil")
+                        .HasForeignKey("BlazorApp1.Data.Models.Personales.Movil", "ImagenId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Imagen");
+                });
+
             modelBuilder.Entity("BlazorApp1.Data.Models.Personales.VehiculoPersonal", b =>
                 {
                     b.HasOne("BlazorApp1.Data.Models.Personales.Bombero", "Bombero")
@@ -1469,6 +1538,18 @@ namespace BlazorApp1.Data.Migrations
                     b.Navigation("Salidas");
 
                     b.Navigation("Vehiculos");
+                });
+
+            modelBuilder.Entity("BlazorApp1.Data.Models.Personales.ImagenBombero", b =>
+                {
+                    b.Navigation("Bombero")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BlazorApp1.Data.Models.Personales.ImagenMovil", b =>
+                {
+                    b.Navigation("Movil")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BlazorApp1.Data.Models.Personales.Movil", b =>
