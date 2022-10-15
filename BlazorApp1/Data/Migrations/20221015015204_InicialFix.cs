@@ -225,6 +225,13 @@ namespace BlazorApp1.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4")
                 .OldAnnotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.AddColumn<string>(
+                name: "FotoBase64",
+                table: "Vehiculo",
+                type: "longtext",
+                nullable: true)
+                .Annotation("MySql:CharSet", "utf8mb4");
+
             migrationBuilder.AddColumn<int>(
                 name: "SeguroId",
                 table: "Vehiculo",
@@ -675,6 +682,14 @@ namespace BlazorApp1.Data.Migrations
                 oldNullable: true)
                 .Annotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.AlterColumn<DateOnly>(
+                name: "Fecha",
+                table: "Salidas",
+                type: "date",
+                nullable: false,
+                oldClrType: typeof(DateTime),
+                oldType: "datetime(6)");
+
             migrationBuilder.AlterColumn<string>(
                 name: "FactorClimatico_Tipo",
                 table: "Salidas",
@@ -869,6 +884,15 @@ namespace BlazorApp1.Data.Migrations
                 type: "int",
                 nullable: true);
 
+            migrationBuilder.AlterColumn<DateOnly>(
+                name: "VencimientoRegistro",
+                table: "Personas",
+                type: "date",
+                nullable: true,
+                oldClrType: typeof(DateTime),
+                oldType: "datetime(6)",
+                oldNullable: true);
+
             migrationBuilder.AlterColumn<string>(
                 name: "Sexo",
                 table: "Personas",
@@ -1039,6 +1063,23 @@ namespace BlazorApp1.Data.Migrations
                 oldNullable: true)
                 .Annotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.AlterColumn<DateOnly>(
+                name: "FechaNacimiento",
+                table: "Personas",
+                type: "date",
+                nullable: false,
+                oldClrType: typeof(DateTime),
+                oldType: "datetime(6)");
+
+            migrationBuilder.AlterColumn<DateOnly>(
+                name: "FechaAceptacion",
+                table: "Personas",
+                type: "date",
+                nullable: true,
+                oldClrType: typeof(DateTime),
+                oldType: "datetime(6)",
+                oldNullable: true);
+
             migrationBuilder.AlterColumn<string>(
                 name: "Estado",
                 table: "Personas",
@@ -1107,6 +1148,13 @@ namespace BlazorApp1.Data.Migrations
                 oldType: "longtext")
                 .Annotation("MySql:CharSet", "utf8mb4")
                 .OldAnnotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.AddColumn<string>(
+                name: "FotoBase64",
+                table: "Personas",
+                type: "longtext",
+                nullable: true)
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Rol",
@@ -1590,6 +1638,10 @@ namespace BlazorApp1.Data.Migrations
                 table: "BomberoSalida");
 
             migrationBuilder.DropColumn(
+                name: "FotoBase64",
+                table: "Vehiculo");
+
+            migrationBuilder.DropColumn(
                 name: "SeguroId",
                 table: "Vehiculo");
 
@@ -1604,6 +1656,10 @@ namespace BlazorApp1.Data.Migrations
             migrationBuilder.DropColumn(
                 name: "SeguroId",
                 table: "Salidas");
+
+            migrationBuilder.DropColumn(
+                name: "FotoBase64",
+                table: "Personas");
 
             migrationBuilder.RenameColumn(
                 name: "PersonaId",
@@ -2188,6 +2244,14 @@ namespace BlazorApp1.Data.Migrations
                 oldNullable: true)
                 .OldAnnotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "Fecha",
+                table: "Salidas",
+                type: "datetime(6)",
+                nullable: false,
+                oldClrType: typeof(DateOnly),
+                oldType: "date");
+
             migrationBuilder.AlterColumn<int>(
                 name: "FactorClimatico_Tipo",
                 table: "Salidas",
@@ -2360,6 +2424,15 @@ namespace BlazorApp1.Data.Migrations
                 oldNullable: true)
                 .OldAnnotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "VencimientoRegistro",
+                table: "Personas",
+                type: "datetime(6)",
+                nullable: true,
+                oldClrType: typeof(DateOnly),
+                oldType: "date",
+                oldNullable: true);
+
             migrationBuilder.AlterColumn<int>(
                 name: "Sexo",
                 table: "Personas",
@@ -2529,6 +2602,23 @@ namespace BlazorApp1.Data.Migrations
                 oldMaxLength: 255,
                 oldNullable: true)
                 .OldAnnotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "FechaNacimiento",
+                table: "Personas",
+                type: "datetime(6)",
+                nullable: false,
+                oldClrType: typeof(DateOnly),
+                oldType: "date");
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "FechaAceptacion",
+                table: "Personas",
+                type: "datetime(6)",
+                nullable: true,
+                oldClrType: typeof(DateOnly),
+                oldType: "date",
+                oldNullable: true);
 
             migrationBuilder.AlterColumn<string>(
                 name: "Estado",

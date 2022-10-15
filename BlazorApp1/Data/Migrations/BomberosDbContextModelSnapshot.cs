@@ -199,8 +199,8 @@ namespace BlazorApp1.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.Property<DateTime>("FechaNacimiento")
-                        .HasColumnType("datetime(6)");
+                    b.Property<DateOnly>("FechaNacimiento")
+                        .HasColumnType("date");
 
                     b.Property<string>("GrupoSanguineo")
                         .IsRequired()
@@ -523,8 +523,8 @@ namespace BlazorApp1.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("datetime(6)");
+                    b.Property<DateOnly>("Fecha")
+                        .HasColumnType("date");
 
                     b.Property<DateTime>("HoraLlegada")
                         .HasColumnType("datetime(6)");
@@ -619,8 +619,12 @@ namespace BlazorApp1.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.Property<DateTime>("FechaAceptacion")
-                        .HasColumnType("datetime(6)");
+                    b.Property<DateOnly>("FechaAceptacion")
+                        .HasColumnType("date");
+
+                    b.Property<string>("FotoBase64")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Grado")
                         .IsRequired()
@@ -654,8 +658,8 @@ namespace BlazorApp1.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.Property<DateTime?>("VencimientoRegistro")
-                        .HasColumnType("datetime(6)");
+                    b.Property<DateOnly?>("VencimientoRegistro")
+                        .HasColumnType("date");
 
                     b.HasIndex("NumeroLegajo")
                         .IsUnique();
@@ -671,6 +675,10 @@ namespace BlazorApp1.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
+
+                    b.Property<string>("FotoBase64")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("NumeroChasis")
                         .IsRequired()

@@ -68,7 +68,7 @@ else
 
     public class BomberosViewModel
     {
-        public DateTime FechaNacimiento { get; set; }
+        public DateOnly FechaNacimiento { get; set; }
 
         public TipoSexo Sexo { get; set; }
         [Required, StringLength(255)]
@@ -90,7 +90,7 @@ else
 
         public EstadoBombero Estado { get; set; }
 
-        public DateTime FechaAceptacion { get; set; }
+        public DateOnly FechaAceptacion { get; set; }
 
         public EscalafonJerarquico Grado { get; set; }
         [Required, StringLength(255)]
@@ -112,7 +112,7 @@ else
 
         public bool Chofer { get; set; }
 
-        public DateTime? VencimientoRegistro { get; set; }
+        public DateOnly? VencimientoRegistro { get; set; }
     }
 
     public BomberosViewModel bomberosView { get; set; } = new();
