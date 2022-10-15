@@ -3,6 +3,7 @@ using Vista.Data.Models.Salidas.Componentes;
 using Vista.Data.Models.Salidas.Planillas;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Vista.Data.Models.Personales
 {
@@ -14,7 +15,6 @@ namespace Vista.Data.Models.Personales
         public EstadoBombero Estado { get; set; } 
         public DateOnly FechaAceptacion { get; set; }
         public EscalafonJerarquico Grado { get; set; }
-        public ImagenBombero Imagen { get; set; }
         [Required, StringLength(255)]
         public string Dotacion { get; set; } // Tiene que ser un enum (1, 2, 3, 4)
         [Required, StringLength(255)]
@@ -33,6 +33,10 @@ namespace Vista.Data.Models.Personales
         public string? Resolucion6 { get; set; }
         public bool Chofer { get; set; }
         public DateOnly? VencimientoRegistro { get; set; }
+
+        public int ImagenId { get; set; }
+        [ForeignKey("ImagenId")]
+        public ImagenBombero Imagen { get; set; }
 
         public List<VehiculoPersonal> Vehiculos { get; set; } = new();
 

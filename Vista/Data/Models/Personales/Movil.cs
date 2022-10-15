@@ -2,6 +2,7 @@
 using Vista.Data.Models.Salidas.Componentes;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Vista.Data.Models.Personales
 {
@@ -15,6 +16,9 @@ namespace Vista.Data.Models.Personales
         [Required, StringLength(255)]
         public string NumeroChasis { get; set; }
         public TipoEstadoMovil Estado { get; set; }
+
+        public int ImagenId { get; set; }
+        [ForeignKey("ImagenId")]
         public ImagenMovil Imagen { get; set; }
 
         public List<MovilBombero> Bomberos { get; set; } = new();

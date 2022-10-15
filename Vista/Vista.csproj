@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -7,13 +7,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Folder Include="Areas\" />
-		<Folder Include="wwwroot\Imagenes\" />
-		<Folder Include="wwwroot\Moviles\" />
+	  <Compile Remove="Areas\**" />
+	  <Content Remove="Areas\**" />
+	  <EmbeddedResource Remove="Areas\**" />
+	  <None Remove="Areas\**" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Data\Migrations\" />
+		<Folder Include="wwwroot\Imagenes\" />
+		<Folder Include="wwwroot\Moviles\" />
 	</ItemGroup>
 	
 	<ItemGroup>

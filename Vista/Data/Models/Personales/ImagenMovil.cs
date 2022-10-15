@@ -1,4 +1,6 @@
-﻿namespace Vista.Data.Models.Personales
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Vista.Data.Models.Personales
 {
     public class ImagenMovil : Imagen
     {
