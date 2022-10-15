@@ -1,6 +1,6 @@
-﻿using Vista.Data.Enums;
+﻿using BlazorApp1.Data.Enums;
 
-namespace Vista.Data.Models.Salidas.Planillas
+namespace BlazorApp1.Data.Models.Salidas.Planillas
 {
     public class IncendioIndustria : Incendio
     {

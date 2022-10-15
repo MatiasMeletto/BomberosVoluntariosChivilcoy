@@ -14,7 +14,7 @@ namespace Vista.Data.Models.Personales
         public EstadoBombero Estado { get; set; } 
         public DateOnly FechaAceptacion { get; set; }
         public EscalafonJerarquico Grado { get; set; }
-        public string FotoBase64 { get; set; }
+        public ImagenBombero Imagen { get; set; }
         [Required, StringLength(255)]
         public string Dotacion { get; set; } // Tiene que ser un enum (1, 2, 3, 4)
         [Required, StringLength(255)]

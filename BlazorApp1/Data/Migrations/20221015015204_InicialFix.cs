@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Vista.Data.Migrations
+namespace BlazorApp1.Data.Migrations
 {
     public partial class InicialFix : Migration
     {

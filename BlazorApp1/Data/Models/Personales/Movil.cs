@@ -1,9 +1,9 @@
-﻿using Vista.Data.Enums;
-using Vista.Data.Models.Salidas.Componentes;
+﻿using BlazorApp1.Data.Enums;
+using BlazorApp1.Data.Models.Salidas.Componentes;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace Vista.Data.Models.Personales
+namespace BlazorApp1.Data.Models.Personales
 {
     [Index(nameof(NumeroMovil))]
     public class Movil : Vehiculo

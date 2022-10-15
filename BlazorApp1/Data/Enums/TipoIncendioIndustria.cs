@@ -1,4 +1,4 @@
-﻿namespace Vista.Data.Enums
+﻿namespace BlazorApp1.Data.Enums
 {
     public enum TipoIncendioIndustria
     {

@@ -1,7 +1,7 @@
-﻿using Vista.Data.Models.Personales;
+﻿using BlazorApp1.Data.Models.Personales;
 using System.ComponentModel.DataAnnotations;
 
-namespace Vista.Data.Models.Salidas.Componentes
+namespace BlazorApp1.Data.Models.Salidas.Componentes
 {
     public class VehiculoDamnificado : Vehiculo
     {

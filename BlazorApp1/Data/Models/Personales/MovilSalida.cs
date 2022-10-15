@@ -1,7 +1,7 @@
-﻿using Vista.Data.Models.Salidas.Planillas;
+﻿using BlazorApp1.Data.Models.Salidas.Planillas;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Vista.Data.Models.Personales
+namespace BlazorApp1.Data.Models.Personales
 {
     public class MovilSalida
     {

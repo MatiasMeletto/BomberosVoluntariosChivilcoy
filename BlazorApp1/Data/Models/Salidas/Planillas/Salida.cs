@@ -1,10 +1,10 @@
-﻿using Vista.Data.Enums;
-using Vista.Data.Models.Personales;
-using Vista.Data.Models.Salidas.Componentes;
+﻿using BlazorApp1.Data.Enums;
+using BlazorApp1.Data.Models.Personales;
+using BlazorApp1.Data.Models.Salidas.Componentes;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Vista.Data.Models.Salidas.Planillas
+namespace BlazorApp1.Data.Models.Salidas.Planillas
 {
     public abstract class Salida
     {

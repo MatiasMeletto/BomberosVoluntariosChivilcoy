@@ -1,7 +1,7 @@
-﻿using Vista.Data.Models.Personales;
+﻿using BlazorApp1.Data.Models.Personales;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Vista.Data.Models.Salidas.Componentes
+namespace BlazorApp1.Data.Models.Salidas.Componentes
 {
     public class IncidenteDependencia : Incidente
     {

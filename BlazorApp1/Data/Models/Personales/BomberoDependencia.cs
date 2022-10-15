@@ -1,7 +1,7 @@
-﻿using Vista.Data.Enums;
+﻿using BlazorApp1.Data.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Vista.Data.Models.Personales
+namespace BlazorApp1.Data.Models.Personales
 {
     public class BomberoDependencia
     {

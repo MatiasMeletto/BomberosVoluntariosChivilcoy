@@ -1,9 +1,9 @@
-﻿using Vista.Data.Models.Personales;
-using Vista.Data.Models.Salidas.Componentes;
-using Vista.Data.Models.Salidas.Planillas;
+﻿using BlazorApp1.Data.Models.Personales;
+using BlazorApp1.Data.Models.Salidas.Componentes;
+using BlazorApp1.Data.Models.Salidas.Planillas;
 using Microsoft.EntityFrameworkCore;
 
-namespace Vista.Data
+namespace BlazorApp1.Data
 {
     public class BomberosDbContext : DbContext
     {

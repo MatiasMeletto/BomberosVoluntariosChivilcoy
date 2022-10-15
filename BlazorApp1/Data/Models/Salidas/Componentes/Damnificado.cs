@@ -1,8 +1,8 @@
-﻿using Vista.Data.Enums;
-using Vista.Data.Models.Salidas.Planillas;
+﻿using BlazorApp1.Data.Enums;
+using BlazorApp1.Data.Models.Salidas.Planillas;
 using System.ComponentModel.DataAnnotations;
 
-namespace Vista.Data.Models.Salidas.Componentes
+namespace BlazorApp1.Data.Models.Salidas.Componentes
 {
     public class Damnificado
     {
