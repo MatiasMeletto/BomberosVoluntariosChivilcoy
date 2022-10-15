@@ -1,9 +1,9 @@
-﻿using BlazorApp1.Data.Enums;
-using BlazorApp1.Data.Models.Salidas.Planillas;
+﻿using Vista.Data.Enums;
+using Vista.Data.Models.Salidas.Planillas;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BlazorApp1.Data.Models.Salidas.Componentes
+namespace Vista.Data.Models.Salidas.Componentes
 {
     public class DatosCapacitacion
     {

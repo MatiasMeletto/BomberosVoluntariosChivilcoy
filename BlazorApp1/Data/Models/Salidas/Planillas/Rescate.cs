@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BlazorApp1.Data.Models.Salidas.Planillas
+namespace Vista.Data.Models.Salidas.Planillas
 {
     public class Rescate : Salida
     {

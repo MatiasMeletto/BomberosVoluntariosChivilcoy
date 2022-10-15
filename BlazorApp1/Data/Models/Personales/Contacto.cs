@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BlazorApp1.Data.Models.Personales
+namespace Vista.Data.Models.Personales
 {
     public class Contacto
     {

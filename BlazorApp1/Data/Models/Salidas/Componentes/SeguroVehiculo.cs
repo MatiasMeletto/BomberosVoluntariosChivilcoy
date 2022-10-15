@@ -1,6 +1,6 @@
-﻿using BlazorApp1.Data.Models.Personales;
+﻿using Vista.Data.Models.Personales;
 
-namespace BlazorApp1.Data.Models.Salidas.Componentes
+namespace Vista.Data.Models.Salidas.Componentes
 {
     public class SeguroVehiculo : Seguro
     {

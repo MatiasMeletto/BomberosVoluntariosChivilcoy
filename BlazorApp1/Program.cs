@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Pomelo.EntityFrameworkCore.MySql;
 using Microsoft.EntityFrameworkCore;
-using BlazorApp1.Data;
+using Vista.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,8 +1,8 @@
-﻿using BlazorApp1.Data.Enums;
-using BlazorApp1.Data.Models.Salidas.Componentes;
+﻿using Vista.Data.Enums;
+using Vista.Data.Models.Salidas.Componentes;
 using System.ComponentModel.DataAnnotations;
 
-namespace BlazorApp1.Data.Models.Salidas.Planillas
+namespace Vista.Data.Models.Salidas.Planillas
 {
     public class ServicioEspecial : Salida
     {

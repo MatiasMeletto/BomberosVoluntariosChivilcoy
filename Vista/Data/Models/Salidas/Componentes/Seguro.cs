@@ -1,8 +1,8 @@
-﻿using BlazorApp1.Data.Models.Personales;
-using BlazorApp1.Data.Models.Salidas.Planillas;
+﻿using Vista.Data.Models.Personales;
+using Vista.Data.Models.Salidas.Planillas;
 using System.ComponentModel.DataAnnotations;
 
-namespace BlazorApp1.Data.Models.Salidas.Componentes
+namespace Vista.Data.Models.Salidas.Componentes
 {
     public abstract class Seguro
     {

@@ -1,6 +1,6 @@
-﻿using BlazorApp1.Data.Models.Salidas.Planillas;
+﻿using Vista.Data.Models.Salidas.Planillas;
 
-namespace BlazorApp1.Data.Models.Salidas.Componentes
+namespace Vista.Data.Models.Salidas.Componentes
 {
     public class SeguroSalida : Seguro
     {

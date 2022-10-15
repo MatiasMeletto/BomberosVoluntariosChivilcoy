@@ -1,7 +1,7 @@
-﻿using BlazorApp1.Data.Models.Salidas.Planillas;
+﻿using Vista.Data.Models.Salidas.Planillas;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BlazorApp1.Data.Models.Salidas.Componentes
+namespace Vista.Data.Models.Salidas.Componentes
 {
     public class VehiculoAfectadoAccidente : VehiculoAfectado
     {

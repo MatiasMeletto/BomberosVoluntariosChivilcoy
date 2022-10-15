@@ -1,8 +1,21 @@
+using Vista.Data;
 using BlazorStrap;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var conexionString = "server=localhost;user=root;password=;database=bomberos";
+var serverVersion = ServerVersion.AutoDetect(conexionString);
+
+builder.Services.AddDbContextFactory<BomberosDbContext>(
+    dbContextOptions => dbContextOptions
+    .UseMySql(conexionString, serverVersion)
+    .LogTo(Console.WriteLine, LogLevel.Information)
+    .EnableSensitiveDataLogging()
+    .EnableDetailedErrors()
+    );
 
 // Add services to the container.
 builder.Services.AddRazorPages();

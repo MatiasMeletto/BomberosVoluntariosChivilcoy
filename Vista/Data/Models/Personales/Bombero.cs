@@ -1,10 +1,10 @@
-﻿using BlazorApp1.Data.Enums;
-using BlazorApp1.Data.Models.Salidas.Componentes;
-using BlazorApp1.Data.Models.Salidas.Planillas;
+﻿using Vista.Data.Enums;
+using Vista.Data.Models.Salidas.Componentes;
+using Vista.Data.Models.Salidas.Planillas;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace BlazorApp1.Data.Models.Personales
+namespace Vista.Data.Models.Personales
 {
     [Index(nameof(NumeroLegajo))]
     public class Bombero : Persona

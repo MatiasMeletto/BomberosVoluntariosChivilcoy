@@ -1,7 +1,7 @@
-﻿using BlazorApp1.Data.Models.Salidas.Componentes;
+﻿using Vista.Data.Models.Salidas.Componentes;
 using System.ComponentModel.DataAnnotations;
 
-namespace BlazorApp1.Data.Models.Personales
+namespace Vista.Data.Models.Personales
 {
     public abstract class Vehiculo
     {

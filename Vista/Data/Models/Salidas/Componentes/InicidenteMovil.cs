@@ -1,8 +1,8 @@
-﻿using BlazorApp1.Data.Models.Personales;
+﻿using Vista.Data.Models.Personales;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Policy;
 
-namespace BlazorApp1.Data.Models.Salidas.Componentes
+namespace Vista.Data.Models.Salidas.Componentes
 {
     public class InicidenteMovil : Incidente
     {
