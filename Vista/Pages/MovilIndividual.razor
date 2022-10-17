@@ -2,8 +2,23 @@
 @inject IDbContextFactory<BomberosDbContext> DbFactory
 @page "/moviles/movil/{VehiculoId:int?}"
 
-<h3>MovilIndividual</h3>
-
+<h3>Movil</h3>
+<BSContainer id="superior" Container="Container.Small">
+        <BSRow>
+        <BSCol>Tipo</BSCol>
+        <BSCol>Encargado</BSCol>
+        <BSCol>Marca</BSCol>
+        <BSCol>Modelo</BSCol>
+        <BSCol>Patente</BSCol>
+    </BSRow>
+    <BSRow>
+        <BSCol>@movilView.Tipo</BSCol>
+        <BSCol>@movilView.EncargadoNombre</BSCol>
+        <BSCol>@movilView.Marca</BSCol>
+        <BSCol>@movilView.Modelo</BSCol>
+        <BSCol>@movilView.Patente</BSCol>
+    </BSRow>
+</BSContainer>
 <label> @movilView.NumeroMovil</label>
 <br>
 <label> @movilView.Marca</label>
