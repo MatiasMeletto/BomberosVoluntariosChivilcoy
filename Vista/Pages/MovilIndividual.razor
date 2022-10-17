@@ -1,0 +1,134 @@
+﻿@inject NavigationManager navigationManager
+@inject IDbContextFactory<BomberosDbContext> DbFactory
+@page "/moviles/movil/{VehiculoId:int?}"
+
+<h3>MovilIndividual</h3>
+
+<label> @movilView.NumeroMovil</label>
+<br>
+<label> @movilView.Marca</label>
+<br>
+<label> @movilView.Modelo</label>
+<br>
+<label> @movilView.Tipo</label>
+<br>
+<label> @movilView.Estado</label>
+<br>
+<label> @movilView.Patente</label>
+<br>
+<label> @movilView.EncargadoNombre </label>
+
+@code {
+    [Parameter]
+    public int? VehiculoId { get; set; }
+
+    public class MovilViewModel
+    {
+        public int EncargadoId { get; set; }
+        [Required, StringLength(255)]
+        public string EncargadoNombre { get; set; }
+        [Required, StringLength(255)]
+        public string Marca { get; set; }
+        [Required, StringLength(255)]
+        public string Modelo { get; set; }
+        public int Año { get; set; }
+        [Required, StringLength(255)]
+        public string Patente { get; set; }
+        [Required, StringLength(255)]
+        public string Tipo { get; set; }
+        [Required, StringLength(255)]
+        public string NumeroMovil { get; set; }
+        [Required, StringLength(255)]
+        public string NumeroMotor { get; set; }
+        [Required, StringLength(255)]
+        public string NumeroChasis { get; set; }
+        public TipoEstadoMovil Estado { get; set; }
+    }
+    public class ImagenViewModel
+    {
+        public string Base64 { get; set; }
+        [Required, StringLength(255)]
+        public string TipoImagen { get; set; }
+        [Required, StringLength(255)]
+        public string Nombre { get; set; }
+    }
+    public class SeguroViewModel
+    {
+        [Required, StringLength(255)]
+        public string CompañiaAseguradora { get; set; }
+        [Required, StringLength(255)]
+        public string NumeroDePoliza { get; set; }
+        public DateTime FechaDeVencimiento { get; set; }
+    }
+
+    public ImagenViewModel imagenView { get; set; } = new();
+    public MovilViewModel movilView { get; set; } = new();
+    public SeguroViewModel seguroView { get; set; } = new();
+    public bool existe;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var db = DbFactory.CreateDbContext();
+
+        Movil? movil = await db.Moviles.Include(m => m.Bomberos).ThenInclude(b => b.Bombero).Where(m => m.VehiculoId == VehiculoId).SingleOrDefaultAsync();
+
+        if (movil is not null)
+        {
+            movilView.Marca = movil.Marca;
+            movilView.Modelo = movil.Modelo;
+            movilView.Año = movil.Año;
+            movilView.Patente = movil.Patente;
+            movilView.Tipo = movil.Tipo;
+            movilView.NumeroMovil = movil.NumeroMovil;
+            movilView.NumeroMotor = movil.NumeroMotor;
+            movilView.NumeroChasis = movil.NumeroChasis;
+            movilView.Estado = movil.Estado;
+            foreach (MovilBombero b in movil.Bomberos)
+            {
+                if(b.Rol == TipoRol.Encargado)
+                {
+                    movilView.EncargadoId = b.Bombero.PersonaId;
+                    movilView.EncargadoNombre = $"{b.Bombero.Nombre} {b.Bombero.Apellido}";
+                }
+            }
+
+            SeguroVehiculo? seguro = await db.SeguroVehiculos.Where(s => s.SeguroId == movil.SeguroId).SingleOrDefaultAsync();
+
+            if (seguro is not null)
+            {
+                seguroView.CompañiaAseguradora = seguro.CompañiaAseguradora;
+                seguroView.NumeroDePoliza = seguro.NumeroDePoliza;
+                seguroView.FechaDeVencimiento = seguro.FechaDeVencimineto;
+            }
+
+            ImagenMovil? imagen = await db.ImagenesMoviles.Where(i => i.ImagenId == movil.ImagenId).SingleOrDefaultAsync();
+
+            if (imagen is not null)
+            {
+                imagenView.Nombre = imagen.NombreImagen;
+                imagenView.TipoImagen = imagen.TipoImagen;
+                imagenView.Base64 = imagen.Base64Imagen;
+            }
+            existe = true;
+        }
+        else if (movil is null)
+        {
+            existe = false;
+        }
+    }
+
+    public async void EliminarMovil()
+    {
+        using var db = DbFactory.CreateDbContext();
+
+        Movil? movil = await db.Moviles.Where(m => m.NumeroMovil == movilView.NumeroMovil).SingleOrDefaultAsync();
+
+        if (movil is not null)
+            db.Remove(movil);
+        await db.SaveChangesAsync();
+
+        navigationManager.NavigateTo("/moviles");
+    }
+
+}

@@ -19,7 +19,7 @@
                             <BSCard CardType="CardType.Image" src="@CargarImage(m)" alt="Card image cap" />
                             <BSCard CardType="CardType.Body">
                                 <BSCard CardType="CardType.Title">Movil @m.NumeroMovil</BSCard>
-                                <a @onclick="@(() => { navigationManager.NavigateTo($"/moviles/movil-{m.VehiculoId}"); })">
+                                <a @onclick="@(() => { navigationManager.NavigateTo($"/moviles/movil/{m.VehiculoId}"); })">
                                 <BSButton Color="BSColor.Danger">Ver Información</BSButton>
                                 </a>
                             </BSCard>
