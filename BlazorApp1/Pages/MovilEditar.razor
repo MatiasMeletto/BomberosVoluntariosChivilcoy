@@ -2,7 +2,7 @@
 @inject IDbContextFactory<BomberosDbContext> DbFactory
 @page "/moviles/editar/{VehiculoId:int?}"
 
-@if (movilView is not null)
+@*@if (movilView is not null)
 {
     <label>Marca:</label>
     <input type="text" @bind="movilView.Marca" />
@@ -64,8 +64,8 @@
     <br />
     <br />
     <br />
-    <button @onclick="EditarMovil">Crear movil</button>
-}
+    <button @onclick="Editar">Crear movil</button>
+}*@
 @code {
     [Parameter]
     public int? VehiculoId { get; set; }
@@ -175,7 +175,7 @@
             {
                     Rol = tipo,
                     PersonaId = bomberoView.PersonaId,
-                    Bombero = await db.Bomberos.Where(b => b.PersonaId == bomberoView.PersonaId).SingleOrDefaultAsync();
+                    Bombero = await db.Bomberos.Where(b => b.PersonaId == bomberoView.PersonaId).SingleOrDefaultAsync()
             };
 
             bomberoViews.Add(b);
@@ -184,15 +184,15 @@
 
     public async void EditarMovil()
     {
-    using var db = DbFactory.CreateDbContext();
+        using var db = DbFactory.CreateDbContext();
 
-    if (movilView is not null)
-    {
-        Movil? comprobante = await db.Moviles.Where(m => m.NumeroMovil == movilView.NumeroMovil).SingleOrDefaultAsync();
-
-        if (comprobante is null)
+        if (movilView is not null)
         {
-            Movil movil = new Movil()
+            Movil? comprobante = await db.Moviles.Where(m => m.NumeroMovil == movilView.NumeroMovil).SingleOrDefaultAsync();
+
+            if (comprobante is null)
+            {
+                Movil movil = new Movil()
                 {
                     Marca = movilView.Marca,
                     Modelo = movilView.Modelo,
@@ -214,24 +214,24 @@
                         CompañiaAseguradora = seguroView.CompañiaAseguradora,
                         FechaDeVencimineto = seguroView.FechaDeVencimiento,
                         NumeroDePoliza = seguroView.NumeroDePoliza
-                    },
-                    Bomberos = new()
+                    }
                 };
 
-            foreach (BomberoViewModel m in bomberoViews)
-            {
-                MovilBombero bombero = new()
-                    {
-                        Rol = m.Rol,
-                        PersonaId = m.PersonaId,
-                        Bombero = m.Bombero
-                    };
-                movil.Bomberos.Add(bombero);
-            }
+                foreach (BomberoViewModel m in bomberoViews)
+                {
+                    MovilBombero bombero = new()
+                        {
+                            Rol = m.Rol,
+                            PersonaId = m.PersonaId,
+                            Bombero = m.Bombero
+                        };
+                    movil.Bomberos.Add(bombero);
+                }
 
-            db.Moviles.Add(movil);
-            await db.SaveChangesAsync();
+                db.Moviles.Add(movil);
+                await db.SaveChangesAsync();
+            }
         }
     }
-    }
 }
+
