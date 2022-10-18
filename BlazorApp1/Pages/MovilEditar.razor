@@ -2,30 +2,30 @@
 @inject IDbContextFactory<BomberosDbContext> DbFactory
 @page "/moviles/editar/{VehiculoId:int?}"
 
-@*@if (movilView is not null)
+@if (movilView is not null)
 {
-    <label>Marca:</label>
+    <label>marca:</label>
     <input type="text" @bind="movilView.Marca" />
     <br>
-    <label>Modelo:</label>
+    <label>modelo:</label>
     <input type="text" @bind="movilView.Modelo" />
     <br>
-    <label>Año:</label>
+    <label>año:</label>
     <input type="text" @bind="movilView.Año" />
     <br>
-    <label>Patente:</label>
+    <label>patente:</label>
     <input type="text" @bind="movilView.Patente" />
     <br>
-    <label>Tipo:</label>
+    <label>tipo:</label>
     <input type="text" @bind="movilView.Tipo" />
     <br>
-    <label>Nº movil:</label>
+    <label>nº movil:</label>
     <input type="text" @bind="movilView.NumeroMovil" />
     <br>
-    <label>Nº motor:</label>
+    <label>nº motor:</label>
     <input type="text" @bind="movilView.NumeroMotor" />
     <br>
-    <label>Nº chasis:</label>
+    <label>nº chasis:</label>
     <input type="text" @bind="movilView.NumeroChasis" />
     <br>
     <select @bind="movilView.Estado">
@@ -35,25 +35,25 @@
         <option value="@TipoEstadoMovil.Limpieza">Limpieza</option>
     </select>
     <br>
-    <h4>Seguro</h4>
-    <label>Compañia:</label>
+    <h4>seguro</h4>
+    <label>compañia:</label>
     <input type="text" @bind="seguroView.CompañiaAseguradora" />
     <br>
-    <label>Nº poliza:</label>
+    <label>nº poliza:</label>
     <input type="text" @bind="seguroView.NumeroDePoliza" />
     <br>
-    <label>Fecha de vencimiento:</label>
+    <label>fecha de vencimiento:</label>
     <input type="date" @bind="seguroView.FechaDeVencimiento" />
     <br />
     <br />
     @if (bomberos is not null)
     {
-        <h4>Bomberos</h4>
+        <h4>bomberos</h4>
         <br />
-        <h5>Encargado:</h5>
+        <h5>encargado:</h5>
         <br />
-        <select @onclick="@(() => { TipoRol tipo = TipoRol.Encargado; EnlazarId(tipo); })" @bind="bomberoView.PersonaId">
-            <option selected value="0">-Seleccione un bombero-</option>
+        <select @bind="bomberoView.PersonaId"  @onclick="@(() => { TipoRol tipo = TipoRol.Encargado; EnlazarId(tipo); })">
+            <option selected value="0">-seleccione un bombero-</option>
             @foreach (Bombero b in bomberos)
             {
                 <option value="@b.PersonaId">@b.Apellido  @b.Nombre</option>
@@ -64,8 +64,13 @@
     <br />
     <br />
     <br />
-    <button @onclick="Editar">Crear movil</button>
-}*@
+    <button @onclick="EditarMovil">crear movil</button>
+}
+else
+{
+ <h1> Error 404</h1>    
+}
+
 @code {
     [Parameter]
     public int? VehiculoId { get; set; }
@@ -81,7 +86,7 @@
         public string Patente { get; set; }
         [Required, StringLength(255)]
         public string Tipo { get; set; }
-        [Required, StringLength(255)]
+        [Required, StringLength(255)] 
         public string NumeroMovil { get; set; }
         [Required, StringLength(255)]
         public string NumeroMotor { get; set; }
@@ -108,7 +113,6 @@
     public class BomberoViewModel
     {
         public TipoRol Rol { get; set; }
-        public Bombero? Bombero { get; set; }
         public int PersonaId { get; set; }
     }
 
@@ -169,16 +173,9 @@
     {
         using var db = DbFactory.CreateDbContext();
 
-        if (bomberoView.PersonaId != null)
+        if(bomberoView.PersonaId != 0)
         {
-            BomberoViewModel b = new()
-            {
-                    Rol = tipo,
-                    PersonaId = bomberoView.PersonaId,
-                    Bombero = await db.Bomberos.Where(b => b.PersonaId == bomberoView.PersonaId).SingleOrDefaultAsync()
-            };
-
-            bomberoViews.Add(b);
+            
         }
     }
 
@@ -222,8 +219,7 @@
                     MovilBombero bombero = new()
                         {
                             Rol = m.Rol,
-                            PersonaId = m.PersonaId,
-                            Bombero = m.Bombero
+                            PersonaId = m.PersonaId
                         };
                     movil.Bomberos.Add(bombero);
                 }
