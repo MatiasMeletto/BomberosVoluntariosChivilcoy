@@ -14,6 +14,8 @@
     <label>Dotacion:</label>
     <input type="text" @bind="bomberoView.Dotacion" />
     <br>
+    <InputFile OnChange="SubirFoto" />
+    <br>
     <label>Brigada:</label>
     <input type="text" @bind="bomberoView.Brigada" />
     <br>
@@ -195,6 +197,16 @@
         [Required, StringLength(255)]
         public string? Email { get; set; }
     }
+    public class ImagenViewModel
+    {
+        public string Base64 { get; set; }
+        [Required, StringLength(255)]
+        public string TipoImagen { get; set; }
+        [Required, StringLength(255)]
+        public string Nombre { get; set; }
+    }
+
+    public ImagenViewModel imagenView { get; set; } = new();
     public BomberosViewModel bomberoView { get; set; } = new();
     public ContactoViewModel contactoView { get; set; } = new();
     public Bombero[]? bomberos;
@@ -204,6 +216,15 @@
         using var db = DbFactory.CreateDbContext();
 
         bomberos = await db.Bomberos.ToArrayAsync();
+    }
+
+    private async void SubirFoto(InputFileChangeEventArgs e)
+    {
+        string imagenBase64 = await Base64Helper.StreamToBase64(e.File.OpenReadStream());
+
+        imagenView.Base64 = imagenBase64;
+        imagenView.TipoImagen = e.File.ContentType;
+        imagenView.Nombre = e.File.Name;
     }
 
     private async void AgregarBombero()
@@ -227,6 +248,12 @@
                     NumeroIoma = bomberoView.NumeroIoma,
                     LugarNacimiento = bomberoView.LugarNacimiento,
                     Grado = bomberoView.Grado,
+                    Imagen = new()
+                    {                      
+                        NombreImagen = imagenView.Nombre,
+                        TipoImagen = imagenView.TipoImagen,
+                        Base64Imagen = imagenView.Base64
+                    },
                     Dotacion = bomberoView.Dotacion,
                     Brigada = bomberoView.Brigada,
                     Resolucion1 = bomberoView.Resolucion1,

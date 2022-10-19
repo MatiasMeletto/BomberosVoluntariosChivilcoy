@@ -50,15 +50,19 @@
     {
         <h4>bomberos</h4>
         <br />
-        <h5>encargado:</h5>
-        <br />
-        <select @bind="bomberoView.PersonaId"  @onclick="@(() => { TipoRol tipo = TipoRol.Encargado; EnlazarId(tipo); })">
-            <option selected value="0">-seleccione un bombero-</option>
-            @foreach (Bombero b in bomberos)
-            {
-                <option value="@b.PersonaId">@b.Apellido  @b.Nombre</option>
-            }
-        </select>
+        @foreach (BomberoViewModel b in bomberoViews)
+        {
+            <h5>@b.Rol.ToString() :</h5>
+            <br />
+            <select @bind="b.PersonaId">
+                <option selected value="0">-seleccione un bombero-</option>
+                @foreach (Bombero bo in bomberos)
+                {
+                    <option value="@bo.PersonaId">@bo.Apellido  @bo.Nombre</option>
+                }
+            </select>
+        }
+        <button @onclick="@(() => { TipoRol tipo = TipoRol.Subalterno; AgregarALista(tipo); })"></button>
     }
     <br />
     <br />
@@ -119,7 +123,6 @@ else
     public ImagenViewModel imagenView { get; set; } = new();
     public MovilViewModel movilView { get; set; } = new();
     public SeguroViewModel seguroView { get; set; } = new();
-    public BomberoViewModel bomberoView { get; set; } = new();
     public List<BomberoViewModel> bomberoViews { get; set; } = new();
     public Bombero[]? bomberos;
     public bool existe;
@@ -167,16 +170,19 @@ else
         {
             existe = false;
         }
+
+        AgregarALista(TipoRol.Encargado);
+        AgregarALista(TipoRol.Subalterno);
     }
 
-    public async void EnlazarId(TipoRol tipo)
+    public void AgregarALista(TipoRol tipo)
     {
-        using var db = DbFactory.CreateDbContext();
-
-        if(bomberoView.PersonaId != 0)
+        BomberoViewModel b = new()
         {
-            
-        }
+            Rol = tipo
+        };
+
+        bomberoViews.Add(b);
     }
 
     public async void EditarMovil()
