@@ -2,36 +2,126 @@
 @inject IDbContextFactory<BomberosDbContext> DbFactory
 @page "/moviles/movil/{VehiculoId:int?}"
 
-<h3>Movil</h3>
-<BSContainer id="superior" Container="Container.Small">
-        <BSRow>
-        <BSCol>Tipo</BSCol>
-        <BSCol>Encargado</BSCol>
-        <BSCol>Marca</BSCol>
-        <BSCol>Modelo</BSCol>
-        <BSCol>Patente</BSCol>
-    </BSRow>
-    <BSRow>
-        <BSCol>@movilView.Tipo</BSCol>
-        <BSCol>@movilView.EncargadoNombre</BSCol>
-        <BSCol>@movilView.Marca</BSCol>
-        <BSCol>@movilView.Modelo</BSCol>
-        <BSCol>@movilView.Patente</BSCol>
+<style>
+    #medio {
+    }
+
+    #Estado {
+        text-align: end;
+        font-family: calibri light;
+        border-style: solid;
+        border-width: 0px 2px 2px 0px;
+        border-color: #000;
+        font-size: 25px;
+    }
+
+    #NroMovil {
+        font-family: calibri light;
+        border-style: solid;
+        border-width: 0px 0px 2px 0px;
+        border-color: #000;
+        font-size: 25px;
+    }
+    #ImagenMovil{
+    max-height: 200px;
+    max-width: 500px;
+    min-width: 300px;
+    min-height: 200px;
+    border-bottom-right-radius: calc(0.25rem - 1px);
+    border-bottom-left-radius: calc(0.25rem - 1px);
+    }
+</style>
+<BSRow>
+    <BSCol Column="4"></BSCol>
+    <BSCol Column="4"> <img id="ImagenMovil" src="data:@imagenView.TipoImagen;base64,@imagenView.Base64" /></BSCol>
+    <BSCol Column="4"></BSCol>
+</BSRow>
+<BSRow>
+    <BSCol Column="4"></BSCol>
+    <BSCol id="Estado" Column="2">@movilView.Estado</BSCol>
+    <BSCol id="NroMovil" Column="2">Nº movil @movilView.NumeroMovil</BSCol>
+    <BSCol Column="4"></BSCol>
+</BSRow>
+<BSContainer id="inferior">
+    <BSRow Align="Align.Center">
+        <BSCol Column="1">
+
+        </BSCol>
+        <BSCol Column="2">
+            <BSTable>
+                <BSTHead>
+                    <BSTR>
+                        <BSTD>Tipo</BSTD>
+                    </BSTR>
+                </BSTHead>
+                <BSTBody>
+                    <BSTR>
+                        <BSTD>@movilView.Tipo</BSTD>
+                    </BSTR>
+                </BSTBody>
+            </BSTable>
+        </BSCol>
+        <BSCol Column="2">
+            <BSTable>
+                 <BSTHead>
+                    <BSTR>
+                        <BSTD>Encargado</BSTD>
+                    </BSTR>
+                </BSTHead>
+                <BSTBody>
+                    <BSTR>
+                        <BSTD>@movilView.EncargadoNombre</BSTD>
+                    </BSTR>
+                </BSTBody>
+            </BSTable>
+        </BSCol>
+        <BSCol Column="2">
+            <BSTable>
+                 <BSTHead>
+                    <BSTR>
+                        <BSTD>Marca</BSTD>
+                    </BSTR>
+                </BSTHead>
+                <BSTBody>
+                    <BSTR>
+                        <BSTD>@movilView.Marca</BSTD>
+                    </BSTR>
+                </BSTBody>
+            </BSTable>
+        </BSCol>
+        <BSCol Column="2">
+            <BSTable>
+                 <BSTHead>
+                    <BSTR>
+                        <BSTD>Modelo</BSTD>
+                    </BSTR>
+                </BSTHead>
+                <BSTBody>
+                    <BSTR>
+                        <BSTD>@movilView.Modelo</BSTD>
+                    </BSTR>
+                </BSTBody>
+            </BSTable>
+        </BSCol>
+        <BSCol Column="2">
+            <BSTable>
+                 <BSTHead>
+                    <BSTR>
+                        <BSTD>Patente</BSTD>
+                    </BSTR>
+                </BSTHead>
+                <BSTBody>
+                    <BSTR>
+                        <BSTD>@movilView.Patente</BSTD>
+                    </BSTR>
+                </BSTBody>
+            </BSTable>
+        </BSCol>
+        <BSCol Column="1">
+
+        </BSCol>
     </BSRow>
 </BSContainer>
-<label> @movilView.NumeroMovil</label>
-<br>
-<label> @movilView.Marca</label>
-<br>
-<label> @movilView.Modelo</label>
-<br>
-<label> @movilView.Tipo</label>
-<br>
-<label> @movilView.Estado</label>
-<br>
-<label> @movilView.Patente</label>
-<br>
-<label> @movilView.EncargadoNombre </label>
 
 @code {
     [Parameter]
@@ -101,7 +191,7 @@
             movilView.Estado = movil.Estado;
             foreach (MovilBombero b in movil.Bomberos)
             {
-                if(b.Rol == TipoRol.Encargado)
+                if (b.Rol == TipoRol.Encargado)
                 {
                     movilView.EncargadoId = b.Bombero.PersonaId;
                     movilView.EncargadoNombre = $"{b.Bombero.Nombre} {b.Bombero.Apellido}";

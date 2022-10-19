@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var conexionString = "server=db4free.net:3306;user=eest1chivilcoy;password=eest1-1910;database=bomberosindu";
+var conexionString = "server=localhost;user=root;password=;database=bomberos";
 var serverVersion = ServerVersion.AutoDetect(conexionString);
 
 builder.Services.AddDbContextFactory<BomberosDbContext>(
