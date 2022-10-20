@@ -3,127 +3,125 @@
 @page "/moviles/movil/{VehiculoId:int?}"
 
 <style>
-    #medio {
+    #inferior {
+        font-family: calibri light;
+        text-align: center;
+        font-size: 20px;
     }
 
-    #Estado {
-        text-align: end;
-        font-family: calibri light;
-        border-style: solid;
-        border-width: 0px 2px 2px 0px;
-        border-color: #000;
-        font-size: 25px;
+    #Centro {
+        text-align: center;
+        font-size: 20px;
+        color: white;
+        border-radius: 15px;
+        max-width: 380px;
+        min-width: 300px;
+        background-color: rgb(79, 34, 34);
     }
 
-    #NroMovil {
-        font-family: calibri light;
-        border-style: solid;
-        border-width: 0px 0px 2px 0px;
-        border-color: #000;
-        font-size: 25px;
-    }
     #ImagenMovil{
+        border-style: solid;
+        border-color: #000;
+        border-width: 1px;
     max-height: 200px;
-    max-width: 500px;
+    max-width: 380px;
     min-width: 300px;
     min-height: 200px;
-    border-bottom-right-radius: calc(0.25rem - 1px);
-    border-bottom-left-radius: calc(0.25rem - 1px);
+    border-radius: 15px;
+    }
+    #blanco{
+        background-color: white;
+        color: white;
+    }
+    #tipo{
+        text-align:center;
+        font-size:25px;
+        color: white;
+        background-color:rgb(79, 34, 34);
+        border-radius: 15px;
+
     }
 </style>
+<BSContainer id="blanco">
+<BSRow>
+    <BSCol>asdasd</BSCol>
+</BSRow>
+</BSContainer>
 <BSRow>
     <BSCol Column="4"></BSCol>
     <BSCol Column="4"> <img id="ImagenMovil" src="data:@imagenView.TipoImagen;base64,@imagenView.Base64" /></BSCol>
     <BSCol Column="4"></BSCol>
 </BSRow>
-<BSRow>
+<BSContainer id="blanco">
+    <BSRow>
+    <BSCol>asdasd</BSCol>
+    </BSRow>
+ </BSContainer>
+<BSRow  Align="Align.Center">
     <BSCol Column="4"></BSCol>
-    <BSCol id="Estado" Column="2">@movilView.Estado</BSCol>
-    <BSCol id="NroMovil" Column="2">Nº movil @movilView.NumeroMovil</BSCol>
+    <BSCol Column="4">
+   <BSTable Color="OTRColor" id="Centro">
+                <BSTHead>
+                    <BSTR>
+                        <BSTD>Estado</BSTD>
+                        <BSTD>Nº Movil</BSTD>
+                    </BSTR>
+                </BSTHead>
+                <BSTBody>
+                    <BSTR>
+                        <BSTD>@movilView.Estado</BSTD>
+                        <BSTD>@movilView.NumeroMovil</BSTD>
+                    </BSTR>
+                </BSTBody>
+            </BSTable>
+          </BSCol>
     <BSCol Column="4"></BSCol>
 </BSRow>
+<BSContainer id="blanco">
+    <BSRow>
+    <BSCol>asdasd</BSCol>
+</BSRow>
+<BSRow>
+    <BSCol>asdasd</BSCol>
+</BSRow>
+<BSRow>
+    <BSCol>asdasd</BSCol>
+</BSRow>
+</BSContainer>
 <BSContainer id="inferior">
     <BSRow Align="Align.Center">
         <BSCol Column="1">
-
         </BSCol>
-        <BSCol Column="2">
-            <BSTable>
+        <BSCol Column="10">
+            <BSTable Color="OTRColor" id="tipo">
                 <BSTHead>
                     <BSTR>
                         <BSTD>Tipo</BSTD>
-                    </BSTR>
-                </BSTHead>
-                <BSTBody>
-                    <BSTR>
-                        <BSTD>@movilView.Tipo</BSTD>
-                    </BSTR>
-                </BSTBody>
-            </BSTable>
-        </BSCol>
-        <BSCol Column="2">
-            <BSTable>
-                 <BSTHead>
-                    <BSTR>
                         <BSTD>Encargado</BSTD>
-                    </BSTR>
-                </BSTHead>
-                <BSTBody>
-                    <BSTR>
-                        <BSTD>@movilView.EncargadoNombre</BSTD>
-                    </BSTR>
-                </BSTBody>
-            </BSTable>
-        </BSCol>
-        <BSCol Column="2">
-            <BSTable>
-                 <BSTHead>
-                    <BSTR>
                         <BSTD>Marca</BSTD>
-                    </BSTR>
-                </BSTHead>
-                <BSTBody>
-                    <BSTR>
-                        <BSTD>@movilView.Marca</BSTD>
-                    </BSTR>
-                </BSTBody>
-            </BSTable>
-        </BSCol>
-        <BSCol Column="2">
-            <BSTable>
-                 <BSTHead>
-                    <BSTR>
                         <BSTD>Modelo</BSTD>
-                    </BSTR>
-                </BSTHead>
-                <BSTBody>
-                    <BSTR>
-                        <BSTD>@movilView.Modelo</BSTD>
-                    </BSTR>
-                </BSTBody>
-            </BSTable>
-        </BSCol>
-        <BSCol Column="2">
-            <BSTable>
-                 <BSTHead>
-                    <BSTR>
                         <BSTD>Patente</BSTD>
                     </BSTR>
                 </BSTHead>
                 <BSTBody>
                     <BSTR>
+                        <BSTD>@movilView.Tipo</BSTD>
+                        <BSTD>@movilView.EncargadoNombre</BSTD>
+                        <BSTD>@movilView.Marca</BSTD>
+                        <BSTD>@movilView.Modelo</BSTD>
                         <BSTD>@movilView.Patente</BSTD>
                     </BSTR>
                 </BSTBody>
             </BSTable>
         </BSCol>
         <BSCol Column="1">
-
         </BSCol>
     </BSRow>
 </BSContainer>
 
 @code {
+     private BSColor OTableColor { get; set; } = BSColor.Default;
+     private BSColor OTRColor { get; set; } = BSColor.Default;
     [Parameter]
     public int? VehiculoId { get; set; }
 
