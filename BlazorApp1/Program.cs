@@ -6,8 +6,8 @@ using BlazorApp1.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var conexionString = "server=20.206.105.124;user=root;password=eest1:1910->2022;database=bomberos";
-//var conexionString = "server=localhost;user=root;password=;database=bomberos";
+//var conexionString = "server=20.206.105.124;user=root;password=eest1:1910->2022;database=bomberos";
+var conexionString = "server=localhost;user=root;password=;database=bomberos";
 var serverVersion = ServerVersion.AutoDetect(conexionString);
 
 builder.Services.AddDbContextFactory<BomberosDbContext>(
