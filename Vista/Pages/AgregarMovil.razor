@@ -1,56 +1,125 @@
 ﻿@inject IDbContextFactory<BomberosDbContext> DbFactory
 @inject NavigationManager navigationManager
 @page "/moviles/agregar"
+<style>
+    #crear-movil{
+        background-color: #C43A3A;
+        color:white;
+        font-size:20px;
+        font-family: calibri light;
+        border: 0px;
+        border-radius: 8px;
+    }
 
+    #blancoA {
+        width: 100%;
+        padding:15px;
+    }
+    #estilo{
+        border:1px;
+        border-radius:8px;
+        background-color: #AFAFAF;    
+    }
+    #texto{
+        font-size: 20px;
+        font-family: calibri light;
+        Font-Weight: bold;
+    }
+</style>
 @if (movilView is not null)
 {
-    <label>Marca:</label>
-    <input type="text" @bind="movilView.Marca" />
-    <br>
-    <label>Modelo:</label>
-    <input type="text" @bind="movilView.Modelo" />
-    <br>
-    <label>Año:</label>
-    <input type="text" @bind="movilView.Año" />
-    <br>
-    <InputFile OnChange="SubirFoto" />
-    <br>
-    <label>Patente:</label>
-    <input type="text" @bind="movilView.Patente" />
-    <br>
-    <label>Tipo:</label>
-    <input type="text" @bind="movilView.Tipo" />
-    <br>
-    <label>Nº movil:</label>
-    <input type="text" @bind="movilView.NumeroMovil" />
-    <br>
-    <label>Nº motor:</label>
-    <input type="text" @bind="movilView.NumeroMotor" />
-    <br>
-    <label>Nº chasis:</label>
-    <input type="text" @bind="movilView.NumeroChasis" />
-    <br>
-    <select @bind="movilView.Estado">
-        <option value="@TipoEstadoMovil.Activo">Activo</option>
-        <option value="@TipoEstadoMovil.Inactivo">Inactivo</option>
-        <option value="@TipoEstadoMovil.Reparacion">Reparacion</option>
-        <option value="@TipoEstadoMovil.Limpieza">Limpieza</option>
-    </select>
-    <br>
-    <h5>Seguro</h5>
+    <BSContainer id="Estilo">
+        <BSContainer id="blancoA">
 
-    <label>Compañia:</label>
-    <input type="text" @bind="seguroView.CompañiaAseguradora" />
-    <br>
-    <label>Nº poliza:</label>
-    <input type="text" @bind="seguroView.NumeroDePoliza" />
-    <br>
-    <label>Fecha de vencimiento:</label>
-    <input type="date" @bind="seguroView.FechaDeVencimiento" />
-    <br />
-    <button @onclick="SubirMovil">Crear movil</button>
+    </BSContainer>
+    <BSRow>
+        <BSCol Column="2">
+
+        </BSCol>
+        <BSCol Column="4">
+    <label id="texto">Marca:</label>
+    <input id="estilo" type="text" @bind="movilView.Marca" />
+    <BSContainer id="blancoA">
+
+    </BSContainer>
+    <label id="texto">Modelo:</label>
+    <input id="estilo" type="text" @bind="movilView.Modelo" />
+    <BSContainer id="blancoA">
+
+    </BSContainer>
+    <label id="texto">Año:</label>
+    <input id="estilo" type="text" @bind="movilView.Año" />
+    <BSContainer id="blancoA">
+
+    </BSContainer>
+    <InputFile OnChange="SubirFoto" />
+    <BSContainer id="blancoA">
+
+    </BSContainer>
+    <label id="texto">Patente:</label>
+    <input id="estilo" type="text" @bind="movilView.Patente" />
+    <BSContainer id="blancoA">
+
+    </BSContainer>
+    <label id="texto">Tipo:</label>
+    <input id="estilo" type="text" @bind="movilView.Tipo" />
+    <BSContainer id="blancoA">
+
+    </BSContainer>
+    <label id="texto">Nº movil:</label>
+    <input id="estilo" type="text" @bind="movilView.NumeroMovil" />
+    <BSContainer id="blancoA">
+
+    </BSContainer>
+    <label id="texto">Nº motor:</label>
+    <input id="estilo" type="text" @bind="movilView.NumeroMotor" />
+    <BSContainer id="blancoA">
+
+    </BSContainer>
+    <label id="texto">Nº chasis:</label>
+    <input id="estilo" type="text" @bind="movilView.NumeroChasis" />
+    <BSContainer id="blancoA">
+
+    </BSContainer>
+    <select id="estilo" @bind="movilView.Estado">
+        <option id="estilo" value="@TipoEstadoMovil.Activo">Activo</option>
+        <option id="estilo" value="@TipoEstadoMovil.Inactivo">Inactivo</option>
+        <option id="estilo" value="@TipoEstadoMovil.Reparacion">Reparacion</option>
+        <option id="estilo" value="@TipoEstadoMovil.Limpieza">Limpieza</option>
+    </select>
+        </BSCol>
+        <BSCol Column="4">
+    <BSContainer id="blancoA">
+
+    </BSContainer>
+    <h5 id="texto">Seguro</h5>
+
+    <label id="texto">Compañia:</label>
+    <input id="estilo" type="text" @bind="seguroView.CompañiaAseguradora" />
+    <BSContainer id="blancoA">
+
+    </BSContainer>
+    <label id="texto">Nº poliza:</label>
+    <input id="estilo" type="text" @bind="seguroView.NumeroDePoliza" />
+    <BSContainer id="blancoA">
+
+    </BSContainer>
+    <label id="texto">Fecha de vencimiento:</label>
+    <input id="estilo" type="date" @bind="seguroView.FechaDeVencimiento" />
+    <BSContainer id="blancoA">
+
+    </BSContainer>
+    <button id="crear-movil" @onclick="SubirMovil">Crear movil</button>
+        </BSCol>
+        <BSCol Column="2">
+
+        </BSCol>
+    </BSRow>
+    </BSContainer>
 }
-<br>
+<BSContainer id="blancoA">
+
+</BSContainer>
 
 @code {
 
