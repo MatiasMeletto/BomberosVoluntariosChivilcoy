@@ -90,8 +90,7 @@ a, .btn-link {
     max-width: 500px;
     min-width: 300px;
     min-height: 200px;
-    border-bottom-right-radius: calc(0.25rem - 1px);
-    border-bottom-left-radius: calc(0.25rem - 1px);
+    border-radius: 15px;
 }
 
 
@@ -106,4 +105,5 @@ a, .btn-link {
         text-align: center;
         font-weight: inherit;
     }
+
 

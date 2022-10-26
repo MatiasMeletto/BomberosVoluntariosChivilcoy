@@ -2,12 +2,34 @@
 @inject IDbContextFactory<BomberosDbContext> DbFactory
 @page "/moviles"
 
+<style>
+    #cartas{
+            border-radius: 15px;
+    }
+        #blancoA {
+        width: 100%;
+        padding: 10px;
+    }
+    #text-center{
+        text-align:center;
+    }
+    #button-center{
+        position:center;
+    }
+    #agregar-movil{
+        position: absolute;
+        bottom:100px;
+    }
+</style>
 @if (moviles is not null)
 {
     <BSContainer Container="Container.Medium">
         <div class="Titulo">
             <h3> Moviles </h3>
         </div>
+        <BSContainer id="blancoA">
+
+        </BSContainer>
     </BSContainer>
     <BSContainer id="Cartas">
         <BSRow Align="Align.Start">
@@ -18,10 +40,12 @@
                         <BSCard CardType="CardType.Card" style="width: 18rem;">
                             <BSCard CardType="CardType.Image" src="@CargarImage(m)" alt="Card image cap" />
                             <BSCard CardType="CardType.Body">
-                                <BSCard CardType="CardType.Title">Movil @m.NumeroMovil</BSCard>
+                                <BSCard id="text-center" CardType="CardType.Title">Movil @m.NumeroMovil</BSCard>
+                                <div class="d-grid gap-2 col-7 mx-auto">
                                 <a @onclick="@(() => { navigationManager.NavigateTo($"/moviles/movil/{m.VehiculoId}"); })">
-                                <BSButton Color="BSColor.Danger">Ver Información</BSButton>
+                                    <BSButton id="button-center" Color="BSColor.Danger">Ver Información</BSButton>
                                 </a>
+                                </div>
                             </BSCard>
                         </BSCard>
                     </BSContainer>
@@ -30,10 +54,16 @@
         </BSRow>
     </BSContainer>
 }
+
 else
 {
     <h5>No hay moviles</h5>
 }
+<BSContainer id="agregar-movil">
+    <a @onclick="@(() => { navigationManager.NavigateTo($"/moviles/AgregarMovil"); })">
+        <BSButton id="button-center" Color="BSColor.Danger">Agregar Movil +</BSButton>
+    </a>
+</BSContainer>
 @code {
     public Movil[]? moviles;
 
