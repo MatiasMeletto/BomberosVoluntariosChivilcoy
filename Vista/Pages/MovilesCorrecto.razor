@@ -21,6 +21,7 @@
         bottom:100px;
     }
 </style>
+
 @if (moviles is not null)
 {
     <BSContainer Container="Container.Medium">
@@ -54,16 +55,16 @@
         </BSRow>
     </BSContainer>
 }
-
 else
 {
     <h5>No hay moviles</h5>
 }
 <BSContainer id="agregar-movil">
-    <a @onclick="@(() => { navigationManager.NavigateTo($"/moviles/AgregarMovil"); })">
+    <a @onclick="@(() => { navigationManager.NavigateTo($"/moviles/agregar"); })">
         <BSButton id="button-center" Color="BSColor.Danger">Agregar Movil +</BSButton>
     </a>
 </BSContainer>
+
 @code {
     public Movil[]? moviles;
 
