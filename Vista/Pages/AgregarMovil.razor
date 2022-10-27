@@ -25,6 +25,12 @@
         font-family: calibri light;
         Font-Weight: bold;
     }
+    #encabezado{
+        font-size: 30px;
+        font-family: calibri light;
+        Font-Weight: bold;
+    }
+    }
 </style>
 @if (movilView is not null)
 {
@@ -37,46 +43,71 @@
 
         </BSCol>
         <BSCol Column="4">
+                <h5 id="encabezado">Movil</h5>
+        </BSCol>
+            <BSCol Column="4">
+                <h5 id="encabezado">Seguro</h5>
+            </BSCol>
+            <BSCol Column="2">
+
+            </BSCol>
+    </BSRow>
+    <BSRow>
+        <BSCol Column="2">
+
+        </BSCol>
+        <BSCol Column="4">
+    
     <label id="texto">Marca:</label>
+    <br>
     <input id="estilo" type="text" @bind="movilView.Marca" />
     <BSContainer id="blancoA">
 
     </BSContainer>
     <label id="texto">Modelo:</label>
+    <br>
     <input id="estilo" type="text" @bind="movilView.Modelo" />
     <BSContainer id="blancoA">
 
     </BSContainer>
     <label id="texto">Año:</label>
+    <br>
     <input id="estilo" type="text" @bind="movilView.Año" />
     <BSContainer id="blancoA">
 
     </BSContainer>
+    <label id="texto">Foto:</label>
+    <br>
     <InputFile OnChange="SubirFoto" />
     <BSContainer id="blancoA">
 
     </BSContainer>
     <label id="texto">Patente:</label>
+    <br>
     <input id="estilo" type="text" @bind="movilView.Patente" />
     <BSContainer id="blancoA">
 
     </BSContainer>
     <label id="texto">Tipo:</label>
+    <br>
     <input id="estilo" type="text" @bind="movilView.Tipo" />
     <BSContainer id="blancoA">
 
     </BSContainer>
     <label id="texto">Nº movil:</label>
+    <br>
     <input id="estilo" type="text" @bind="movilView.NumeroMovil" />
     <BSContainer id="blancoA">
 
     </BSContainer>
     <label id="texto">Nº motor:</label>
+    <br>
     <input id="estilo" type="text" @bind="movilView.NumeroMotor" />
     <BSContainer id="blancoA">
 
     </BSContainer>
     <label id="texto">Nº chasis:</label>
+    <br>
     <input id="estilo" type="text" @bind="movilView.NumeroChasis" />
     <BSContainer id="blancoA">
 
@@ -89,22 +120,21 @@
     </select>
         </BSCol>
         <BSCol Column="4">
-    <BSContainer id="blancoA">
-
-    </BSContainer>
-    <h5 id="texto">Seguro</h5>
 
     <label id="texto">Compañia:</label>
+    <br>
     <input id="estilo" type="text" @bind="seguroView.CompañiaAseguradora" />
     <BSContainer id="blancoA">
 
     </BSContainer>
     <label id="texto">Nº poliza:</label>
+    <br>
     <input id="estilo" type="text" @bind="seguroView.NumeroDePoliza" />
     <BSContainer id="blancoA">
 
     </BSContainer>
     <label id="texto">Fecha de vencimiento:</label>
+    <br>
     <input id="estilo" type="date" @bind="seguroView.FechaDeVencimiento" />
     <BSContainer id="blancoA">
 
