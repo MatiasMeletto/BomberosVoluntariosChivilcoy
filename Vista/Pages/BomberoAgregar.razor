@@ -1,6 +1,6 @@
 ﻿@inject NavigationManager navigationManager
 @inject IDbContextFactory<BomberosDbContext> DbFactory
-@page "/bomberos"
+@page "/bomberos/agregar"
 
 <h3>Bomberos</h3>
 @if (bomberoView is not null)
@@ -23,13 +23,13 @@
     <input type="text" @bind="bomberoView.Documento" />
     <br>
     <label>Fecha De Nacimiento:</label>
-    <input type="text" @bind="bomberoView.FechaNacimiento" />   
+    <input type="text" @bind="bomberoView.FechaNacimiento" />
     <br>
     <label>Numero De Legajo:</label>
     <input type="number" @bind="bomberoView.NumeroLegajo" />
     <br>
     <label>Fecha De Aceptacion:</label>
-    <input type="date" @bind="bomberoView.FechaAceptacion" />    
+    <input type="date" @bind="bomberoView.FechaAceptacion" />
     <br>
     <label> Direccion:</label>
     <input type="text" @bind="bomberoView.Direccion" />
@@ -74,9 +74,9 @@
     if (bomberoView.Chofer)
     {
         <label>Es chofer</label>
-        <input type="date" @bind="bomberoView.VencimientoRegistro"/>
+        <input type="date" @bind="bomberoView.VencimientoRegistro" />
     }
-    if(!bomberoView.Chofer)
+    if (!bomberoView.Chofer)
     {
         <label>No es chofer</label>
     }
@@ -100,12 +100,12 @@
         <option value="@EstadoBombero.Retirado">Retirado</option>
         <option value="@EstadoBombero.ComisionDirectiva">Comision Directiva</option>
         <option value="@EstadoBombero.CuerpoActivo">Cuerpo Activo</option>
-        </select>
+    </select>
     <br>
     <select @bind="bomberoView.Sexo">
-    <option value="@TipoSexo.Hombre">Masculino</option>
-    <option value="@TipoSexo.Mujer">Femenino</option>
-    <option value="@TipoSexo.Otro">Otro</option>
+        <option value="@TipoSexo.Hombre">Masculino</option>
+        <option value="@TipoSexo.Mujer">Femenino</option>
+        <option value="@TipoSexo.Otro">Otro</option>
     </select>
 
     <h5>Contacto</h5>
@@ -119,21 +119,11 @@
     <label>Telefono laboral:</label>
     <input type="text" @bind="contactoView.TelefonoLaboral" />
     <br>
-        <label>Email:</label>
+    <label>Email:</label>
     <input type="text" @bind="contactoView.Email" />
     <br>
 
     <button @onclick="AgregarBombero">Agregar Bombero</button>
-}
-<br>
-<br>
-@if(bomberos is not null)
-{
-    @foreach(Bombero b in bomberos)
-    {
-        <a @onclick="@(() => { navigationManager.NavigateTo($"/bomberos/{b.PersonaId}"); })"><label>@b.PersonaId   @b.NumeroLegajo</label></a>
-        <br>
-    }
 }
 
 @code {
@@ -146,10 +136,10 @@
         [Required, StringLength(255)]
         public string Apellido { get; set; }
         public EstadoBombero Estado { get; set; }
-        public int NumeroLegajo { get; set;  }
+        public int NumeroLegajo { get; set; }
         public EscalafonJerarquico Grado { get; set; }
         [Required, StringLength(255)]
-        public string Dotacion { get; set; } 
+        public string Dotacion { get; set; }
         [Required, StringLength(255)]
         public string Brigada { get; set; }
         public bool Chofer { get; set; }
@@ -209,14 +199,11 @@
     public ImagenViewModel imagenView { get; set; } = new();
     public BomberosViewModel bomberoView { get; set; } = new();
     public ContactoViewModel contactoView { get; set; } = new();
-    public Bombero[]? bomberos;
 
-    protected override async Task OnInitializedAsync()
-    {
-        using var db = DbFactory.CreateDbContext();
+    //protected override async Task OnInitializedAsync()
+    //{
 
-        bomberos = await db.Bomberos.ToArrayAsync();
-    }
+    //}
 
     private async void SubirFoto(InputFileChangeEventArgs e)
     {
@@ -238,53 +225,52 @@
             if (comprobante is null)
             {
                 Bombero bombero = new Bombero()
-                {
-                    FechaNacimiento = bomberoView.FechaNacimiento,
-                    Sexo = bomberoView.Sexo,
-                    Nombre = bomberoView.Nombre,
-                    Apellido = bomberoView.Apellido,
-                    Documento = bomberoView.Documento,
-                    NumeroLegajo = bomberoView.NumeroLegajo,
-                    NumeroIoma = bomberoView.NumeroIoma,
-                    LugarNacimiento = bomberoView.LugarNacimiento,
-                    Grado = bomberoView.Grado,
-                    Imagen = new()
-                    {                      
-                        NombreImagen = imagenView.Nombre,
-                        TipoImagen = imagenView.TipoImagen,
-                        Base64Imagen = imagenView.Base64
-                    },
-                    Dotacion = bomberoView.Dotacion,
-                    Brigada = bomberoView.Brigada,
-                    Resolucion1 = bomberoView.Resolucion1,
-                    Resolucion2 = bomberoView.Resolucion2,
-                    Resolucion3 = bomberoView.Resolucion3,
-                    Resolucion4 = bomberoView.Resolucion4,
-                    Resolucion5 = bomberoView.Resolucion5,
-                    Resolucion6 = bomberoView.Resolucion6,
-                    GrupoSanguineo = bomberoView.GrupoSanguineo,
-                    Estado = bomberoView.Estado,
-                    Chofer = bomberoView.Chofer,
-                    VencimientoRegistro = bomberoView.VencimientoRegistro,
-                    Direccion = bomberoView.Direccion,
-                    Observaciones = bomberoView.Observaciones,
-                    Profesion = bomberoView.Profesion,
-                    NivelEstudios = bomberoView.NivelEstudios,
-                    FechaAceptacion = bomberoView.FechaAceptacion,
-                    Contacto = new()
                     {
-                        TelefonoCel = contactoView.TelefonoCel,
-                        TelefonoFijo = contactoView.TelefonoFijo,
-                        TelefonoLaboral = contactoView.TelefonoLaboral,
-                        Email = contactoView.Email
-                    }
-                };
+                        FechaNacimiento = bomberoView.FechaNacimiento,
+                        Sexo = bomberoView.Sexo,
+                        Nombre = bomberoView.Nombre,
+                        Apellido = bomberoView.Apellido,
+                        Documento = bomberoView.Documento,
+                        NumeroLegajo = bomberoView.NumeroLegajo,
+                        NumeroIoma = bomberoView.NumeroIoma,
+                        LugarNacimiento = bomberoView.LugarNacimiento,
+                        Grado = bomberoView.Grado,
+                        Imagen = new()
+                        {
+                            NombreImagen = imagenView.Nombre,
+                            TipoImagen = imagenView.TipoImagen,
+                            Base64Imagen = imagenView.Base64
+                        },
+                        Dotacion = bomberoView.Dotacion,
+                        Brigada = bomberoView.Brigada,
+                        Resolucion1 = bomberoView.Resolucion1,
+                        Resolucion2 = bomberoView.Resolucion2,
+                        Resolucion3 = bomberoView.Resolucion3,
+                        Resolucion4 = bomberoView.Resolucion4,
+                        Resolucion5 = bomberoView.Resolucion5,
+                        Resolucion6 = bomberoView.Resolucion6,
+                        GrupoSanguineo = bomberoView.GrupoSanguineo,
+                        Estado = bomberoView.Estado,
+                        Chofer = bomberoView.Chofer,
+                        VencimientoRegistro = bomberoView.VencimientoRegistro,
+                        Direccion = bomberoView.Direccion,
+                        Observaciones = bomberoView.Observaciones,
+                        Profesion = bomberoView.Profesion,
+                        NivelEstudios = bomberoView.NivelEstudios,
+                        FechaAceptacion = bomberoView.FechaAceptacion,
+                        Contacto = new()
+                        {
+                            TelefonoCel = contactoView.TelefonoCel,
+                            TelefonoFijo = contactoView.TelefonoFijo,
+                            TelefonoLaboral = contactoView.TelefonoLaboral,
+                            Email = contactoView.Email
+                        }
+                    };
 
                 db.Bomberos.Add(bombero);
                 await db.SaveChangesAsync();
             }
         }
-        bomberos = await db.Bomberos.ToArrayAsync();
 
         StateHasChanged();
     }

@@ -12,6 +12,7 @@
     <br>
     <label>año:</label>
     <input type="text" @bind="movilView.Año" />
+    <InputFile OnChange="SubirFoto" />
     <br>
     <label>patente:</label>
     <input type="text" @bind="movilView.Patente" />
@@ -68,7 +69,7 @@
     <br />
     <br />
     <br />
-    <button @onclick="EditarMovil">crear movil</button>
+    <button @onclick="EditarMovil">Editar movil</button>
 }
 else
 {
@@ -185,17 +186,26 @@ else
         bomberoViews.Add(b);
     }
 
+    private async void SubirFoto(InputFileChangeEventArgs e)
+    {
+        string imagenBase64 = await Base64Helper.StreamToBase64(e.File.OpenReadStream());
+
+        imagenView.Base64 = imagenBase64;
+        imagenView.TipoImagen = e.File.ContentType;
+        imagenView.Nombre = e.File.Name;
+    }
+
     public async void EditarMovil()
     {
         using var db = DbFactory.CreateDbContext();
 
         if (movilView is not null)
         {
-            Movil? comprobante = await db.Moviles.Where(m => m.NumeroMovil == movilView.NumeroMovil).SingleOrDefaultAsync();
+            Movil? movil = await db.Moviles.Where(m => m.NumeroMovil == movilView.NumeroMovil).SingleOrDefaultAsync();
 
-            if (comprobante is null)
+            if (movil is not null)
             {
-                Movil movil = new Movil()
+                movil = new Movil()
                 {
                     Marca = movilView.Marca,
                     Modelo = movilView.Modelo,
@@ -222,18 +232,23 @@ else
 
                 foreach (BomberoViewModel m in bomberoViews)
                 {
-                    MovilBombero bombero = new()
-                        {
-                            Rol = m.Rol,
-                            PersonaId = m.PersonaId
-                        };
-                    movil.Bomberos.Add(bombero);
+                    if (m.PersonaId != 0)
+                    {
+                        MovilBombero bombero = new()
+                            {
+                                Rol = m.Rol,
+                                PersonaId = m.PersonaId
+                            };
+                        movil.Bomberos.Add(bombero);
+                    }
                 }
 
                 db.Moviles.Add(movil);
                 await db.SaveChangesAsync();
             }
         }
+
+        navigationManager.NavigateTo("/moviles");
     }
 }
 
