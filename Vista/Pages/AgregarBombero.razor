@@ -1,0 +1,408 @@
+﻿@inject NavigationManager navigationManager
+@inject IDbContextFactory<BomberosDbContext> DbFactory
+@page "/bombero/agregar"
+<style>
+    #crear-bombero {
+        background-color: #C43A3A;
+        color: white;
+        font-size: 20px;
+        font-family: calibri light;
+        border: 0px;
+        border-radius: 8px;
+    }
+
+    #blancoA {
+        width: 100%;
+        padding: 15px;
+    }
+
+    #estilo {
+        border: 1px;
+        border-radius: 8px;
+        background-color: #AFAFAF;
+    }
+
+    #texto {
+        font-size: 20px;
+        font-family: calibri light;
+        Font-Weight: bold;
+    }
+</style>
+@if (bomberoView is not null)
+{
+    <BSContainer id="Estilo">
+        <BSContainer id="blancoA">
+
+        </BSContainer>
+        <BSRow>
+            <BSCol Column="2">
+
+            </BSCol>
+            <BSCol Column="4">
+                <h5 id="encabezado">Bombero</h5>
+            </BSCol>
+            <BSCol Column="4">
+                <h5 id="encabezado">Contacto</h5>
+            </BSCol>
+            <BSCol Column="2">
+
+            </BSCol>
+        </BSRow>
+        <BSRow>
+            <BSCol Column="2">
+
+            </BSCol>
+            <BSCol Column="4">
+
+                <label id="texto">Nombre:</label>
+                <br>
+                <input id="estilo" type="text" @bind="bomberoView.Nombre" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">Apellido:</label>
+                <br>
+                <input id="estilo" type="text" @bind="bomberoView.Apellido" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">Dotacion:</label>
+                <br>
+                <input id="estilo" type="text" @bind="bomberoView.Dotacion" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">Brigada:</label>
+                <br>
+                <input id="estilo" type="text" @bind="bomberoView.Brigada" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">DNI:</label>
+                <br>
+                <input id="estilo" type="text" @bind="bomberoView.Documento" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">Fecha De Nacimiento:</label>
+                <br>
+                <input id="estilo" type="text" @bind="bomberoView.FechaNacimiento" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">Numero De Legajo:</label>
+                <br>
+                <input id="estilo" type="number" @bind="bomberoView.NumeroLegajo" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">Fecha De Aceptacion:</label>
+                <br>
+                <input id="estilo" type="date" @bind="bomberoView.FechaAceptacion" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto"> Direccion:</label>
+                <br>
+                <input id="estilo" type="text" @bind="bomberoView.Direccion" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">Nº De IOMA:</label>
+                <br>
+                <input id="estilo" type="text" @bind="bomberoView.NumeroIoma" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">Lugar De Nacimiento:</label>
+                <br>
+                <input id="estilo" type="text" @bind="bomberoView.LugarNacimiento" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">Grupo Sanguineo:</label>
+                <br>
+                <input id="estilo" type="text" @bind="bomberoView.GrupoSanguineo" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">Observaciones:</label>
+                <br>
+                <input id="estilo" type="text" @bind="bomberoView.Observaciones" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">Profesion:</label>
+                <br>
+                <input id="estilo" type="text" @bind="bomberoView.Profesion" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">Nivel De Estudios:</label>
+                <br>
+                <input id="estilo" type="text" @bind="bomberoView.NivelEstudios" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">Resulucion 1:</label>
+                <br>
+                <input id="estilo" type="text" @bind="bomberoView.Resolucion1" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">Resulucion 2:</label>
+                <br>
+                <input id="estilo" type="text" @bind="bomberoView.Resolucion2" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">Resulucion 3:</label>
+                <br>
+                <input id="estilo" type="text" @bind="bomberoView.Resolucion3" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">Resulucion 4:</label>
+                <br>
+                <input id="estilo" type="text" @bind="bomberoView.Resolucion4" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">Resulucion 5:</label>
+                <br>
+                <input id="estilo" type="text" @bind="bomberoView.Resolucion5" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">Resulucion 6:</label>
+                <br>
+                <input id="estilo" type="text" @bind="bomberoView.Resolucion6" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <input type="checkbox" @bind="bomberoView.Chofer" />
+                if (bomberoView.Chofer)
+                {
+                <label id="texto">Es chofer</label>
+                <br>
+                <input id="estilo" type="date" @bind="bomberoView.VencimientoRegistro" />
+                }
+                if (!bomberoView.Chofer)
+                {
+                <label id="texto">No es chofer</label>
+                }
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <select @bind="bomberoView.Grado">
+                    <option value="@EscalafonJerarquico.Jefe">Jefe</option>
+                    <option value="@EscalafonJerarquico.SegundoJefe">2ºdo Jefe</option>
+                    <option value="@EscalafonJerarquico.PrimerOficial">1ºer Oficial</option>
+                    <option value="@EscalafonJerarquico.SegundoOficial">2ºdo Oficial</option>
+                    <option value="@EscalafonJerarquico.TercerOficial">3ºer Oficial</option>
+                    <option value="@EscalafonJerarquico.AuxiliarMayor">Auxiliar Mayor</option>
+                    <option value="@EscalafonJerarquico.PrimerAuxiliar">1ºer Auxiliar</option>
+                    <option value="@EscalafonJerarquico.SegundoAuxiliar">2ºdo Auxiliar</option>
+                    <option value="@EscalafonJerarquico.Ayudante">Ayudante</option>
+                    <option value="@EscalafonJerarquico.SegundoAyudante">2ºdo Ayudante</option>
+                    <option value="@EscalafonJerarquico.Bombero">Bombero</option>
+                    <option value="@EscalafonJerarquico.Aspirante">Aspirante</option>
+                </select>
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <select @bind="bomberoView.Estado">
+                    <option value="@EstadoBombero.Retirado">Retirado</option>
+                    <option value="@EstadoBombero.ComisionDirectiva">Comision Directiva</option>
+                    <option value="@EstadoBombero.CuerpoActivo">Cuerpo Activo</option>
+                </select>
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <select @bind="bomberoView.Sexo">
+                    <option value="@TipoSexo.Hombre">Masculino</option>
+                    <option value="@TipoSexo.Mujer">Femenino</option>
+                    <option value="@TipoSexo.Otro">Otro</option>
+                </select>
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+            </BSCol>
+            <BSCol Column="4">
+                <label id="texto">Telefono Celular:</label>
+                <br>
+                <input id="estilo" type="text" @bind="contactoView.TelefonoCel" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">Telefono Fijo:</label>
+                <br>
+                <input id="estilo" type="text" @bind="contactoView.TelefonoFijo" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">Telefono laboral:</label>
+                <br>
+                <input id="estilo" type="text" @bind="contactoView.TelefonoLaboral" />
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                <label id="texto">Email:</label>
+                <br>
+                <input id="estilo" type="text" @bind="contactoView.Email" />
+
+                <BSContainer id="blancoA">
+
+                </BSContainer>
+                @*<button id="crear-bombero" @onclick="AgregarBombero">Agregar Bombero</button>*@
+            </BSCol>
+            <BSCol Column="2">
+
+            </BSCol>
+        </BSRow>
+    </BSContainer>
+}
+<BSContainer id="blancoA">
+
+</BSContainer>
+
+@code {
+    [Parameter]
+    public int? BomberoId { get; set; }
+
+    public class BomberosViewModel
+    {
+        public DateOnly FechaNacimiento { get; set; }
+        public DateOnly FechaAceptacion { get; set; }
+        [Required, StringLength(255)]
+        public string Nombre { get; set; }
+        [Required, StringLength(255)]
+        public string Apellido { get; set; }
+        public EstadoBombero Estado { get; set; }
+        public int NumeroLegajo { get; set; }
+        public EscalafonJerarquico Grado { get; set; }
+        [Required, StringLength(255)]
+        public string Dotacion { get; set; }
+        [Required, StringLength(255)]
+        public string Brigada { get; set; }
+        public bool Chofer { get; set; }
+        public DateOnly? VencimientoRegistro { get; set; }
+        public TipoSexo Sexo { get; set; }
+        [Required, StringLength(255)]
+        public string Direccion { get; set; }
+        [Required, StringLength(255)]
+        public string LugarNacimiento { get; set; }
+        [Required, StringLength(255)]
+        public string Documento { get; set; }
+        [Required, StringLength(255)]
+        public string GrupoSanguineo { get; set; }
+        [Required, StringLength(255)]
+        public string Observaciones { get; set; }
+        [Required, StringLength(255)]
+        public string Profesion { get; set; }
+        [Required, StringLength(255)]
+        public string NivelEstudios { get; set; }
+        [Required, StringLength(255)]
+        public string NumeroIoma { get; set; }
+        [Required, StringLength(255)]
+        public string? Resolucion1 { get; set; }
+        [Required, StringLength(255)]
+        public string? Resolucion2 { get; set; }
+        [Required, StringLength(255)]
+        public string? Resolucion3 { get; set; }
+        [Required, StringLength(255)]
+        public string? Resolucion4 { get; set; }
+        [Required, StringLength(255)]
+        public string? Resolucion5 { get; set; }
+        [Required, StringLength(255)]
+        public string? Resolucion6 { get; set; }
+
+
+    }
+    public class ContactoViewModel
+    {
+        [Required, StringLength(255)]
+        public string? TelefonoCel { get; set; }
+        [Required, StringLength(255)]
+        public string? TelefonoLaboral { get; set; }
+        [Required, StringLength(255)]
+        public string? TelefonoFijo { get; set; }
+        [Required, StringLength(255)]
+        public string? Email { get; set; }
+    }
+    public class ImagenViewModel
+    {
+        public string Base64 { get; set; }
+        [Required, StringLength(255)]
+        public string TipoImagen { get; set; }
+        [Required, StringLength(255)]
+        public string Nombre { get; set; }
+    }
+
+    public ImagenViewModel imagenView { get; set; } = new();
+    public BomberosViewModel bomberoView { get; set; } = new();
+    public ContactoViewModel contactoView { get; set; } = new();
+    public Bombero[]? bomberos;
+    public bool existe;
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var db = DbFactory.CreateDbContext();
+
+        Bombero? bombero = await db.Bomberos.Where(b => b.PersonaId == BomberoId).SingleOrDefaultAsync();
+
+        if (bombero is not null)
+        {
+            bomberoView.Chofer = bombero.Chofer;
+            bomberoView.Nombre = bombero.Nombre;
+            bomberoView.NumeroLegajo = bombero.NumeroLegajo;
+            bomberoView.NumeroIoma = bombero.NumeroIoma;
+            bomberoView.Profesion = bombero.Profesion;
+            bomberoView.Apellido = bombero.Apellido;
+            bomberoView.Brigada = bombero.Brigada;
+            bomberoView.Direccion = bombero.Direccion;
+            bomberoView.GrupoSanguineo = bombero.GrupoSanguineo;
+            bomberoView.Grado = bombero.Grado;
+            bomberoView.Documento = bombero.Documento;
+            bomberoView.Dotacion = bombero.Dotacion;
+            bomberoView.Estado = bombero.Estado;
+            bomberoView.FechaAceptacion = bombero.FechaAceptacion;
+            bomberoView.FechaNacimiento = bombero.FechaNacimiento;
+            bomberoView.NivelEstudios = bombero.NivelEstudios;
+            bomberoView.Resolucion1 = bombero.Resolucion1;
+            bomberoView.Resolucion2 = bombero.Resolucion2;
+            bomberoView.Resolucion3 = bombero.Resolucion3;
+            bomberoView.Resolucion4 = bombero.Resolucion4;
+            bomberoView.Resolucion5 = bombero.Resolucion5;
+            bomberoView.Resolucion6 = bombero.Resolucion6;
+            bomberoView.Sexo = bombero.Sexo;
+            bomberoView.VencimientoRegistro = bombero.VencimientoRegistro;
+            bomberoView.LugarNacimiento = bombero.LugarNacimiento;
+            bomberoView.Observaciones = bombero.Observaciones;
+
+            Contacto? contacto = await db.Contactos.Where(c => c.ContactoId == bombero.Contacto.ContactoId).SingleOrDefaultAsync();
+
+            if (contacto is not null)
+            {
+                contactoView.Email = contacto.Email;
+                contactoView.TelefonoFijo = contacto.TelefonoFijo;
+                contactoView.TelefonoCel = contacto.TelefonoCel;
+                contactoView.TelefonoLaboral = contacto.TelefonoLaboral;
+            }
+
+            Imagen? imagen = await db.ImagenesBomberos.Where(i => i.ImagenId == bombero.ImagenId).SingleOrDefaultAsync();
+
+            if (imagen is not null)
+            {
+                imagenView.Base64 = imagen.Base64Imagen;
+                imagenView.Nombre = imagen.NombreImagen;
+                imagenView.TipoImagen = imagen.TipoImagen;
+            }
+            existe = true;
+        }
+        else if (bombero is null)
+        {
+            existe = false;
+        }
+    }
+}

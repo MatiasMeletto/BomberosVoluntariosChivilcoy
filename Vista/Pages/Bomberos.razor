@@ -1,6 +1,14 @@
-﻿@page "/bombero"
-<h3>Bomberos</h3>
-
+﻿@inject NavigationManager navigationManager
+@inject IDbContextFactory<BomberosDbContext> DbFactory
+@page "/bombero"
+<div class="Titulo">
+    <h3> Bomberos</h3>
+</div>
+<BSContainer id="agregar-bombero">
+    <a @onclick="@(() => { navigationManager.NavigateTo($"/bombero/agregar"); })">
+        <BSButton id="button-center" Color="BSColor.Danger">Agregar Bombero +</BSButton>
+    </a>
+</BSContainer>
 @code {
 
 }
