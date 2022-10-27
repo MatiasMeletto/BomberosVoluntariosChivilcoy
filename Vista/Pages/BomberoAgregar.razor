@@ -71,12 +71,12 @@
     <input type="text" @bind="bomberoView.Resolucion6" />
     <br>
     <input type="checkbox" @bind="bomberoView.Chofer" />
-    if (bomberoView.Chofer)
+    @if (bomberoView.Chofer)
     {
         <label>Es chofer</label>
         <input type="date" @bind="bomberoView.VencimientoRegistro" />
     }
-    if (!bomberoView.Chofer)
+    @if (!bomberoView.Chofer)
     {
         <label>No es chofer</label>
     }
