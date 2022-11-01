@@ -14,6 +14,9 @@
     <input type="text" @bind="bomberoView.Dotacion" />
     <br>
     <label>Brigada:</label>
+    <br />
+    <InputFile OnChange="SubirFoto" />
+    <br />
     <input type="text" @bind="bomberoView.Brigada" />
     <br>
     <label>DNI:</label>
@@ -120,7 +123,7 @@
     <input type="text" @bind="contactoView.Email" />
     <br>
 
-    @*<button @onclick="AgregarBombero">Agregar Bombero</button>*@
+    <button @onclick="EditarBombero">Editar bombero</button>
 }
 else
 {
@@ -264,6 +267,84 @@ else
         else if (bombero is null)
         {
             existe = false;
+        }
+    }
+
+    private async void SubirFoto(InputFileChangeEventArgs e)
+    {
+        string imagenBase64 = await Base64Helper.StreamToBase64(e.File.OpenReadStream());
+
+        imagenView.Base64 = imagenBase64;
+        imagenView.TipoImagen = e.File.ContentType;
+        imagenView.Nombre = e.File.Name;
+    }
+
+    public async void EditarBombero()
+    {
+        using var db = DbFactory.CreateDbContext();
+
+        if (bomberoView.NumeroLegajo != 0)
+        {
+            Bombero? bombero = await db.Bomberos.Where(m => m.NumeroLegajo == bomberoView.NumeroLegajo).SingleOrDefaultAsync();
+
+            if (bombero is not null)
+            {
+                bombero.FechaNacimiento = bomberoView.FechaNacimiento;
+                bombero.Contacto = new()
+                {
+                    TelefonoCel = contactoView.TelefonoCel,
+                    TelefonoFijo = contactoView.TelefonoFijo,
+                    TelefonoLaboral = contactoView.TelefonoLaboral,
+                    Email = contactoView.Email
+                };
+
+
+                //bombero = new Bombero()
+                //    {
+                //        FechaNacimiento = bomberoView.FechaNacimiento,
+                //        Sexo = bomberoView.Sexo,
+                //        Nombre = bomberoView.Nombre,
+                //        Apellido = bomberoView.Apellido,
+                //        Documento = bomberoView.Documento,
+                //        NumeroLegajo = bomberoView.NumeroLegajo,
+                //        NumeroIoma = bomberoView.NumeroIoma,
+                //        LugarNacimiento = bomberoView.LugarNacimiento,
+                //        Grado = bomberoView.Grado,
+                //        Imagen = new()
+                //        {
+                //            NombreImagen = imagenView.Nombre,
+                //            TipoImagen = imagenView.TipoImagen,
+                //            Base64Imagen = imagenView.Base64
+                //        },
+                //        Dotacion = bomberoView.Dotacion,
+                //        Brigada = bomberoView.Brigada,
+                //        Resolucion1 = bomberoView.Resolucion1,
+                //        Resolucion2 = bomberoView.Resolucion2,
+                //        Resolucion3 = bomberoView.Resolucion3,
+                //        Resolucion4 = bomberoView.Resolucion4,
+                //        Resolucion5 = bomberoView.Resolucion5,
+                //        Resolucion6 = bomberoView.Resolucion6,
+                //        GrupoSanguineo = bomberoView.GrupoSanguineo,
+                //        Estado = bomberoView.Estado,
+                //        Chofer = bomberoView.Chofer,
+                //        VencimientoRegistro = bomberoView.VencimientoRegistro,
+                //        Direccion = bomberoView.Direccion,
+                //        Observaciones = bomberoView.Observaciones,
+                //        Profesion = bomberoView.Profesion,
+                //        NivelEstudios = bomberoView.NivelEstudios,
+                //        FechaAceptacion = bomberoView.FechaAceptacion,
+                //        Contscto = new()
+                //        {
+                //            TelefonoCel = contactoView.TelefonoCel,
+                //            TelefonoFijo = contactoView.TelefonoFijo,
+                //            TelefonoLaboral = contactoView.TelefonoLaboral,
+                //            Email = contactoView.Email
+                //        }
+                //    };
+
+                db.Bomberos.Add(bombero);
+                await db.SaveChangesAsync();
+            }
         }
     }
 }

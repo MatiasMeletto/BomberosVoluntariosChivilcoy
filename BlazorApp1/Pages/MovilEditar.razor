@@ -199,36 +199,38 @@ else
     {
         using var db = DbFactory.CreateDbContext();
 
-        if (movilView is not null)
+        if (movilView.NumeroMovil is not null)
         {
             Movil? movil = await db.Moviles.Where(m => m.NumeroMovil == movilView.NumeroMovil).SingleOrDefaultAsync();
 
             if (movil is not null)
             {
-                movil = new Movil()
-                {
-                    Marca = movilView.Marca,
-                    Modelo = movilView.Modelo,
-                    Año = movilView.Año,
-                    Patente = movilView.Patente,
-                    Tipo = movilView.Tipo,
-                    Imagen = new()
-                    {
-                        NombreImagen = imagenView.Nombre,
-                        TipoImagen = imagenView.TipoImagen,
-                        Base64Imagen = imagenView.Base64
-                    },
-                    NumeroChasis = movilView.NumeroChasis,
-                    NumeroMotor = movilView.NumeroMotor,
-                    NumeroMovil = movilView.NumeroMovil,
-                    Estado = movilView.Estado,
-                    Seguro = new()
-                    {
-                        CompañiaAseguradora = seguroView.CompañiaAseguradora,
-                        FechaDeVencimineto = seguroView.FechaDeVencimiento,
-                        NumeroDePoliza = seguroView.NumeroDePoliza
-                    }
-                };
+
+
+                //movil = new Movil()
+                //{
+                //    Marca = movilView.Marca,
+                //    Modelo = movilView.Modelo,
+                //    Año = movilView.Año,
+                //    Patente = movilView.Patente,
+                //    Tipo = movilView.Tipo,
+                //    Imagen = new()
+                //    {
+                //        NombreImagen = imagenView.Nombre,
+                //        TipoImagen = imagenView.TipoImagen,
+                //        Base64Imagen = imagenView.Base64
+                //    },
+                //    NumeroChasis = movilView.NumeroChasis,
+                //    NumeroMotor = movilView.NumeroMotor,
+                //    NumeroMovil = movilView.NumeroMovil,
+                //    Estado = movilView.Estado,
+                //    Seguro = new()
+                //    {
+                //        CompañiaAseguradora = seguroView.CompañiaAseguradora,
+                //        FechaDeVencimineto = seguroView.FechaDeVencimiento,
+                //        NumeroDePoliza = seguroView.NumeroDePoliza
+                //    }
+                //};
 
                 foreach (BomberoViewModel m in bomberoViews)
                 {
