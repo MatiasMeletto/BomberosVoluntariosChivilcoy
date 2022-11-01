@@ -127,7 +127,7 @@
 }
 else
 {
-<h1> Error 404</h1>
+    <h1> Error 404</h1>
 }
 
 @code {
@@ -215,7 +215,7 @@ else
 
         Bombero? bombero = await db.Bomberos.Where(b => b.PersonaId == BomberoId).Include(b => b.Contacto).SingleOrDefaultAsync();
 
-        if(bombero is not null)
+        if (bombero is not null)
         {
             bomberoView.Chofer = bombero.Chofer;
             bomberoView.Nombre = bombero.Nombre;
@@ -246,7 +246,7 @@ else
 
             Contacto? contacto = await db.Contactos.Where(c => c.ContactoId == bombero.Contacto.ContactoId).SingleOrDefaultAsync();
 
-            if(contacto is not null)
+            if (contacto is not null)
             {
                 contactoView.Email = contacto.Email;
                 contactoView.TelefonoFijo = contacto.TelefonoFijo;
@@ -323,21 +323,22 @@ else
                 bombero.FechaAceptacion = bomberoView.FechaAceptacion;
 
                 Contacto? contacto = await db.Contactos.Where(c => c.ContactoId == bombero.Contacto.ContactoId).SingleOrDefaultAsync();
-                if(contacto is not null)
+                if (contacto is not null)
                 {
                     db.Remove(contacto);
                 }
                 bombero.Contacto = new()
 
-                {
-                    TelefonoCel = contactoView.TelefonoCel,
-                    TelefonoFijo = contactoView.TelefonoFijo,
-                    TelefonoLaboral = contactoView.TelefonoLaboral,
-                    Email = contactoView.Email
-                };
+                    {
+                        TelefonoCel = contactoView.TelefonoCel,
+                        TelefonoFijo = contactoView.TelefonoFijo,
+                        TelefonoLaboral = contactoView.TelefonoLaboral,
+                        Email = contactoView.Email
+                    };
 
                 await db.SaveChangesAsync();
             }
         }
+        navigationManager.NavigateTo("/bomberos");
     }
 }
