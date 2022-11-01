@@ -22,7 +22,7 @@ namespace BlazorApp1.Data.Models.Salidas.Planillas
         public string CalleORuta { get; set; }
         [Required, StringLength(255)]
         public string NumeroOKilometro { get; set; }
-        [Required, StringLength(255)]
+        [StringLength(255)]
         public string? EntreCalles { get; set; }
         [StringLength(255)]
         public string? PisoNumero { get; set; }
