@@ -16,6 +16,73 @@
         <option value="@TipoIncendio.Vivienda">Vivienda</option>
         <option value="@TipoIncendio.Otro">Otro</option>
 </select>
+<label>Descripcion:</label>
+<input type="text" @bind="salidaView.Descripcion" />
+<br>
+<label>@salidaView.Fecha</label>
+<br>
+<label>Hora salida y hora de llegada:</label>
+<input type="time" @bind="salidaView.HoraSalida" />
+<input type="time" @bind="salidaView.HoraLlegada" />
+<br>
+<label>Km salida:</label>
+<input type="number" @bind="salidaView.KmSalida" />
+<br>
+<label>Km llegada:</label>
+<input type="number" @bind="salidaView.KmLLegada" />
+<br>
+<label>Nº parte:</label>
+<input type="number" @bind="salidaView.NumeroParte" />
+<br>
+<label>Calle / ruta:</label>
+<input type="text" @bind="salidaView.CalleORuta" />
+<br>
+<label>Numero / kilometro:</label>
+<input type="number" @bind="salidaView.NumeroOKilometro" />
+<br>
+<label>Entre calles:</label>
+<input type="text" @bind="salidaView.EntreCalles" />
+<br>
+<label>Piso nº:</label>
+<input type="number" @bind="salidaView.PisoNumero" />
+<br>
+<label>Depto:</label>
+<input type="text" @bind="salidaView.Depto" />
+<br>
+<label>Tipo zona:</label>
+<select @bind="salidaView.TipoZona">
+    <option value="@TipoZona.Rural">Rural</option>
+    <option value="@TipoZona.Urbana">Urbana</option>
+</select>
+<br>
+<label>Nombre solicitante:</label>
+<input type="text" @bind="salidaView.NombreSolicitante" />
+<br>
+<label>Apellido solicitante:</label>
+<input type="text" @bind="salidaView.ApellidoSolicitante" />
+<br>
+<label>DNI solicitante:</label>
+<input type="text" @bind="salidaView.DniSolicitante" />
+<br>
+<label>Telefono solicitante:</label>
+<input type="text" @bind="salidaView.TelefonoSolicitante" />
+<br>
+<label>Receptor:</label>
+<input type="text" @bind="salidaView.Receptor" />
+<br>
+<label>Deteccion automatica:</label>
+<input type="checkbox" @bind="salidaView.DeteccionAutomaticaId" />
+<br>
+<label>hidrante:</label>
+<input type="text" @bind="salidaView.Hidrante" />
+<br>
+<label>Extintor:</label>
+<input type="text" @bind="salidaView.Extintor" />
+<br>
+@if(salidaView.Tipo == TipoIncendio.Embarcaiones)
+{
+
+}
 
 @code {
 
