@@ -2,20 +2,20 @@
 @inject IDbContextFactory<BomberosDbContext> DbFactory
 @page "/salidas/incendios"
 
-@*<select @bind="bomberoView.Grado">
-        <option value="@EscalafonJerarquico.Jefe">Jefe</option>
-        <option value="@EscalafonJerarquico.SegundoJefe">2ºdo Jefe</option>
-        <option value="@EscalafonJerarquico.PrimerOficial">1ºer Oficial</option>
-        <option value="@EscalafonJerarquico.SegundoOficial">2ºdo Oficial</option>
-        <option value="@EscalafonJerarquico.TercerOficial">3ºer Oficial</option>
-        <option value="@EscalafonJerarquico.AuxiliarMayor">Auxiliar Mayor</option>
-        <option value="@EscalafonJerarquico.PrimerAuxiliar">1ºer Auxiliar</option>
-        <option value="@EscalafonJerarquico.SegundoAuxiliar">2ºdo Auxiliar</option>
-        <option value="@EscalafonJerarquico.Ayudante">Ayudante</option>
-        <option value="@EscalafonJerarquico.SegundoAyudante">2ºdo Ayudante</option>
-        <option value="@EscalafonJerarquico.Bombero">Bombero</option>
-        <option value="@EscalafonJerarquico.Aspirante">Aspirante</option>
-    </select>*@
+<select @bind="salidaView.Tipo">
+        <option value="@TipoIncendio.Aeronaves">Aeronaves</option>
+        <option value="@TipoIncendio.Clinica">Clinicas</option>
+        <option value="@TipoIncendio.Comercios">Comercios</option>
+        <option value="@TipoIncendio.Embarcaiones">Embarcaciones</option>
+        <option value="@TipoIncendio.EstablecimientoEducativo">Establecimiento educativo</option>
+        <option value="@TipoIncendio.EstablecimientoPublico">Establecimiento publico</option>
+        <option value="@TipoIncendio.Forestal">Forestal</option>
+        <option value="@TipoIncendio.Hospital">Hospital</option>
+        <option value="@TipoIncendio.Industria">Industria</option>
+        <option value="@TipoIncendio.Vehicular">Vehicular</option>
+        <option value="@TipoIncendio.Vivienda">Vivienda</option>
+        <option value="@TipoIncendio.Otro">Otro</option>
+</select>
 
 @code {
 
@@ -51,5 +51,31 @@
         public string TelefonoSolicitante { get; set; }
         [StringLength(255)]
         public string? Receptor { get; set; }
+        public bool DeteccionAutomaticaId { get; set; }
+        public bool? Extintor { get; set; }
+        public bool? Hidrante { get; set; }
+        public TipoLugarSiniestroEmbarcacion TipoLugarSiniestroEmbarcacion { get; set; }
+        [StringLength(255)]
+        public string? OtroLugarDeSiniestroEmbarcacion { get; set; }
+        public TipoEvacuacion TipoEvacuacion { get; set; }
+        public TipoSuperficie TipoSuperficieAfectada { get; set; }
+        [Required, StringLength(255)]
+        public string DetalleSuperficieAfectadaIncendio { get; set; }
+        public TipoCausaIncendio SuperficieAfectadaCausa { get; set; }
+        public TipoIncendioAbertura TipoAbertura { get; set; }
+        [Required, StringLength(255)]
+        public string OtraAbertura { get; set; }
+        public TipoIncendioTecho TipoTecho { get; set; }
+        [Required, StringLength(255)]
+        public string OtroTecho { get; set; }
+        [Required, StringLength(255)]
+        public string OtroLugar { get; set; }
+        [StringLength(255)]
+        public string? NombreEstablecimiento { get; set; }
+        public int? CantidadPisos { get; set; }
+        public int? PisoAfectado { get; set; }
+        public int? CantidadAmbientes { get; set; }
     }
+
+    public SalidaViewModel salidaView { get; set; } = new();
 }
