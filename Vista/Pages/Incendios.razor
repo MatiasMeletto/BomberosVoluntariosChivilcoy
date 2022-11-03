@@ -3,18 +3,18 @@
 @page "/salidas/incendios"
 
 <select @bind="salidaView.Tipo">
-        <option value="@TipoIncendio.Aeronaves">Aeronaves</option>
-        <option value="@TipoIncendio.Clinica">Clinicas</option>
-        <option value="@TipoIncendio.Comercios">Comercios</option>
-        <option value="@TipoIncendio.Embarcaiones">Embarcaciones</option>
-        <option value="@TipoIncendio.EstablecimientoEducativo">Establecimiento educativo</option>
-        <option value="@TipoIncendio.EstablecimientoPublico">Establecimiento publico</option>
-        <option value="@TipoIncendio.Forestal">Forestal</option>
-        <option value="@TipoIncendio.Hospital">Hospital</option>
-        <option value="@TipoIncendio.Industria">Industria</option>
-        <option value="@TipoIncendio.Vehicular">Vehicular</option>
-        <option value="@TipoIncendio.Vivienda">Vivienda</option>
-        <option value="@TipoIncendio.Otro">Otro</option>
+    <option value="@TipoIncendio.Aeronaves">Aeronaves</option>
+    <option value="@TipoIncendio.Clinica">Clinicas</option>
+    <option value="@TipoIncendio.Comercios">Comercios</option>
+    <option value="@TipoIncendio.Embarcaiones">Embarcaciones</option>
+    <option value="@TipoIncendio.EstablecimientoEducativo">Establecimiento educativo</option>
+    <option value="@TipoIncendio.EstablecimientoPublico">Establecimiento publico</option>
+    <option value="@TipoIncendio.Forestal">Forestal</option>
+    <option value="@TipoIncendio.Hospital">Hospital</option>
+    <option value="@TipoIncendio.Industria">Industria</option>
+    <option value="@TipoIncendio.Vehicular">Vehicular</option>
+    <option value="@TipoIncendio.Vivienda">Vivienda</option>
+    <option value="@TipoIncendio.Otro">Otro</option>
 </select>
 <label>Descripcion:</label>
 <input type="text" @bind="salidaView.Descripcion" />
@@ -79,9 +79,222 @@
 <label>Extintor:</label>
 <input type="text" @bind="salidaView.Extintor" />
 <br>
-@if(salidaView.Tipo == TipoIncendio.Embarcaiones)
+@if (salidaView.Tipo == TipoIncendio.Embarcaiones)
 {
+    <select @bind="salidaView.TipoLugarSiniestroEmbarcacion">
+        <option value="@TipoLugarSiniestroEmbarcacion.Baliza">Baliza</option>
+        <option value="@TipoLugarSiniestroEmbarcacion.Boya">Boya</option>
+        <option value="@TipoLugarSiniestroEmbarcacion.Canal">Canal</option>
+        <option value="@TipoLugarSiniestroEmbarcacion.Darsena">Darsena</option>
+        <option value="@TipoLugarSiniestroEmbarcacion.Puerto">Puerto</option>
+        <option value="@TipoLugarSiniestroEmbarcacion.Rada">Rada</option>
+        <option value="@TipoLugarSiniestroEmbarcacion.Sitio">Sitio</option>
+        <option value="@TipoLugarSiniestroEmbarcacion.Terminal">Terminal</option>
+        <option value="@TipoLugarSiniestroEmbarcacion.Otro">Otro</option>
+    </select>
+    <br>
+    @if (salidaView.TipoLugarSiniestroEmbarcacion == TipoLugarSiniestroEmbarcacion.Otro)
+    {
+        <label>Otro:</label>
+        <input type="text" @bind="salidaView.OtroLugarDeSiniestroEmbarcacion" />
+        <br>
+    }
+}
+<select @bind="salidaView.TipoEvacuacion">
+    <option value="@TipoEvacuacion.EvacuacionParcial">Parcial</option>
+    <option value="@TipoEvacuacion.EvacuacionTotal">Total</option>
+    <option value="@TipoEvacuacion.NoEvacuo">No se evacuo</option>
+</select>
+<br>
+<select @bind="salidaView.TipoSuperficieAfectada">
+    <option value="@TipoSuperficie.Hectareas">Hectareas</option>
+    <option value="@TipoSuperficie.Km">Km</option>
+    <option value="@TipoSuperficie.Metros">Metros</option>
+</select>
+<label>Detalle superficie:</label>
+<input type="text" @bind="salidaView.OtroLugarDeSiniestroEmbarcacion" />
+<br>
+<select @bind="salidaView.SuperficieAfectadaCausa">
+    <option value="@TipoCausaIncendio.Desconocidas">Desconocidas</option>
+    <option value="@TipoCausaIncendio.Internacional">Internacional</option>
+    <option value="@TipoCausaIncendio.Natural">Natural</option>
+    <option value="@TipoCausaIncendio.Negligencia">Negligencia</option>
+</select>
+<br>
+<select @bind="salidaView.TipoAbertura">
+    <option value="@TipoIncendioAbertura.AceroHierro">Acero / Hierro</option>
+    <option value="@TipoIncendioAbertura.Aluminio">Aluminio</option>
+    <option value="@TipoIncendioAbertura.Madera">Madera</option>
+    <option value="@TipoIncendioAbertura.Plastica">Plastica</option>
+    <option value="@TipoIncendioAbertura.Otro">Otro</option>
+</select>
+@if (salidaView.TipoAbertura == TipoIncendioAbertura.Otro)
+{
+    <label>Otro:</label>
+    <input type="text" @bind="salidaView.OtraAbertura" />
+    <br>
+}
+<select @bind="salidaView.TipoTecho">
+    <option value="@TipoIncendioTecho.ChapaCarton">Chapa / carton</option>
+    <option value="@TipoIncendioTecho.ChapaMetalica">Chapa metalica</option>
+    <option value="@TipoIncendioTecho.MaderaPaja">Madera / paja</option>
+    <option value="@TipoIncendioTecho.Tejas">Tejas</option>
+    <option value="@TipoIncendioTecho.Yeso">Yeso</option>
+    <option value="@TipoIncendioTecho.Otro">Otro</option>
+</select>
+@if (salidaView.TipoTecho == TipoIncendioTecho.Otro)
+{
+    <label>Otro:</label>
+    <input type="text" @bind="salidaView.OtroTecho" />
+    <br>
+}
+@if (salidaView.Tipo == TipoIncendio.Comercios)
+{
+    <select @bind="salidaView.TipoLugarComercio">
+        <option value="@TipoLugarComercioIncendio.Bar">Bar</option>
+        <option value="@TipoLugarComercioIncendio.Cine">Cine</option>
+        <option value="@TipoLugarComercioIncendio.RestauranteLocalDeComida">Resto / lugar de comida</option>
+        <option value="@TipoLugarComercioIncendio.Shopping">Shopping</option>
+        <option value="@TipoLugarComercioIncendio.Teatro">Teatro</option>
+        <option value="@TipoLugarComercioIncendio.Otro">Otro</option>
+    </select>
+    <br>
+    @if (salidaView.TipoLugarComercio == TipoLugarComercioIncendio.Otro)
+    {
+        <label>Otro:</label>
+        <input type="text" @bind="salidaView.OtroLugar" />
+        <br>
+    }
+}
+@if (salidaView.Tipo == TipoIncendio.EstablecimientoEducativo)
+{
+    <select @bind="salidaView.TipoLugarEstablecimientoEducativo">
+        <option value="@TipoIncendioEstablecimientoEducativo.EscuelaPrimaria">Escuela primaria</option>
+        <option value="@TipoIncendioEstablecimientoEducativo.EscuelaSecundaria">Escuela secundaria</option>
+        <option value="@TipoIncendioEstablecimientoEducativo.Jardin">Jardin</option>
+        <option value="@TipoIncendioEstablecimientoEducativo.Terciario">Terciario</option>
+        <option value="@TipoIncendioEstablecimientoEducativo.Universidad">Universidad</option>
+        <option value="@TipoIncendioEstablecimientoEducativo.Otro">Otro</option>
 
+    </select>
+    <br>
+    @if (salidaView.TipoLugarEstablecimientoEducativo == TipoIncendioEstablecimientoEducativo.Otro)
+    {
+        <label>Otro:</label>
+        <input type="text" @bind="salidaView.OtroLugar" />
+        <br>
+    }
+}
+@if (salidaView.Tipo == TipoIncendio.EstablecimientoPublico)
+{
+    <select @bind="salidaView.TipoLugarEstablecimientoPublico">
+        <option value="@TipoIncendioEstablecimientoPublico.Ministerio">Ministerio</option>
+        <option value="@TipoIncendioEstablecimientoPublico.OficinaPublica">Oficina publica</option>
+        <option value="@TipoIncendioEstablecimientoPublico.Otro">Otro</option>
+    </select>
+    <br>
+    @if (salidaView.TipoLugarEstablecimientoPublico == TipoIncendioEstablecimientoPublico.Otro)
+    {
+        <label>Otro:</label>
+        <input type="text" @bind="salidaView.OtroLugar" />
+        <br>
+    }
+}
+@if (salidaView.Tipo == TipoIncendio.Forestal)
+{
+    <select @bind="salidaView.TipoLugarForestal">
+        <option value="@TipoIncendioForestal.ArbustalOMatorral">Arbustal / matorral</option>
+        <option value="@TipoIncendioForestal.Basural">Basural</option>
+        <option value="@TipoIncendioForestal.Bosque">Bosque</option>
+        <option value="@TipoIncendioForestal.BosqueCultivado">Bosque cultivado</option>
+        <option value="@TipoIncendioForestal.BosqueNativo">Bosque nativo</option>
+        <option value="@TipoIncendioForestal.Campo">Campo</option>
+        <option value="@TipoIncendioForestal.Interfase">Interfase</option>
+        <option value="@TipoIncendioForestal.Isla">Isla</option>
+        <option value="@TipoIncendioForestal.Montaña">Montaña</option>
+        <option value="@TipoIncendioForestal.Pastizal">Pastizal</option>
+        <option value="@TipoIncendioForestal.Otro">Otro</option>
+    </select>
+    <br>
+    @if (salidaView.TipoLugarForestal == TipoIncendioForestal.Otro)
+    {
+        <label>Otro:</label>
+        <input type="text" @bind="salidaView.OtroLugar" />
+        <br>
+    }
+}
+@if (salidaView.Tipo == TipoIncendio.Hospital || salidaView.Tipo == TipoIncendio.Clinica)
+{
+    <select @bind="salidaView.TipoLugarHospitalYClinicas">
+        <option value="@TipoIncendioHospitalesYClinicas.CentroDeSalud">Centro de salud</option>
+        <option value="@TipoIncendioHospitalesYClinicas.ClinicaPrivada">Clinica privada</option>
+        <option value="@TipoIncendioHospitalesYClinicas.HospitalPublico">Hospital publico</option>
+        <option value="@TipoIncendioHospitalesYClinicas.Laboratorios">Laboratorios</option>
+        <option value="@TipoIncendioHospitalesYClinicas.Salitas">Salitas</option>
+        <option value="@TipoIncendioHospitalesYClinicas.Otro">Otro</option>
+    </select>
+    <br>
+    @if (salidaView.TipoLugarHospitalYClinicas == TipoIncendioHospitalesYClinicas.Otro)
+    {
+        <label>Otro:</label>
+        <input type="text" @bind="salidaView.OtroLugar" />
+        <br>
+    }
+}
+@if (salidaView.Tipo == TipoIncendio.Industria)
+{
+    <select @bind="salidaView.TipoLugarIndustria">
+        <option value="@TipoIncendioIndustria.Alimentacion">Alimentacion</option>
+        <option value="@TipoIncendioIndustria.Automotriz">Automotriz</option>
+        <option value="@TipoIncendioIndustria.Metalurgica">Metalurgica</option>
+        <option value="@TipoIncendioIndustria.Petroquimica">Petroquimica</option>
+        <option value="@TipoIncendioIndustria.Quimica">Quimica</option>
+        <option value="@TipoIncendioIndustria.Textil">Textil</option>
+        <option value="@TipoIncendioIndustria.Otro">Otro</option>
+    </select>
+    <br>
+    @if (salidaView.TipoLugarIndustria == TipoIncendioIndustria.Otro)
+    {
+        <label>Otro:</label>
+        <input type="text" @bind="salidaView.OtroLugar" />
+        <br>
+    }
+}
+@if (salidaView.Tipo == TipoIncendio.Vivienda)
+{
+    <select @bind="salidaView.TipoLugarVivienda">
+        <option value="@TipoIncendioVivienda.Casa">Casa</option>
+        <option value="@TipoIncendioVivienda.Casilla">Casilla</option>
+        <option value="@TipoIncendioVivienda.Depto">Depto</option>
+        <option value="@TipoIncendioVivienda.Multifamiliar">Multifamiliar</option>
+        <option value="@TipoIncendioVivienda.Rancho">Rancho</option>
+        <option value="@TipoIncendioVivienda.Otro">Otro</option>
+    </select>
+    <br>
+    @if (salidaView.TipoLugarVivienda == TipoIncendioVivienda.Otro)
+    {
+        <label>Otro:</label>
+        <input type="text" @bind="salidaView.OtroLugar" />
+        <br>
+    }
+}
+@if (salidaView.Tipo == TipoIncendio.Comercios || salidaView.Tipo == TipoIncendio.EstablecimientoEducativo || salidaView.Tipo == TipoIncendio.EstablecimientoPublico || salidaView.Tipo == TipoIncendio.Hospital || salidaView.Tipo == TipoIncendio.Clinica || salidaView.Tipo == TipoIncendio.Industria || salidaView.Tipo == TipoIncendio.Vivienda)
+{
+    <label>Nombre establecimiento:</label>
+    <input type="text" @bind="salidaView.NombreEstablecimiento" />
+    <br>
+    <label>Cantidad pisos afectados:</label>
+    <input type="number" @bind="salidaView.CantidadPisos" />
+    <br>
+    @for (int i = 0; i == salidaView.CantidadPisos; i++)
+    {
+        <label>Piso afectado:</label>
+        <input type="number" @bind="salidaView.PisoAfectado" />
+        <br>
+        <label>Cantidad ambientes:</label>
+        <input type="number" @bind="salidaView.CantidadAmbientes" />
+        <br>
+    }
 }
 
 @code {
@@ -91,11 +304,11 @@
         public TipoIncendio Tipo { get; set; }
         [Required, StringLength(255)]
         public string Descripcion { get; set; }
-        public DateOnly Fecha { get; set;}
-        public DateTime HoraSalida{ get; set; }
+        public DateOnly Fecha { get; set; }
+        public DateTime HoraSalida { get; set; }
         public DateTime HoraLlegada { get; set; }
         public int KmSalida { get; set; }
-        public int KmLLegada{ get; set; }
+        public int KmLLegada { get; set; }
         public int NumeroParte { get; set; }
         [Required, StringLength(255)]
         public string CalleORuta { get; set; }
@@ -135,6 +348,13 @@
         public TipoIncendioTecho TipoTecho { get; set; }
         [Required, StringLength(255)]
         public string OtroTecho { get; set; }
+        public TipoLugarComercioIncendio? TipoLugarComercio { get; set; }
+        public TipoIncendioEstablecimientoEducativo? TipoLugarEstablecimientoEducativo { get; set; }
+        public TipoIncendioEstablecimientoPublico? TipoLugarEstablecimientoPublico { get; set; }
+        public TipoIncendioForestal? TipoLugarForestal { get; set; }
+        public TipoIncendioHospitalesYClinicas? TipoLugarHospitalYClinicas { get; set; }
+        public TipoIncendioIndustria? TipoLugarIndustria { get; set; }
+        public TipoIncendioVivienda? TipoLugarVivienda { get; set; }
         [Required, StringLength(255)]
         public string OtroLugar { get; set; }
         [StringLength(255)]
