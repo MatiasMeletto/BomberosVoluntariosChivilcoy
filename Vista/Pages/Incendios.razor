@@ -106,6 +106,7 @@
     <option value="@TipoEvacuacion.NoEvacuo">No se evacuo</option>
 </select>
 <br>
+<label>Tipo de superficie:</label>
 <select @bind="salidaView.TipoSuperficieAfectada">
     <option value="@TipoSuperficie.Hectareas">Hectareas</option>
     <option value="@TipoSuperficie.Km">Km</option>
@@ -114,6 +115,7 @@
 <label>Detalle superficie:</label>
 <input type="text" @bind="salidaView.OtroLugarDeSiniestroEmbarcacion" />
 <br>
+<label>Causa:</label>
 <select @bind="salidaView.SuperficieAfectadaCausa">
     <option value="@TipoCausaIncendio.Desconocidas">Desconocidas</option>
     <option value="@TipoCausaIncendio.Internacional">Internacional</option>
@@ -121,6 +123,7 @@
     <option value="@TipoCausaIncendio.Negligencia">Negligencia</option>
 </select>
 <br>
+<label>Tipo de abertura:</label>
 <select @bind="salidaView.TipoAbertura">
     <option value="@TipoIncendioAbertura.AceroHierro">Acero / Hierro</option>
     <option value="@TipoIncendioAbertura.Aluminio">Aluminio</option>
@@ -132,8 +135,9 @@
 {
     <label>Otro:</label>
     <input type="text" @bind="salidaView.OtraAbertura" />
-    <br>
 }
+<br>
+<label>Tipo de techo:</label>
 <select @bind="salidaView.TipoTecho">
     <option value="@TipoIncendioTecho.ChapaCarton">Chapa / carton</option>
     <option value="@TipoIncendioTecho.ChapaMetalica">Chapa metalica</option>
@@ -291,11 +295,12 @@
         <label>Piso afectado:</label>
         <input type="number" @bind="salidaView.PisoAfectado" />
         <br>
-        <label>Cantidad ambientes:</label>
-        <input type="number" @bind="salidaView.CantidadAmbientes" />
-        <br>
     }
+    <label>Cantidad ambientes:</label>
+    <input type="number" @bind="salidaView.CantidadAmbientes" />
+    <br>
 }
+<button @onclick="SubirSalida">Subir planilla</button>
 
 @code {
 
@@ -365,4 +370,9 @@
     }
 
     public SalidaViewModel salidaView { get; set; } = new();
+
+    public async void SubirSalida()
+    {
+
+    }
 }
