@@ -19,7 +19,7 @@ namespace Vista.Data
         public DbSet<DatosCapacitacion> DatosCapacitaciones { get; set; }
         public DbSet<EmbarcacionAfectada> EmbarcacionesAfectadas { get; set; }
         public DbSet<VehiculoAfectadoAccidente> VehiculosAfectadosAccidentes { get; set; }
-       public  DbSet<VehiculoAfectadoIncendio> VehiculosAfectadoIncendios { get; set; }
+        public  DbSet<VehiculoAfectadoIncendio> VehiculosAfectadoIncendios { get; set; }
         public DbSet<VehiculoDamnificado> VehiculosDamnificados { get; set; }
         public DbSet<Accidente> Accidentes { get; set; }
         public DbSet<FactorClimatico> FactoresClimaticos { get; set; }
@@ -35,6 +35,8 @@ namespace Vista.Data
         public DbSet<MaterialPeligroso> MaterialesPeligrosos { get; set; }
         public DbSet<ServicioEspecialRepresentacion> ServicioEspecialesRespresentaciones { get; set; }
         public DbSet<ServicioEspecialPrevencion> ServicioEspecialPrevenciones { get; set; }
+        public DbSet<Firma> Firmas { get; set; }
+        public DbSet<Brigada> Brigadas { get; set; }
 
 
         public BomberosDbContext(DbContextOptions<BomberosDbContext> options)
