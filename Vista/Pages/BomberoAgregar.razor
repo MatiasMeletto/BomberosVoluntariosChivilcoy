@@ -81,7 +81,7 @@
         <label>No es chofer</label>
     }
     <br>
-    <select @bind="bomberoView.Grado">
+    @*<select @bind="bomberoView.Grado">
         <option value="@EscalafonJerarquico.Jefe">Jefe</option>
         <option value="@EscalafonJerarquico.SegundoJefe">2ºdo Jefe</option>
         <option value="@EscalafonJerarquico.PrimerOficial">1ºer Oficial</option>
@@ -100,7 +100,7 @@
         <option value="@EstadoBombero.Retirado">Retirado</option>
         <option value="@EstadoBombero.ComisionDirectiva">Comision Directiva</option>
         <option value="@EstadoBombero.CuerpoActivo">Cuerpo Activo</option>
-    </select>
+    </select>*@
     <br>
     <select @bind="bomberoView.Sexo">
         <option value="@TipoSexo.Hombre">Masculino</option>
@@ -241,8 +241,8 @@
                             TipoImagen = imagenView.TipoImagen,
                             Base64Imagen = imagenView.Base64
                         },
-                        Dotacion = bomberoView.Dotacion,
-                        Brigada = bomberoView.Brigada,
+                        //Dotacion = bomberoView.Dotacion,
+                        //Brigada = bomberoView.Brigada,
                         Resolucion1 = bomberoView.Resolucion1,
                         Resolucion2 = bomberoView.Resolucion2,
                         Resolucion3 = bomberoView.Resolucion3,

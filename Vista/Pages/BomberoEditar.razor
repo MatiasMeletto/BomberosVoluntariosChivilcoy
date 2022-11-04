@@ -81,7 +81,7 @@
         <label>No es chofer</label>
     }
     <br>
-    <select @bind="bomberoView.Grado">
+    @*<select @bind="bomberoView.Grado">
         <option value="@EscalafonJerarquico.Jefe">Jefe</option>
         <option value="@EscalafonJerarquico.SegundoJefe">2ºdo Jefe</option>
         <option value="@EscalafonJerarquico.PrimerOficial">1ºer Oficial</option>
@@ -100,7 +100,7 @@
         <option value="@EstadoBombero.Retirado">Retirado</option>
         <option value="@EstadoBombero.ComisionDirectiva">Comision Directiva</option>
         <option value="@EstadoBombero.CuerpoActivo">Cuerpo Activo</option>
-    </select>
+    </select>*@
     <br>
     <select @bind="bomberoView.Sexo">
         <option value="@TipoSexo.Hombre">Masculino</option>
@@ -146,7 +146,7 @@ else
         public int NumeroLegajo { get; set; }
         public EscalafonJerarquico Grado { get; set; }
         [Required, StringLength(255)]
-        public string Dotacion { get; set; }
+        public TipoDotaciones Dotacion { get; set; }
         [Required, StringLength(255)]
         public string Brigada { get; set; }
         public bool Chofer { get; set; }
@@ -223,7 +223,7 @@ else
             bomberoView.NumeroIoma = bombero.NumeroIoma;
             bomberoView.Profesion = bombero.Profesion;
             bomberoView.Apellido = bombero.Apellido;
-            bomberoView.Brigada = bombero.Brigada;
+            //bomberoView.Brigada = bombero.Brigada;
             bomberoView.Direccion = bombero.Direccion;
             bomberoView.GrupoSanguineo = bombero.GrupoSanguineo;
             bomberoView.Grado = bombero.Grado;
@@ -305,7 +305,7 @@ else
                         Base64Imagen = imagenView.Base64
                     };
                 bombero.Dotacion = bomberoView.Dotacion;
-                bombero.Brigada = bomberoView.Brigada;
+                //bombero.Brigada = bomberoView.Brigada;
                 bombero.Resolucion1 = bomberoView.Resolucion1;
                 bombero.Resolucion2 = bomberoView.Resolucion2;
                 bombero.Resolucion3 = bomberoView.Resolucion3;
