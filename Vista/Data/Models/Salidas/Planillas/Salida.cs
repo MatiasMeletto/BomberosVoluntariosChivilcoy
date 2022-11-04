@@ -11,8 +11,8 @@ namespace Vista.Data.Models.Salidas.Planillas
         public int SalidaId { get; set; }
 
         public DateOnly Fecha { get; set; }
-        public DateTime HoraSalida { get; set; }
-        public DateTime HoraLlegada { get; set; }
+        public TimeOnly HoraSalida { get; set; }
+        public TimeOnly HoraLlegada { get; set; }
         public int KmSalida { get; set; }
         public int KmLlegada { get; set; }
         public int NumeroParte { get; set; }
@@ -63,5 +63,6 @@ namespace Vista.Data.Models.Salidas.Planillas
         public int QuienLlenoId { get; set; }
         [ForeignKey("QuienLlenoId")]
         public Bombero QuienLleno { get; set; }
+        public TipoServicioSalida TipoServicio { get; set; }
     }
 }

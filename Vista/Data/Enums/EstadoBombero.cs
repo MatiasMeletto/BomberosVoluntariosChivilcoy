@@ -3,7 +3,7 @@
     public enum EstadoBombero
     {
         CuerpoActivo,
-        Retirado,
+        Reserva,
         ComisionDirectiva,
     }
 }

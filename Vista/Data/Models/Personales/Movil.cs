@@ -14,12 +14,16 @@ namespace Vista.Data.Models.Personales
         [Required, StringLength(255)]
         public string NumeroMotor { get; set; }
         [Required, StringLength(255)]
+        public string ModeloBomba { get; set; }
+        [Required, StringLength(255)]
         public string NumeroChasis { get; set; }
         public TipoEstadoMovil Estado { get; set; }
 
         public int ImagenId { get; set; }
         [ForeignKey("ImagenId")]
         public ImagenMovil Imagen { get; set; }
+
+        public List<Firma> Firmas { get; set; }
 
         public List<MovilBombero> Bomberos { get; set; } = new();
 

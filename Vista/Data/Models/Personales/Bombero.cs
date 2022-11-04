@@ -13,12 +13,9 @@ namespace Vista.Data.Models.Personales
         [Required]
         public int NumeroLegajo { get; set; }
         public EstadoBombero Estado { get; set; } 
+        public TipoDotaciones Dotacion { get; set; }
         public DateOnly FechaAceptacion { get; set; }
         public EscalafonJerarquico Grado { get; set; }
-        [Required, StringLength(255)]
-        public string Dotacion { get; set; } // Tiene que ser un enum (1, 2, 3, 4)
-        [Required, StringLength(255)]
-        public string Brigada { get; set; } // ¿Debería ser una clase y una relación?
         [StringLength(255)]
         public string? Resolucion1 { get; set; }
         [StringLength(255)]
@@ -34,6 +31,10 @@ namespace Vista.Data.Models.Personales
         public bool Chofer { get; set; }
         public DateOnly? VencimientoRegistro { get; set; }
 
+        public List<Firma> Firmas { get; set; }
+
+        public int BrigadaId { get; set; }
+        public Brigada Brigada { get; set; }
         public int ImagenId { get; set; }
         [ForeignKey("ImagenId")]
         public ImagenBombero Imagen { get; set; }
