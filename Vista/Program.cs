@@ -6,12 +6,17 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var conexionString = "server=localhost;user=root;password=;database=bomberos";
-var serverVersion = ServerVersion.AutoDetect(conexionString);
+var connectionString = builder.Configuration["ConnectionString"];
+if (string.IsNullOrEmpty(connectionString))
+{
+    connectionString = "server=localhost;user=root;password=;database=bomberos";    
+}
+
+var serverVersion = ServerVersion.AutoDetect(connectionString);
 
 builder.Services.AddDbContextFactory<BomberosDbContext>(
     dbContextOptions => dbContextOptions
-    .UseMySql(conexionString, serverVersion)
+    .UseMySql(connectionString, serverVersion)
     .LogTo(Console.WriteLine, LogLevel.Information)
     .EnableSensitiveDataLogging()
     .EnableDetailedErrors()
@@ -21,7 +26,6 @@ builder.Services.AddDbContextFactory<BomberosDbContext>(
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddBlazorStrap();
-
 
 var app = builder.Build();
 
