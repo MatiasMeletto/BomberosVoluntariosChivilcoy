@@ -19,6 +19,8 @@ namespace Vista.Data.Models.Personales
         [Required, StringLength(255)]
         public string Documento { get; set; }
         [Required, StringLength(255)]
+        public string Email { get; set; }
+        [Required, StringLength(255)]
         public string GrupoSanguineo { get; set; }
         [Required, StringLength(255)]
         public string Observaciones { get; set; }

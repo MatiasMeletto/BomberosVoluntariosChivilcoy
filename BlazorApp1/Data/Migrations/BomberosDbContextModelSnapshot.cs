@@ -548,7 +548,6 @@ namespace BlazorApp1.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("EntreCalles")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
