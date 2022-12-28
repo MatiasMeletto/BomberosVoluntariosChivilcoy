@@ -1,0 +1,66 @@
+﻿@inject NavigationManager navigationManager
+@inject IDbContextFactory<BomberosDbContext> DbFactory
+@page "/brigadas"
+
+<h3>Crear una brigada</h3>
+
+<label>Ingrese el nombre de la brigada :</label>
+<input @bind="brigadaView.Nombre" type="text" />
+
+<br />
+<br />
+<br />
+<button @onclick="CrearBrigada">Crear</button>
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3>Lista actual de brigadas:</h3>
+<br />
+@if (brigadas is not null)
+{
+    @foreach (Brigada b in brigadas)
+    {
+        <label>@b.Nombre   <button @onclick="@(() => { navigationManager.NavigateTo($"/brigadas/{b.BrigadaId}"); })"><i class="fas fa-eye"></i></button></label>
+        <br>
+    }
+}
+
+@code {
+    public class BrigadaViewModel
+    {
+        [Required, StringLength(255)]
+        public string Nombre { get; set; }
+    }
+
+    private BrigadaViewModel brigadaView { get; set; } = new();
+    private Brigada[]? brigadas;
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var db = await DbFactory.CreateDbContextAsync();
+
+        brigadas = await db.Brigadas.ToArrayAsync();
+    }
+
+    public async void CrearBrigada()
+    {
+        if (!String.IsNullOrWhiteSpace(brigadaView.Nombre))
+        {
+            using var db = await DbFactory.CreateDbContextAsync();
+
+            Brigada brigada = new()
+            {
+                Nombre = brigadaView.Nombre
+            };
+
+            await db.Brigadas.AddAsync(brigada);
+            await db.SaveChangesAsync();
+            brigadaView.Nombre = string.Empty;
+            brigadas = await db.Brigadas.ToArrayAsync();
+            StateHasChanged();
+        }
+    }
+}

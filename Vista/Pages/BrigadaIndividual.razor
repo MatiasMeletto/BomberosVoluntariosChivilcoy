@@ -1,0 +1,68 @@
+﻿@inject NavigationManager navigationManager
+@inject IDbContextFactory<BomberosDbContext> DbFactory
+@page "/brigadas/{BrigadaId:int?}"
+
+<h1 class="text-center">Brigada Nº @BrigadaId</h1>
+
+<br>
+<h4 class="text-decoration-underline text-center">@brigadaView.Nombre</h4>
+<br>
+<div class="container-fluid">
+    <div class="row container">
+
+        @if (bomberos is not null)
+        {
+            <div>
+                <table style="margin: 0 auto;" id="tabla1">
+                    <thead>
+                        <tr>
+                            <th>Bomberos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (Bombero b in bomberos)
+                        {
+                            <tr>
+                                <td>@b.Nombre  @b.Apellido</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+
+    </div>
+</div>
+<button @onclick="@(() => { navigationManager.NavigateTo("/brigadas"); })"> Volver </button>
+
+@code {
+    //guarda la brigada que llego de la otra pagina
+    [Parameter]
+    public int? BrigadaId { get; set; }
+
+    //crea un viewModel para brigada
+    public class BrigadaViewModel
+    {
+        public string Nombre { get; set; }
+    }
+
+    //declara los arreglos que se van a mostrar en vista y los ViewModel
+    public BrigadaViewModel brigadaView { get; set; } = new();
+    public Bombero[]? bomberos;
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var db = await DbFactory.CreateDbContextAsync();
+
+        bomberos = await db.Bomberos.Where(b => b.BrigadaId == BrigadaId).ToArrayAsync();
+
+        //rellena el viewModel con el parametro que le llega de la otra pag
+        Brigada? b = await db.Brigadas.Where(b => b.BrigadaId == BrigadaId).SingleOrDefaultAsync();
+
+        if (b is not null)
+        {
+            brigadaView.Nombre = b.Nombre;
+        }
+    }
+}

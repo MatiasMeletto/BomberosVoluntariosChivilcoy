@@ -309,7 +309,7 @@
         public TipoIncendio Tipo { get; set; }
         [Required, StringLength(255)]
         public string Descripcion { get; set; }
-        public DateOnly Fecha { get; set; }
+        public DateTime Fecha { get; set; }
         public DateTime HoraSalida { get; set; }
         public DateTime HoraLlegada { get; set; }
         public int KmSalida { get; set; }
@@ -371,8 +371,15 @@
 
     public SalidaViewModel salidaView { get; set; } = new();
 
+    protected override async Task OnInitializedAsync()
+    {
+        salidaView.Fecha = DateTime.Now;
+    }
+
     public async void SubirSalida()
     {
+        using var db = await DbFactory.CreateDbContextAsync();
+
 
     }
 }

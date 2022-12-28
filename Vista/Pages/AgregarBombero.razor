@@ -68,7 +68,10 @@
                 </BSContainer>
                 <label id="texto">Dotacion:</label>
                 <br>
-                <input id="estilo" type="text" @bind="bomberoView.Dotacion" />
+                <select @bind="bomberoView.Grado">
+                    <option selected value="0">-Seleccione una dotacion-</option>
+                    <option value=" @EscalafonJerarquico.ComandanteGeneral">Comandante General</option>
+                </select>
                 <BSContainer id="blancoA">
 
                 </BSContainer>
@@ -319,8 +322,6 @@
         public string? Resolucion5 { get; set; }
         [Required, StringLength(255)]
         public string? Resolucion6 { get; set; }
-
-
     }
     public class ContactoViewModel
     {
