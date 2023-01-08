@@ -127,6 +127,12 @@ namespace Vista.Data
                 .Property(b => b.Grado)
                 .HasConversion<string>()
                 .HasMaxLength(255);
+            
+            modelBuilder
+                .Entity<Bombero>()
+                .Property(b => b.Dotacion)
+                .HasConversion<string>()
+                .HasMaxLength(255);
 
             modelBuilder
                 .Entity<Bombero>()
