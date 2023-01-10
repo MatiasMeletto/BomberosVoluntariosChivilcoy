@@ -1,6 +1,6 @@
 ﻿@inject NavigationManager navigationManager
 @inject IDbContextFactory<BomberosDbContext> DbFactory
-@page "/moviles/movil/{VehiculoId:int?}"
+@page "/moviles/mimovil/{VehiculoId:int?}/{BomberoId:int?}"
 
 <style>
     #inferior {
@@ -112,17 +112,30 @@
             </BSCol>
         </BSRow>
     </BSContainer>
+    <BSContainer id="blanco">
+    </BSContainer>
+    <BSContainer id="blanco">
+    </BSContainer>
+    <h2>Firmar:</h2>
+    <BSContainer id="blanco">
+    </BSContainer>
+    <label id="texto">Modelo:</label>
+    <br>
+    <input id="estilo" type="text" @bind="movilView.Modelo" />
+
 }
 else if (!existe)
 {
     <h5>No existe este movil</h5>
 }
-
 @code {
     private BSColor OTableColor { get; set; } = BSColor.Default;
     private BSColor OTRColor { get; set; } = BSColor.Default;
+
     [Parameter]
     public int? VehiculoId { get; set; }
+    [Parameter]
+    public int? BomberoId { get; set; }
 
     public class MovilViewModel
     {
@@ -166,7 +179,7 @@ else if (!existe)
     public ImagenViewModel imagenView { get; set; } = new();
     public MovilViewModel movilView { get; set; } = new();
     public SeguroViewModel seguroView { get; set; } = new();
-    public bool existe;
+    public bool existe = false;
 
 
     protected override async Task OnInitializedAsync()
@@ -232,5 +245,4 @@ else if (!existe)
 
         navigationManager.NavigateTo("/moviles");
     }
-
 }
