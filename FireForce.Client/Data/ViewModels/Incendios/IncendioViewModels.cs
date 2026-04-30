@@ -38,6 +38,7 @@ public class IncendioViewModels : SalidasViewModels
     /// <summary>
     /// Tipo de superficie afectada por el incendio. (Kilómetro, Hectáreas, Metros)
     /// </summary>
+    [Required]
     public TipoSuperficie? TipoSuperficieAfectada { get; set; }
 
     /// <summary>
