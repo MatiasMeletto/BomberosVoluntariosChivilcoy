@@ -1,3 +1,4 @@
+using FireForce.Data.Models.Personas;
 using FireForce.Data.Models.Personas.Personal;
 using FireForce.Data.Models.Grupos.FuerzasIntervinientes;
 using FireForce.Client.Data.ViewModels.Accidente;
@@ -13,6 +14,8 @@ using FireForce.Data.Models.Salidas.Planillas.Servicios;
 using FireForce.Data.Models.Salidas.Planillas;
 using FireForce.Data.Models.Salidas.Planillas.Incendios;
 using FireForce.Data.Models.Salidas.Componentes;
+using FireForce.Client.Helpers;
+using AntDesign;
 
 namespace FireForce.Client.Data.Mappers
 {
@@ -24,6 +27,8 @@ namespace FireForce.Client.Data.Mappers
             {
                 return null;
             }
+
+            ValidationHelper.Validar(viewModel);
 
             return viewModel switch
             {
