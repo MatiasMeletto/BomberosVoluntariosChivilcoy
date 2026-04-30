@@ -30,6 +30,12 @@ namespace FireForce.Client.Data.Mappers
 
             ValidationHelper.Validar(viewModel);
 
+            if (!(viewModel.BomberoEncargadoId > 0))
+                throw new ArgumentException("Debe especificar quién está a cargo de la salida");
+
+            if (!(viewModel.BomberoPlanillaId > 0))
+                throw new ArgumentException("Debe especificar quién llenó la planila");
+
             return viewModel switch
             {
                 RescatePersonaViewModels rpvm => MapToRescatePersona(rpvm),
