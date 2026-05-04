@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using FireForce.Data.Models.Socios.Componentes;
-using FireForce.Client.Helpers;
-using FireForce.Shared.Enums.Socios;
-using FireForce.Data.Models.Socios;
+﻿using FireForce.Client.Helpers;
 using FireForce.Data;
+using FireForce.Data.Models.Socios;
+using FireForce.Data.Models.Socios.Componentes;
+using FireForce.Shared.Enums.Personal.ComisionDirectiva;
+using FireForce.Shared.Enums.Socios;
+using Microsoft.EntityFrameworkCore;
 
 namespace FireForce.Client.Services
 {
@@ -14,6 +15,7 @@ namespace FireForce.Client.Services
         Task<Socio?> ObtenerSocioPorIdAsync(int socioId, bool asNoTracking = true);
         Task EditarSocioAsync(Socio socio);
         Task<int> ObtenerProximoNroSocioAsync();
+        Task<bool> CambiarEstado(int id, TipoEstadoSocio estado);
     }
 
     public class SocioService : ISocioService
@@ -264,6 +266,20 @@ namespace FireForce.Client.Services
                 .MaxAsync(s => (int?)s.NroSocio) ?? 0;
 
             return maxNroSocio + 1;
+        }
+
+        public async Task<bool> CambiarEstado(int id, TipoEstadoSocio estado)
+        {
+            var miembro = await _context.Socios.FindAsync(id);
+
+            if (miembro == null)
+            {
+                throw new KeyNotFoundException($"No se encontró un miembro de comisión directiva con el ID {id}.");
+            }
+
+            miembro.EstadoSocio = estado;
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }
