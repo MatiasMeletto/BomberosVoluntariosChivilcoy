@@ -60,14 +60,14 @@ namespace FireForce.Client.Data.ViewModels.MaterialesPeligrosos
         /// <summary>
         /// Detalles sobre las acciones tomadas sobre los materiales peligrosos.
         /// </summary>
-        [Required]
-        public string? DetallesAccionesMateriales { get; set; }
+        public string? DetallesAccionesMateriales { get; set; } = "";
 
         // --- Acciones sobre las personas ---
 
         /// <summary>
         /// Tipo de evacuación realizada. (Si se realizó alguna)
         /// </summary>
+        [Required]
         public TipoEvacuacion? Evacuacion { get; set; }
 
         /// <summary>
@@ -93,8 +93,7 @@ namespace FireForce.Client.Data.ViewModels.MaterialesPeligrosos
         /// <summary>
         /// Detalles sobre las acciones tomadas sobre las personas.
         /// </summary>
-        [Required]
-        public string? DetallesAccionesPersonas { get; set; }
+        public string? DetallesAccionesPersonas { get; set; } = "";
 
         // --- Detalles de la superficie afectada ---
 
