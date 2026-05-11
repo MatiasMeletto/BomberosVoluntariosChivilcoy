@@ -16,6 +16,7 @@ using FireForce.Data.Models.Salidas.Planillas.Incendios;
 using FireForce.Data.Models.Salidas.Componentes;
 using FireForce.Client.Helpers;
 using AntDesign;
+using FireForce.Data.Models.Personas;
 
 namespace FireForce.Client.Data.Mappers
 {
@@ -326,20 +327,20 @@ namespace FireForce.Client.Data.Mappers
             destination.EncargadoId = source.BomberoEncargadoId;
             destination.QuienLlenoId = source.BomberoPlanillaId;
 
-            // Mapeo de colecciones
-            //destination.Damnificados = source.Damnificados?.Select(d => new Damnificado_Salida
-            //{
-            //    Damnificado_SalidaId = d.Damnificado_SalidaId,
-            //    Nombre = d.Nombre,
-            //    Apellido = d.Apellido,
-            //    Documento = d.Documento,
-            //    Edad = d.Edad,
-            //    Sexo = d.Sexo,
-            //    Estado = d.Estado,
-            //    Destino = d.Destino,
-            //    FuerzaIntervinienteId = d.FuerzaIntervinienteId,
-            //    FuerzaInterviniente = null
-            //}).ToList() ?? new List<Damnificado_Salida>();
+            //Mapeo de colecciones
+            destination.Damnificados = source.Damnificados?.Select(d => new Damnificado_Salida
+            {
+                Damnificado_SalidaId = d.Id,
+                Nombre = d.Nombre,
+                Apellido = d.Apellido,
+                Documento = d.Dni,
+                Edad = d.Edad,
+                Sexo = d.Sexo,
+                Estado = d.Estado,
+                Destino = d.Destino,
+                FuerzaIntervinienteId = d.FuerzaIntervinienteId,
+                FuerzaInterviniente = null
+            }).ToList() ?? new List<Damnificado_Salida>();
 
             destination.Moviles = source.Moviles.ToList();
 
