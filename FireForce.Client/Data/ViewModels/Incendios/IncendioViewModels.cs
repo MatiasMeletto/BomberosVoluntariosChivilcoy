@@ -49,6 +49,7 @@ public class IncendioViewModels : SalidasViewModels
     /// <summary>
     /// Detalle de la superficie afectada por el incendio.
     /// </summary>
+    [Required]
     public string? DetalleSuperficieAfectadaIncendio { get; set; }
 
     // --- Materiales y estructuras ---

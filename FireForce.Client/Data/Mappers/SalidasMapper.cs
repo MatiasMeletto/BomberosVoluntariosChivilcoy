@@ -123,7 +123,7 @@ namespace FireForce.Client.Data.Mappers
             matpel.OtraAccionesPersonas = viewModel.OtraAccionesPersonas;
             matpel.DetallesAccionesPersonas = viewModel.DetallesAccionesPersonas;
             matpel.TipoSuperficie = viewModel.TipoSuperficie!.Value;
-            matpel.CantidadAfectadaMaterialPeligroso = viewModel.Cantidad!.Value;
+            matpel.CantidadAfectadaMaterialPeligroso = viewModel.CantidadAfectada!.Value;
             matpel.TipoSituacion = viewModel.TipoSituacion!.Value;
             return matpel;
         }
@@ -499,7 +499,7 @@ namespace FireForce.Client.Data.Mappers
                     mpvm.OtraAccionesPersonas = mp.OtraAccionesPersonas;
                     mpvm.DetallesAccionesPersonas = mp.DetallesAccionesPersonas;
                     mpvm.TipoSuperficie = mp.TipoSuperficie;
-                    mpvm.Cantidad = mp.CantidadAfectadaMaterialPeligroso;
+                    mpvm.CantidadAfectada = mp.CantidadAfectadaMaterialPeligroso;
                     mpvm.TipoSituacion = mp.TipoSituacion;
                     break;
                 case Accidente a:
