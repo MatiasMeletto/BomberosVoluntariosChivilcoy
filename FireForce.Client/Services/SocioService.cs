@@ -2,7 +2,6 @@
 using FireForce.Data;
 using FireForce.Data.Models.Socios;
 using FireForce.Data.Models.Socios.Componentes;
-using FireForce.Shared.Enums.Personal.ComisionDirectiva;
 using FireForce.Shared.Enums.Socios;
 using Microsoft.EntityFrameworkCore;
 
@@ -275,9 +274,36 @@ namespace FireForce.Client.Services
             if (miembro == null)
                 throw new KeyNotFoundException($"No se encontró un socio con el ID {id}.");
 
-            miembro.EstadoSocio = estado;
-            await _context.SaveChangesAsync();
-            return true;
+            await using var transaction = await _context.Database.BeginTransactionAsync();
+
+            try
+            {
+                var movimientoEstado = new MovimientoCambioEstado
+                {
+                    Estado = estado,
+                    Motivo = $"Cambio de estado de {miembro.EstadoSocio} a {estado}",
+                };
+
+                await _historialSocioService.CrearMovimientoSocio(socioId: id, movimientoEstado);
+
+                miembro.EstadoSocio = estado;
+
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                _context.ChangeTracker.Clear();
+
+                if (ex is DbUpdateException)
+                {
+                    throw new Exception("Error al guardar en la base de datos. Verifique datos duplicados.", ex);
+                }
+
+                throw;
+            }
         }
     }
 }
