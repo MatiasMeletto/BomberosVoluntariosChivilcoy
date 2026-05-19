@@ -273,9 +273,7 @@ namespace FireForce.Client.Services
             var miembro = await _context.Socios.FindAsync(id);
 
             if (miembro == null)
-            {
-                throw new KeyNotFoundException($"No se encontró un miembro de comisión directiva con el ID {id}.");
-            }
+                throw new KeyNotFoundException($"No se encontró un socio con el ID {id}.");
 
             miembro.EstadoSocio = estado;
             await _context.SaveChangesAsync();
