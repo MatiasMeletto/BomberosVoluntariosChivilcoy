@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>f08ce748-0a84-44c1-8c1e-cca58d1deceb</UserSecretsId>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.25" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.25" />
+		<PackageReference Include="MQTTnet" Version="5.1.0.1559" />		
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\FireForce.Client\FireForce.Client.csproj" />
+	  <ProjectReference Include="..\FireForce.Data\FireForce.Data.csproj" />
+	  <ProjectReference Include="..\FireForce.Shared\FireForce.Shared.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Helpers\" />
+	  <Folder Include="DTOs\" />
+	</ItemGroup>
+</Project>

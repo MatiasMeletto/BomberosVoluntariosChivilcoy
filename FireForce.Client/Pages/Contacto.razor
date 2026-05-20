@@ -1,0 +1,70 @@
+@page "/contacto"
+@layout InicioLayout
+@using Microsoft.AspNetCore.Authorization
+@attribute [AllowAnonymous]
+
+<Content Style="padding: 50px 20px; background: linear-gradient(135deg, #f0f2f5, #ffffff); min-height: calc(100vh - 120px);">
+    >
+    <div style="max-width: 1200px; margin: 0 auto;">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <Title Level="1" Style="color: #d32f2f; font-size: 3rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px;">
+                CONTACTO
+            </Title>
+            <div style="width: 100px; height: 4px; background: linear-gradient(90deg, #d32f2f, #ff6b6b); margin: 0 auto; border-radius: 2px;"></div>
+        </div>
+
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">🏢</div>
+                    <div class="contact-details">
+                        <h3>Institución</h3>
+                        <p>Sociedad de Bomberos Voluntarios de Chivilcoy</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <h3>Dirección</h3>
+                        <p>Gral. Pueyrredón N° 162 Chivilcoy - Bs. As. (Argentina)</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-details">
+                        <h3>Email</h3>
+                        <p>bomberosvoluntarioschivilcoy@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-details">
+                        <h3>Teléfono</h3>
+                        <p>02346-424319/426066</p>
+                    </div>
+                </div>
+
+                <div class="contact-item" style="border-left-color: #dc3545; background: linear-gradient(135deg, rgba(220, 53, 69, 0.05), rgba(255, 255, 255, 0.95));">
+                    <div class="contact-icon" style="background: linear-gradient(135deg, #dc3545, #c82333); box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3); animation: emergencyPulse 2s infinite;">🚨</div>
+                    <div class="contact-details">
+                        <h3 style="color: #dc3545;">Emergencias</h3>
+                        <p style="font-size: 2rem; font-weight: 700; color: #dc3545;">100</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-logo">
+                <img src="/Imagenes/Logos.png"
+                     alt="Logo Bomberos Voluntarios Chivilcoy"
+                     class="contact-main-logo" />
+            </div>
+        </div>
+    </div>
+</Content>
+
+@code {
+
+}
