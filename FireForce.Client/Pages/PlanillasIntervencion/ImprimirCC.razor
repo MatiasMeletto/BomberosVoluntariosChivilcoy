@@ -322,11 +322,6 @@
                 </div>
             </div>
         </div>
-        <div>
-            <p class="sec3-titulo">
-                B) Incendio
-            </p>
-        </div>
         @if (IntervencionVM.TipoTecho != null && IntervencionVM.TipoAbertura != null)
         {
             <div class="sec3-contenedor">
@@ -453,7 +448,7 @@
 
         public string GraduadoCargo
         {
-            get { return ApellidoConfecciono + ", " + GraduadoNombre; }
+            get { return GraduadoApellido + ", " + GraduadoNombre; }
         }
 
         //Rangos Graduado - Confecciono (Modificar luego)
@@ -565,12 +560,12 @@
             IntervencionVM.HoraSalida = salida.HoraSalida.ToString(@"HH\:mm\:ss");
             IntervencionVM.HoraLlegada = salida.HoraLlegada.ToString(@"HH\:mm\:ss");
             IntervencionVM.AvisadoPor = salida.NombreSolicitante + "," + salida.ApellidoSolicitante;
-            IntervencionVM.NombreConfecciono = quienlleno.Nombre;
-            IntervencionVM.ApellidoConfecciono = quienlleno.Apellido;
-            IntervencionVM.ConfeccionoRango = quienlleno.Grado.ToString();
-            IntervencionVM.GraduadoNombre = encargado.Nombre;
-            IntervencionVM.GraduadoApellido = encargado.Apellido;
-            IntervencionVM.GraduadoRango = quienlleno.Grado.ToString();
+            IntervencionVM.NombreConfecciono = quienlleno?.Nombre;
+            IntervencionVM.ApellidoConfecciono = quienlleno?.Apellido;
+            IntervencionVM.ConfeccionoRango = quienlleno?.Grado.ToString();
+            IntervencionVM.GraduadoNombre = encargado?.Nombre.ToString();
+            IntervencionVM.GraduadoApellido = encargado?.Apellido;
+            IntervencionVM.GraduadoRango = encargado?.Grado.ToString();
             IntervencionVM.NumeroParte = salida.NumeroParte;
             IntervencionVM.AnioSalida = salida.AnioNumeroParte;
             IntervencionVM.Recepcionista = salida.NombreYApellidoReceptor ?? "No se registro recepcionista.";
