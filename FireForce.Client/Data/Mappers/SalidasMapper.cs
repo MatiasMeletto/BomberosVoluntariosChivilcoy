@@ -323,6 +323,7 @@ namespace FireForce.Client.Data.Mappers
             destination.ApellidoSolicitante = source.ApellidoSolicitante;
             destination.DniSolicitante = source.DniSolicitante;
             destination.TelefonoSolicitante = source.TelefonoSolicitante;
+            destination.NombreYApellidoReceptor = source.ApellidoReceptor + ", " + source.NombreReceptor;
             destination.TipoServicio = source.TipoServicio!.Value;
             destination.EncargadoId = source.BomberoEncargadoId;
             destination.QuienLlenoId = source.BomberoPlanillaId;

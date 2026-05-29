@@ -258,7 +258,7 @@
                 <ul>
                     <li style="display: inline-block;">FECHA: @IntervencionVM.FechaImprimir</li>
                     <li style="display: inline-block; margin-left: 8.5em;"> Día: @IntervencionVM.DiaDeLaSemana </li>
-                    <li>AVISADO POR: @IntervencionVM.AvisadoPor </li>
+                    <li>AVISADO POR: @IntervencionVM.AvisadoPor</li>
                     <li>RECEPCIONADO POR: @IntervencionVM.Recepcionista</li>
                     <li>TIPO SERVICIO: @IntervencionVM.TipoServicio</li>
                     <li>DIRECCION: @IntervencionVM.Direccion</li>
@@ -429,7 +429,15 @@
 
         public string? DetallesSalida { get; set; }
 
-        public string? AvisadoPor { get; set; }
+		private string? _avisadoPor;
+        public string? AvisadoPor
+        {
+            get => _avisadoPor;
+            set
+            {
+				_avisadoPor = value?.Trim() == "," ? "No se registró solicitante." : value;
+            }
+        }
 
         public string? TipoServicio { get; set; }
 
